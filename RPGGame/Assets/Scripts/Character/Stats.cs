@@ -56,12 +56,13 @@ public class Stats : MonoBehaviour {
         ExperienceParticle.startSpeed = _BaseSpeed * (Experience / MaxExperience);
     }
 
-    internal void LevelUp()
+
+    protected void LevelUp()
     {
 
     }
 
-    internal void Prestige()
+    protected void Prestige()
     {
 
     }

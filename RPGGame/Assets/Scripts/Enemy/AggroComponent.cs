@@ -19,8 +19,10 @@ public class AggroComponent : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
+        if (other.GetComponent<Stats>()) _Target = other.transform;
+
         Enemy enemy = other.GetComponent<Enemy>();
-        if (enemy)
+        if (enemy && _Target)
         {
             enemy.SetTarget(_Target);
         }

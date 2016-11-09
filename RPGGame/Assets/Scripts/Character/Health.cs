@@ -16,7 +16,7 @@ abstract public class Health : MonoBehaviour
         _CurrentHealth += delta;
         InCombat = true;
 
-        if(delta > 0)
+        if(delta < 0)
         {
             DamageTaken(delta);
         }
@@ -32,22 +32,23 @@ abstract public class Health : MonoBehaviour
         }
     }
 
-    public void SetMaxHealth(float value)
+    internal void SetMaxHealth(float value)
     {
         _MaxHealth = value;
         _CurrentHealth = _MaxHealth;
+        UpdateUI();
     }
 
     protected Color GetColor()
     {
         Color newColor = new Color();
-        if (_CurrentHealth > _MaxHealth / 2)//white to gray
+        if (_CurrentHealth > _MaxHealth / 2)//green to yellow
         {
-            newColor = Color.Lerp(Color.green, Color.yellow, _CurrentHealth / _MaxHealth * 2 - 1);
+            newColor = Color.Lerp(Color.yellow, Color.green, _CurrentHealth / _MaxHealth * 2 - 1);
         }
-        else//gray to red
+        else//yellow to red
         {
-            newColor = Color.Lerp(Color.yellow, Color.red, _CurrentHealth / _MaxHealth * 2);
+            newColor = Color.Lerp(Color.red, Color.yellow, _CurrentHealth / _MaxHealth * 2);
         }
         return newColor;
     }

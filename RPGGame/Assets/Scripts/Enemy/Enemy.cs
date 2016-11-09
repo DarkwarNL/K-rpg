@@ -24,6 +24,7 @@ abstract public class Enemy : MonoBehaviour {
     protected float _AttackCooldown = 2;
     protected float _AttackRange = 5;
     protected bool _CanAttack = true;
+    protected float _Damage = -1;
 
     protected float _RunSpeed = 3;
     protected float _WalkSpeed = .5f;
@@ -36,6 +37,7 @@ abstract public class Enemy : MonoBehaviour {
         transform.GetComponentInChildren<EnemyName>().SetName(_Name);
         _Collider.radius = _AggroRange;
         _StartPos = transform.position;
+        
     }
 
     protected Vector3 GetRandomPos()
@@ -67,38 +69,48 @@ abstract public class Enemy : MonoBehaviour {
         if (!_Target)
         {
             Idle();
+            _Nav.stoppingDistance = 1;
             return;
         }
-
         if (_Target)
         {
             _Nav.SetDestination(_Target.transform.position);
             _Nav.speed = _RunSpeed;
+            _Nav.stoppingDistance = _AttackRange;
         }
-        if (_Nav.remainingDistance < _AttackRange && _CanAttack && _Target)
+
+        if (_Nav.remainingDistance < _AttackRange && _Target)
         {
-            _Nav.Stop();
-            Attack();
-            StartCoroutine(Cooldown());
+            SetRotation();
+            if (_CanAttack)
+            {
+                Attack();
+                StartCoroutine(Cooldown());
+            }
         }
         else if(Vector3.Distance(transform.position, _StartPos) > 20)
         {
-            _Nav.Resume();
-            _Target = null;            
-            _Aggro = false;
+            _Target = null;    
             _Nav.SetDestination(_StartPos);
         }
+    }
+
+    void SetRotation()
+    {
+        Vector3 targetDir = _Target.position - transform.position;
+        
+        Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, 1.5f * Time.deltaTime, 0);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(newDir), 20 * Time.deltaTime);
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<Stats>())
         {            
-            GameObject instance = Instantiate(Resources.Load("Prefabs/EnemyAggroComp", typeof(GameObject)),transform.position, Quaternion.identity) as GameObject;
-            instance.GetComponent<AggroComponent>().SetTarget(_Target);
-            Destroy(instance, 5);
+            GameObject aggro = Instantiate(Resources.Load("Prefabs/EnemyAggroComp", typeof(GameObject)),transform.position, Quaternion.identity) as GameObject;
+            aggro.GetComponent<AggroComponent>().SetTarget(_Target);
+            Destroy(aggro, 5);
             _Target = other.transform;
-            _Aggro = true;
         }
     }
 
@@ -115,6 +127,11 @@ abstract public class Enemy : MonoBehaviour {
     public void SetTarget(Transform target)
     {
         _Target = target;
+    }
+
+    internal EnemyHealth GetHealth()
+    {
+        return _Health;
     }
 
     abstract protected void Attack();

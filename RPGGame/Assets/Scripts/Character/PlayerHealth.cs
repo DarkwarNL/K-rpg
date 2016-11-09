@@ -17,20 +17,25 @@ public class PlayerHealth : Health {
 
     private void UpdateHealthParticle()
     {
-        float newSpeed = _BaseSpeed * (CurrentHealth / MaxHealth);
+        float newSpeed = _BaseSpeed * (_CurrentHealth / _MaxHealth);
         if(newSpeed >= 0)
             HealthParticle.startSpeed = newSpeed;
     }
 
+    protected override void UpdateUI()
+    {
+       
+    }
+
     protected override void DamageTaken(float amount)
     {
-        //_Popup.SpawnDamageText(amount.ToString());
+        _Popup.SpawnDamageText(amount.ToString());
         UpdateHealthParticle();
     }
 
     protected override void HealTaken(float amount)
     {
-       // _Popup.SpawnDamageText(amount.ToString());
+        _Popup.SpawnDamageText(amount.ToString());
         UpdateHealthParticle();
     }
 

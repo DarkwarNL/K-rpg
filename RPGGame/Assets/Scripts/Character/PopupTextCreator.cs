@@ -37,6 +37,7 @@ public class PopupTextCreator : MonoBehaviour {
     Animation CreateObject(string text)
     {
         GameObject textObj = Instantiate(TextObject);
+        textObj.transform.SetParent(transform);
         textObj.GetComponent<Text>().text = text;
         Destroy(textObj, 4);
         return textObj.GetComponent<Animation>();

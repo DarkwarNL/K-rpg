@@ -3,11 +3,8 @@ using System.Collections;
 
 public class Archer : Combat
 {
-	void Update ()
+	protected override void MakeSwitch(int weapon)
     {
-        if (Input.GetButton("Fire"))
-        {
-            _Anim.SetTrigger("OnSheet");
-        }
+        // Switch
 	}
 }

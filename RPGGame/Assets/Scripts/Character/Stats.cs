@@ -44,12 +44,6 @@ public class Stats : MonoBehaviour {
         _BaseSpeed = ExperienceParticle.startSpeed;
     }
 
-    void Update()
-    {
-        _Health.DeltaHealth(-Time.deltaTime/2);
-        DeltaExperience(Time.deltaTime *10);
-    }
-
     internal void DeltaExperience(float delta)
     {
         Experience += delta;

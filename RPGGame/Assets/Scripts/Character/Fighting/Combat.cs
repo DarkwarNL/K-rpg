@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Combat : MonoBehaviour {
+abstract public class Combat : MonoBehaviour {
     public ParticleSystem SwordTrail;
 
     protected Animator _Anim;
@@ -24,9 +24,12 @@ public class Combat : MonoBehaviour {
     
     void FixedUpdate()
     {
-        if (Input.GetButtonDown("Attack"))
+        SwitchWeapon(Input.GetAxis("WeaponSwitchX"), Input.GetAxis("WeaponSwitchY"));
+
+        if (Input.GetAxis("Attack") > 0.1f)
         {
             Attack();
+            Debug.Log("woppaaa");
         }
        
         if (_Fighting)
@@ -38,6 +41,36 @@ public class Combat : MonoBehaviour {
             }
         }
     }
+
+    void SwitchWeapon(float x, float y)
+    {
+        if (y != 0)
+        {
+            if (y < 0)
+            {
+                Debug.Log("WeaponSwap beneden");
+            }
+            else
+            {
+                Debug.Log("WeaponSwap boven");
+            }
+            _Anim.SetTrigger("OnSheet");
+
+        }
+        else if (x != 0)
+        {
+            if (x < 0)
+            {
+                Debug.Log("WeaponSwap links");
+            }
+            else
+            {
+                Debug.Log("WeaponSwap rechts");
+            }
+            _Anim.SetTrigger("OnSheet");
+        }
+    }
+
 
     void Attack()
     {
@@ -93,4 +126,6 @@ public class Combat : MonoBehaviour {
         _CurrentAttack = 0;
         _CanAttack = false;        
     }
+
+    abstract protected void MakeSwitch(int weapon);
 }

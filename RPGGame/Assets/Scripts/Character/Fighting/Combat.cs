@@ -2,19 +2,21 @@
 using System.Collections;
 
 abstract public class Combat : MonoBehaviour {
-    public ParticleSystem SwordTrail;
-
+    protected Weapon _SelectedWeapon;
+    protected GameObject[] _Weapons;
+    protected WeaponSlot _WeaponSlot;
     protected Animator _Anim;
 
     protected int _CurrentAttack = 0;
     protected bool _Fighting = false;
     protected bool _CanAttack = true;
 
-    protected float _CombatTime;
+    protected float _CombatTime = 10;
 
     void Awake()
     {
         _Anim = GetComponent<Animator>();
+        _WeaponSlot = GetComponentInChildren<WeaponSlot>();
     }
 
     public bool InCombat()
@@ -29,14 +31,13 @@ abstract public class Combat : MonoBehaviour {
         if (Input.GetAxis("Attack") > 0.1f)
         {
             Attack();
-            Debug.Log("woppaaa");
         }
        
         if (_Fighting)
         {    
             if ((_CombatTime -= Time.deltaTime )<= 0)
             {
-                CombatEnd();
+                CombatEnd();                
                 _Anim.SetTrigger("OnUnsheet");
             }
         }
@@ -48,84 +49,63 @@ abstract public class Combat : MonoBehaviour {
         {
             if (y < 0)
             {
-                Debug.Log("WeaponSwap beneden");
+                MakeSwitch(2);
             }
             else
             {
-                Debug.Log("WeaponSwap boven");
+                MakeSwitch(0);
             }
-            _Anim.SetTrigger("OnSheet");
-
         }
         else if (x != 0)
         {
             if (x < 0)
             {
-                Debug.Log("WeaponSwap links");
+                MakeSwitch(3);
             }
             else
             {
-                Debug.Log("WeaponSwap rechts");
-            }
-            _Anim.SetTrigger("OnSheet");
+                MakeSwitch(1);
+            }            
         }
     }
 
-
-    void Attack()
+    protected void MakeSwitch(int weapon)
     {
-        if (!_Fighting)
+        if (_Weapons.Length > weapon)
         {
-            _CurrentAttack = 1;
-            _Anim.SetFloat("Attack", _CurrentAttack);
-
-            _Anim.SetBool("Combat", _Fighting = true);
-            _CanAttack = false;
-
-            _CombatTime = 5;
+            Weapon wep = _Weapons[weapon].GetComponent<Weapon>();
+            if (_WeaponSlot.CanSwitch(wep))
+            {
+                _SelectedWeapon = wep;
+                _Anim.SetTrigger("OnSheet");
+                _Fighting = true;
+                _CombatTime = 10;
+            }
         }
+    }
 
-        if (_CanAttack)
+    protected void UnSheet()
+    {
+        if (!_SelectedWeapon)
         {
-            _CurrentAttack++;
-
-            _Anim.SetBool("Combat", _Fighting = true);
-            _CanAttack = false;
-
-            _CombatTime = 5;
-        }     
+            _SelectedWeapon = _Weapons[0].GetComponent<Weapon>();
+        }
+        _WeaponSlot.UnSheet();
+        _Anim.SetTrigger("OnSheet");
     }
 
     public void Hit()
     {
-        Debug.Log("GET SHREKKED BITCH");
         _CanAttack = true;
-    }
-
-    public void AttackEnd()
-    {
-        if (_CurrentAttack > 5)
-        {
-            _CurrentAttack = 1;
-        }
-
-        if (_CurrentAttack > _Anim.GetFloat("Attack"))
-        {
-            _Anim.SetFloat("Attack", _CurrentAttack);
-        }
-        else
-        {
-            CombatEnd();
-        }
     }
 
     public void CombatEnd()
     {
-        _Anim.SetBool("Combat", false);
         _Fighting = false;
         _CurrentAttack = 0;
-        _CanAttack = false;        
+        _CanAttack = false;
+        _WeaponSlot.Sheet(); 
     }
 
-    abstract protected void MakeSwitch(int weapon);
+    protected abstract void Attack();
 }

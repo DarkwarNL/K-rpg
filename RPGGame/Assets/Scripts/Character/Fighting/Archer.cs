@@ -3,8 +3,19 @@ using System.Collections;
 
 public class Archer : Combat
 {
-	protected override void MakeSwitch(int weapon)
+    void Start()
     {
-        // Switch
-	}
+        _Weapons = Resources.LoadAll<GameObject>("Prefabs/Weapons/Archer");
+    }
+
+    protected override void Attack()
+    {
+        if (!_Fighting)
+        {
+            Unsheet();
+            _Anim.SetTrigger("Aim");
+            _Fighting = true;            
+        }
+        _CombatTime = 10;
+    }
 }

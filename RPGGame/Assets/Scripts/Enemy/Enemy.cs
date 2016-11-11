@@ -2,11 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 
-[RequireComponent(typeof(EnemyHealth), typeof(NavMeshAgent), typeof(CapsuleCollider))]
+[RequireComponent(typeof(EnemyHealth), typeof(NavMeshAgent))]
 abstract public class Enemy : MonoBehaviour {
-
-    //private vars
-
     private CapsuleCollider _Collider;
 
     #region PROTECTED_MEMBER_VARIABLES
@@ -19,7 +16,7 @@ abstract public class Enemy : MonoBehaviour {
 
     protected Transform _Target = null;
     protected float _AggroRange = 5;
-    protected GameObject AggroObject;
+    protected EnemyAggro _AggroObject;
 
     protected float _AttackCooldown = 2;
     protected float _AttackRange = 5;
@@ -34,10 +31,9 @@ abstract public class Enemy : MonoBehaviour {
 
     protected void SetData()
     {
-        transform.GetComponentInChildren<EnemyName>().SetName(_Name);
-        _Collider.radius = _AggroRange;
+        transform.GetComponentInChildren<EnemyName>().SetName(_Name);        
         _StartPos = transform.position;
-        
+        _AggroObject.SetData(this, _AttackRange);
     }
 
     protected Vector3 GetRandomPos()
@@ -60,8 +56,8 @@ abstract public class Enemy : MonoBehaviour {
     {
         _Health = GetComponent<EnemyHealth>();
         _Nav = GetComponent<NavMeshAgent>();
-        _Collider = GetComponent<CapsuleCollider>();
-        _Collider.isTrigger = true;
+        _AggroObject = (Instantiate(new GameObject(), transform.position, Quaternion.identity) as GameObject).AddComponent<EnemyAggro>();
+        _AggroObject.transform.SetParent(transform);
     }
 
     void FixedUpdate()
@@ -102,19 +98,7 @@ abstract public class Enemy : MonoBehaviour {
         Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, 1.5f * Time.deltaTime, 0);
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(newDir), 20 * Time.deltaTime);
     }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.GetComponent<Stats>())
-        {            
-            GameObject aggro = Instantiate(Resources.Load("Prefabs/EnemyAggroComp", typeof(GameObject)),transform.position, Quaternion.identity) as GameObject;
-            aggro.GetComponent<AggroComponent>().SetTarget(_Target);
-            Destroy(aggro, 5);
-            _Target = other.transform;
-        }
-    }
-
-
+        
     IEnumerator Cooldown()
     {
         _CanAttack = false;

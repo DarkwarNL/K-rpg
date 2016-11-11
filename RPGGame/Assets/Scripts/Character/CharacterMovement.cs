@@ -5,13 +5,11 @@ using System.Collections;
 public class CharacterMovement : MonoBehaviour {
     private Stats _Stats;
     private Animator _Anim;
-    private CharacterController _Controller;
     private float _RotationSpeed = 6; 
 
     void Awake()
     {
-        _Stats = GetComponent<Stats>();
-        _Controller = GetComponent<CharacterController>();
+        _Stats = GetComponent<Stats>(); 
         _Anim = GetComponent<Animator>();
     }
 
@@ -22,6 +20,7 @@ public class CharacterMovement : MonoBehaviour {
 
         _Anim.SetFloat("Speed", moveV);
         _Anim.SetFloat("SideSpeed", moveH);
+
         if(moveV > 0)
         {
             Vector3 movement = new Vector3(0, 0f, moveV);
@@ -34,18 +33,5 @@ public class CharacterMovement : MonoBehaviour {
             newRotation.z = transform.rotation.z;
             transform.rotation = newRotation;
         }        
-                
-        if (_Controller.isGrounded)
-        {
-            if (Input.GetButton("Jump"))
-            {
-
-            }
-        }
-
-        if (Input.GetMouseButton(1))
-        {
-            transform.rotation = Quaternion.Euler(0, Camera.main.transform.eulerAngles.y, 0);
-        }
     }
 }

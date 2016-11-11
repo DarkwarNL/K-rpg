@@ -31,7 +31,7 @@ public class Enemy_Archer : Enemy {
     protected override void Attack()
     {
         GameObject arrow = Instantiate(_Projectile, transform.position + transform.forward *2, transform.rotation) as GameObject;        
-        arrow.GetComponent<Arrow>().SetDamage(_Damage);
+        arrow.GetComponent<Arrow>().SetData(_Damage, gameObject);
         Destroy(arrow, 3);
     }
 }

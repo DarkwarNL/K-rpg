@@ -3,7 +3,7 @@ using System.Collections;
 
 public class WeaponSlot : MonoBehaviour
 {
-    protected Weapon _CurrentWeapon;
+    protected Weapon _CurrentWeapon = null;
     protected GameObject _CurrentObject;
 
     public bool CanSwitch(Weapon nextWeapon)

@@ -2,7 +2,7 @@
 using System.Collections;
 
 abstract public class Combat : MonoBehaviour {
-    protected Weapon _SelectedWeapon;
+    protected Weapon _SelectedWeapon = null;
     protected GameObject[] _Weapons;
     protected WeaponSlot _WeaponSlot;
     protected Animator _Anim;
@@ -30,7 +30,13 @@ abstract public class Combat : MonoBehaviour {
 
         if (Input.GetAxis("Attack") > 0.1f)
         {
+            _CombatTime = 10;
             Attack();
+        }
+        else
+        {
+            _CombatTime = 10;
+            Release();
         }
        
         if (_Fighting)
@@ -38,7 +44,7 @@ abstract public class Combat : MonoBehaviour {
             if ((_CombatTime -= Time.deltaTime )<= 0)
             {
                 CombatEnd();                
-                _Anim.SetTrigger("OnUnsheet");
+                _Anim.SetTrigger("Sheet");
             }
         }
     }
@@ -77,7 +83,7 @@ abstract public class Combat : MonoBehaviour {
             if (_WeaponSlot.CanSwitch(wep))
             {
                 _SelectedWeapon = wep;
-                _Anim.SetTrigger("OnSheet");
+                _Anim.SetTrigger("UnSheet");
                 _Fighting = true;
                 _CombatTime = 10;
             }
@@ -89,9 +95,14 @@ abstract public class Combat : MonoBehaviour {
         if (!_SelectedWeapon)
         {
             _SelectedWeapon = _Weapons[0].GetComponent<Weapon>();
+            _WeaponSlot.CanSwitch(_SelectedWeapon);
         }
-        _WeaponSlot.UnSheet();
-        _Anim.SetTrigger("OnSheet");
+        else
+        {
+            _WeaponSlot.UnSheet();
+        }
+        _Anim.SetTrigger("UnSheet");
+        _Fighting = true;
     }
 
     public void Hit()
@@ -108,4 +119,5 @@ abstract public class Combat : MonoBehaviour {
     }
 
     protected abstract void Attack();
+    protected abstract void Release();
 }

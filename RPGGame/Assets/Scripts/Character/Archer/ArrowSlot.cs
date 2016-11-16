@@ -5,6 +5,12 @@ public class ArrowSlot : MonoBehaviour
 {
     private Arrow _CurrentArrow = null;
 
+    internal void SetArrowRotation(Vector3 target)
+    {
+        if(_CurrentArrow&& target != null)
+            _CurrentArrow.transform.LookAt(target);
+    }
+
     public void SpawnArrow(Arrow newArrow)
     {
         if (_CurrentArrow) return;
@@ -15,12 +21,19 @@ public class ArrowSlot : MonoBehaviour
         _CurrentArrow.transform.rotation = new Quaternion();
     }
 
-    public void Release()
+    public void Shoot()
     {
         if (!_CurrentArrow) return;
         _CurrentArrow.transform.SetParent(null);
         _CurrentArrow.Release();
         Destroy(_CurrentArrow, 5);
+        _CurrentArrow = null;
+    }
+
+    public void Release()
+    {
+        if (!_CurrentArrow) return;
+        Destroy(_CurrentArrow.gameObject, 1);
         _CurrentArrow = null;
     }
 }

@@ -3,7 +3,7 @@ using System.Collections;
 
 [RequireComponent(typeof(BoxCollider))]
 abstract public class Arrow : MonoBehaviour {
-    protected float _Speed = 15f;
+    protected float _Speed = 25f;
     protected float _Damage = 2f;
     protected GameObject _Owner;
     protected bool _Holding = false;

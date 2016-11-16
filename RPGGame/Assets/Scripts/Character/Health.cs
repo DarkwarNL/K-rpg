@@ -11,6 +11,11 @@ abstract public class Health : MonoBehaviour
     internal float RegenerationTime = 5;
     internal bool InCombat = false;
     
+    public float GetPercentage()
+    {
+        return (_CurrentHealth/ _MaxHealth);
+    }
+
     public void DeltaHealth(float delta)
     {
         _CurrentHealth += delta;

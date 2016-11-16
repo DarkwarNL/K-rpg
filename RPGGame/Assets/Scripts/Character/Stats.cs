@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Stats : MonoBehaviour {
+    public Image HealthBar;
+    public Image ExperienceBar;
+    public ParticleSystem HealthParticle;
     public ParticleSystem ExperienceParticle;
-    private float _BaseSpeed;
-
+    private float _BaseSpeedExp;
+    private float _BaseSpeedHP;
     /// <summary>
     /// Stats
     /// </summary>
@@ -17,8 +21,6 @@ public class Stats : MonoBehaviour {
     internal float MaxExperience = 80;
     internal int ExperienceRanking = 1;
 
-    internal float MovementSpeed = 3.5f;
-
     private static Stats _Stats;
 
     public static Stats Instance
@@ -27,7 +29,6 @@ public class Stats : MonoBehaviour {
         {
             if(!_Stats)
                _Stats = FindObjectOfType<Stats>();
-
             return _Stats;
         }
     }
@@ -41,7 +42,9 @@ public class Stats : MonoBehaviour {
     {
         _Health = GetComponent<PlayerHealth>();
         _Combat = GetComponent<Combat>();
-        _BaseSpeed = ExperienceParticle.startSpeed;
+        _BaseSpeedExp = ExperienceParticle.startSpeed;
+        _BaseSpeedHP = HealthParticle.startSpeed;
+        UpdateUI();
     }
 
     internal void DeltaExperience(float delta)
@@ -52,8 +55,18 @@ public class Stats : MonoBehaviour {
             Experience -= MaxExperience;
             LevelUp();
         }
+    }
 
-        ExperienceParticle.startSpeed = _BaseSpeed * (Experience / MaxExperience);
+    public void UpdateUI()
+    {
+        float ExpPercentage = (Experience / MaxExperience);
+        Debug.Log(ExpPercentage);
+        ExperienceParticle.startSpeed = _BaseSpeedExp * ExpPercentage;
+        ExperienceBar.fillAmount = ExpPercentage;
+
+        float HPPercentage = _Health.GetPercentage();
+        HealthParticle.startSpeed = _BaseSpeedHP * HPPercentage;
+        HealthBar.fillAmount = HPPercentage;
     }
 
 

@@ -18,8 +18,6 @@ public class CameraFollow : MonoBehaviour
     private int _YMaxLimit = 50;
 
     private int _ZoomAmount = 20;
-
-    private float _RotationDampening = 3.0f;
     private float _ZoomDampening = 5.0f;
 
     private float _X = 0.0f;
@@ -27,6 +25,18 @@ public class CameraFollow : MonoBehaviour
     private float _CurrentDistance;
     private float _DesiredDistance;
     private float _CorrectedDistance;
+    private Vector3 _Add;
+    private static CameraFollow _CameraFollow;
+
+    public static CameraFollow Instance
+    {
+        get
+        {
+            if (!_CameraFollow) _CameraFollow = FindObjectOfType<CameraFollow>();
+            return _CameraFollow;
+        }
+    }
+
 
     void Start()
     {
@@ -88,9 +98,28 @@ public class CameraFollow : MonoBehaviour
 
         // recalculate position based on the new currentDistance
         position = _Target.position - (rotation * Vector3.forward * _CurrentDistance + new Vector3(0, -_TargetHeight, 0));
+        position += _Add;
 
         transform.rotation = rotation;
         transform.position = position;
+    }
+
+    public void Aiming()
+    {
+        _TargetHeight = 2f;
+        _Distance = 1.5f;
+       // _Add = _Target.transform.right / 2;
+        _DesiredDistance = _Distance;
+        _CorrectedDistance = _Distance;
+    }
+
+    public void Normal()
+    {
+        _TargetHeight = 1.7f;
+        _Distance = 5.0f;
+        _Add = new Vector3();
+        _DesiredDistance = _Distance;
+        _CorrectedDistance = _Distance;
     }
 
     private static float ClampAngle(float angle, float min, float max)

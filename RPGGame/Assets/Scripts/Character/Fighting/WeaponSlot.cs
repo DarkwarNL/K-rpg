@@ -16,12 +16,12 @@ public class WeaponSlot : MonoBehaviour
         return false;
     }
 
-    public void Sheet()
+    public void Sheath()
     {
         Destroy(_CurrentObject);
     }
 
-    public void UnSheet()
+    public void UnSheath()
     {
         Switch(_CurrentWeapon);
     }

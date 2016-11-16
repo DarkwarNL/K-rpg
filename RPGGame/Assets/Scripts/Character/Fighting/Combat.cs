@@ -9,9 +9,10 @@ abstract public class Combat : MonoBehaviour {
 
     protected int _CurrentAttack = 0;
     protected bool _Fighting = false;
-    protected bool _CanAttack = true;
-
-    protected float _CombatTime = 10;
+    protected bool _Aiming = true;
+    protected bool _CanShoot = true;
+    protected float _AttackSpeed = 2;
+    protected float _CombatTime = 0;
 
     void Awake()
     {
@@ -28,25 +29,37 @@ abstract public class Combat : MonoBehaviour {
     {
         SwitchWeapon(Input.GetAxis("WeaponSwitchX"), Input.GetAxis("WeaponSwitchY"));
 
-        if (Input.GetAxis("Attack") > 0.1f)
+        if (Input.GetAxis("Aiming") > 0.1f)
         {
-            _CombatTime = 10;
-            Attack();
+            Aim();
         }
         else
         {
-            _CombatTime = 10;
             Release();
         }
-       
-        if (_Fighting)
+
+        if (Input.GetAxis("Attack") > 0.1f && _Aiming && _CanShoot)
+        {            
+            Shoot();
+        }
+               
+        if (_Fighting && !_Aiming)
         {    
-            if ((_CombatTime -= Time.deltaTime )<= 0)
+            if ((_CombatTime += Time.deltaTime )>= 10)
             {
                 CombatEnd();                
-                _Anim.SetTrigger("Sheet");
+                _Anim.SetTrigger("Sheath");
             }
         }
+    }
+
+    protected IEnumerator Cooldown()
+    {
+        _CanShoot = false;
+        _Anim.SetBool("Shoot", true);
+        yield return new WaitForSeconds(1);
+        _Anim.SetBool("Shoot", false);
+        _CanShoot = true;
     }
 
     void SwitchWeapon(float x, float y)
@@ -83,14 +96,14 @@ abstract public class Combat : MonoBehaviour {
             if (_WeaponSlot.CanSwitch(wep))
             {
                 _SelectedWeapon = wep;
-                _Anim.SetTrigger("UnSheet");
+                _Anim.SetTrigger("UnSheath");
                 _Fighting = true;
                 _CombatTime = 10;
             }
         }
     }
 
-    protected void UnSheet()
+    protected void UnSheath()
     {
         if (!_SelectedWeapon)
         {
@@ -99,25 +112,20 @@ abstract public class Combat : MonoBehaviour {
         }
         else
         {
-            _WeaponSlot.UnSheet();
+            _WeaponSlot.UnSheath();
         }
-        _Anim.SetTrigger("UnSheet");
+        _Anim.SetTrigger("UnSheath");
         _Fighting = true;
     }
-
-    public void Hit()
-    {
-        _CanAttack = true;
-    }
-
     public void CombatEnd()
     {
+        _CombatTime = 0;
         _Fighting = false;
         _CurrentAttack = 0;
-        _CanAttack = false;
-        _WeaponSlot.Sheet(); 
+        _WeaponSlot.Sheath(); 
     }
 
-    protected abstract void Attack();
+    protected abstract void Aim();
+    protected abstract void Shoot();
     protected abstract void Release();
 }

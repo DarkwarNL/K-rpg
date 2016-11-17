@@ -9,8 +9,7 @@ abstract public class Combat : MonoBehaviour {
 
     protected int _CurrentAttack = 0;
     protected bool _Fighting = false;
-    protected bool _Aiming = true;
-    protected bool _CanShoot = true;
+    protected bool _CanAttack = true;
     protected float _AttackSpeed = 2;
     protected float _CombatTime = 0;
 
@@ -31,6 +30,12 @@ abstract public class Combat : MonoBehaviour {
 
         if (Input.GetAxis("Aiming") > 0.1f)
         {
+            if (!_Fighting)
+            {
+                UnSheath();
+
+                _Fighting = true;
+            }
             Aim();
         }
         else
@@ -38,12 +43,12 @@ abstract public class Combat : MonoBehaviour {
             Release();
         }
 
-        if (Input.GetAxis("Attack") > 0.1f && _Aiming && _CanShoot)
+        if (Input.GetAxis("Attack") > 0.1f && _Fighting && _CanAttack)
         {            
-            Shoot();
+            Attack();
         }
                
-        if (_Fighting && !_Aiming)
+        if (!_Fighting)
         {    
             if ((_CombatTime += Time.deltaTime )>= 10)
             {
@@ -55,11 +60,11 @@ abstract public class Combat : MonoBehaviour {
 
     protected IEnumerator Cooldown()
     {
-        _CanShoot = false;
-        _Anim.SetBool("Shoot", true);
+        _CanAttack = false;
+        _Anim.SetBool("Attack", true);
         yield return new WaitForSeconds(1);
-        _Anim.SetBool("Shoot", false);
-        _CanShoot = true;
+        _Anim.SetBool("Attack", false);
+        _CanAttack = true;
     }
 
     void SwitchWeapon(float x, float y)
@@ -126,6 +131,6 @@ abstract public class Combat : MonoBehaviour {
     }
 
     protected abstract void Aim();
-    protected abstract void Shoot();
+    protected abstract void Attack();
     protected abstract void Release();
 }

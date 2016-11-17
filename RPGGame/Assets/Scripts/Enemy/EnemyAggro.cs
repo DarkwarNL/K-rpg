@@ -12,7 +12,8 @@ public class EnemyAggro : MonoBehaviour {
 
         CapsuleCollider col = GetComponent<CapsuleCollider>();
         col.isTrigger = true;
-        col.radius = aggroRange;        
+        col.radius = aggroRange;
+        gameObject.layer = 2;
     }
 
     void OnTriggerEnter(Collider other)

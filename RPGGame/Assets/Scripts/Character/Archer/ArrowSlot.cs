@@ -8,14 +8,16 @@ public class ArrowSlot : MonoBehaviour
     internal void SetArrowRotation(Vector3 target)
     {
         if(_CurrentArrow&& target != null)
+        {            
             _CurrentArrow.transform.LookAt(target);
+        }
     }
 
-    public void SpawnArrow(Arrow newArrow)
+    public void SpawnArrow(Arrow newArrow, float damage)
     {
         if (_CurrentArrow) return;
         _CurrentArrow = Instantiate(newArrow);
-        _CurrentArrow.SetData(-10, gameObject.GetComponentInParent<Combat>().gameObject, true);
+        _CurrentArrow.SetData(damage, gameObject.GetComponentInParent<Combat>().gameObject, true);
         _CurrentArrow.transform.SetParent(transform);
         _CurrentArrow.transform.localPosition = new Vector3(0, 0, 0);
         _CurrentArrow.transform.rotation = new Quaternion();

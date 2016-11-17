@@ -9,14 +9,13 @@ public class Enemy_Archer : Enemy {
         _Projectile = Resources.Load<GameObject>("Prefabs/Arrow");
 
         _Name = "Cube Archer";
-        _Health.SetMaxHealth(25);
         _AggroRange = 10;
 
         _Damage = -2;
         _AttackCooldown = 2.5f;
         _AttackRange = 7.5f;
 
-        SetData();
+        SetData(25);
     }
 
     protected override void Idle()

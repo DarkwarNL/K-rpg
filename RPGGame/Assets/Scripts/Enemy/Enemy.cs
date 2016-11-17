@@ -22,6 +22,10 @@ abstract public class Enemy : MonoBehaviour {
     protected float _AttackRange = 5;
     protected bool _CanAttack = true;
     protected float _Damage = -1;
+    protected int _Level = 1;
+    protected float _Multiplier = 1.5f;
+    protected int DOTPercentage = 40;
+    protected int DOTTime = 10;
 
     protected float _RunSpeed = 3;
     protected float _WalkSpeed = .5f;
@@ -29,11 +33,16 @@ abstract public class Enemy : MonoBehaviour {
 
     #endregion
 
-    protected void SetData()
+    protected void SetData(float healthValue)
     {
-        transform.GetComponentInChildren<EnemyName>().SetName(_Name);        
         _StartPos = transform.position;
         _AggroObject.SetData(this, _AttackRange);
+
+        transform.GetComponentInChildren<EnemyName>().SetName(_Name);
+        transform.GetComponentInChildren<EnemyLevel>().SetLevel( "Lv " + _Level.ToString());       
+
+        _Damage = _Level * (_Damage * _Multiplier);
+        _Health.SetMaxHealth(_Level * (healthValue * _Multiplier));
     }
 
     protected Vector3 GetRandomPos()
@@ -48,6 +57,14 @@ abstract public class Enemy : MonoBehaviour {
             }
         }    
         return Vector3.zero;
+    }
+
+    protected void DamageOverTime(PlayerHealth health)
+    {
+        if(Random.Range(0, 100) <= DOTPercentage)
+        {
+            health.SetDOT(_Damage / 5, DOTTime);
+        }
     }
 
     #region PRIVATE_MEMBER_VARIABLES
@@ -95,8 +112,8 @@ abstract public class Enemy : MonoBehaviour {
     {
         Vector3 targetDir = _Target.position - transform.position;
         
-        Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, 1.5f * Time.deltaTime, 0);
-        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(newDir), 20 * Time.deltaTime);
+        Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, 5,0);
+        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(newDir), 8 * Time.deltaTime);
     }
         
     IEnumerator Cooldown()

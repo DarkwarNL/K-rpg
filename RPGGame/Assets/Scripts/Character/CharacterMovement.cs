@@ -5,7 +5,7 @@ using System.Collections;
 public class CharacterMovement : MonoBehaviour {
     private Stats _Stats;
     private Animator _Anim;
-    private float _RotationSpeed = 6;
+    private float _RotationSpeed = 30;
     internal bool Aiming;
     public Transform spine;
 

@@ -5,6 +5,7 @@ abstract public class Health : MonoBehaviour
 {
     protected float _CurrentHealth = 8;
     protected float _MaxHealth = 8;
+    protected float _Defence = 1;
 
     protected float _HealthRegeneration = 1;
     internal float RegenerationCD = 0;
@@ -18,23 +19,46 @@ abstract public class Health : MonoBehaviour
 
     public void DeltaHealth(float delta)
     {
-        _CurrentHealth += delta;
         InCombat = true;
 
         if(delta < 0)
         {
+            delta -=  delta * DamageReduction();
             DamageTaken(delta);
         }
         else
         {
             HealTaken(delta);
         }
+
+        _CurrentHealth = Mathf.Clamp(_CurrentHealth + delta, 0, _MaxHealth);
         UpdateUI();
 
         if (_CurrentHealth <= 0)
         {
             Dead();
         }
+    }
+
+    float DamageReduction()
+    {
+        return (_Defence / (_Defence + 4000)) * 100;
+    }
+
+    public void SetDOT(float damage, float time)
+    {
+
+        StartCoroutine(DamageOverTime(damage, time));
+    }
+
+    IEnumerator DamageOverTime(float damage, float time)
+    {
+        while(time > 0)
+        {
+            DeltaHealth(damage);
+            yield return new WaitForSeconds(2);
+            time -= 2;
+        }        
     }
 
     internal void SetMaxHealth(float value)

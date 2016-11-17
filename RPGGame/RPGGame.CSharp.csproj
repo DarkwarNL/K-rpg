@@ -86,7 +86,9 @@
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAggro.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyClasses\Enemy_Archer.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyClasses\Enemy_Leecher.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyHealth.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyLevel.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyName.cs" />
     <Compile Include="Assets\Scripts\Enemy\PopupDamage.cs" />
     <Compile Include="Assets\Scripts\Projectiles\Arrow.cs" />

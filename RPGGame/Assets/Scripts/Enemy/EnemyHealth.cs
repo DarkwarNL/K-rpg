@@ -7,7 +7,7 @@ public class EnemyHealth : Health
 {
     private PopupDamage _Popup;
     private Text HealthValue;
-    private Slider HealthSlider;
+    private Slider HealthSlider;    
 
     void Awake()
     {
@@ -18,19 +18,20 @@ public class EnemyHealth : Health
 
     protected override void DamageTaken(float amount)
     {
-        _Popup.SpawnDamageText(amount.ToString());
+        _Popup.SpawnDamageText(amount.ToString("0"));
+        GetComponent<Enemy>().SetTarget(FindObjectOfType<Stats>().transform);
     }
 
     protected override void HealTaken(float amount)
     {
-        _Popup.SpawnHealthText(amount.ToString());
+        _Popup.SpawnHealthText(amount.ToString("0"));
     }
 
     protected override void UpdateUI()
     {
         HealthSlider.maxValue = _MaxHealth;
         HealthSlider.value = _CurrentHealth;
-        HealthValue.text = _MaxHealth + " / " + _CurrentHealth;
+        HealthValue.text = _CurrentHealth + " / " +  _MaxHealth;
         HealthSlider.fillRect.GetComponent<Image>().color = GetColor();
     }
 

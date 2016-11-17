@@ -60,7 +60,6 @@ public class Stats : MonoBehaviour {
     public void UpdateUI()
     {
         float ExpPercentage = (Experience / MaxExperience);
-        Debug.Log(ExpPercentage);
         ExperienceParticle.startSpeed = _BaseSpeedExp * ExpPercentage;
         ExperienceBar.fillAmount = ExpPercentage;
 

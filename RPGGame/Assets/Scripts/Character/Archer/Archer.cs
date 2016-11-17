@@ -8,42 +8,44 @@ public class Archer : Combat
     private ArrowSlot _ArrowSlot;
     private CameraFollow _Cam;
     private CharacterMovement _Movement;
-
+    private GameObject _Crosshair;
     void Start()
     {
         _Weapons = Resources.LoadAll<GameObject>("Prefabs/Weapons/Archer");
         _ArrowSlot = GetComponentInChildren<ArrowSlot>();
+        _Crosshair = GameObject.FindGameObjectWithTag("Crosshair");
         _Cam = CameraFollow.Instance;
         _Movement = GetComponent<CharacterMovement>();
     }
 
     protected override void Aim()
     {
-        if (!_Fighting)
-        {
-            UnSheath();                      
-        }        
         _Anim.SetBool("Aim", true);
         _Cam.Aiming();
-        _Movement.Aiming = true;
-        _Aiming = true;
-        _ArrowSlot.SpawnArrow(_SelectedArrow);
-        SetCrosshair();
+        _Movement.Aiming = true;        
+        _Crosshair.SetActive( true);
+
+        for (int i = 0; i < _Anim.layerCount; i++)
+        {
+            AnimatorStateInfo stateInfo = _Anim.GetCurrentAnimatorStateInfo(i);
+            if (stateInfo.IsName("Aim_Movement"))
+            {
+                SetCrosshair();
+            }
+            else
+            {
+                _ArrowSlot.SpawnArrow(_SelectedArrow, _SelectedWeapon.BaseDamage);
+            }
+        }
     }
 
     private void SetCrosshair()
     {
-        RaycastHit hit;
         Vector3 fwd = _Cam.transform.forward;
-            
-        if (Physics.Raycast(_Cam.transform.position, fwd, out hit, 25))
-        {
-            Debug.DrawRay(_Cam.transform.position, fwd* 25, Color.red,5);
-        }
-        _ArrowSlot.SetArrowRotation(hit.point);
+        _ArrowSlot.SetArrowRotation(_Cam.transform.position +(fwd * 25));        
     }
 
-    protected override void Shoot()
+    protected override void Attack()
     {
         for (int i = 0; i < _Anim.layerCount; i++)
         {
@@ -59,9 +61,10 @@ public class Archer : Combat
     protected override void Release()
     {
         _ArrowSlot.Release();
-        _Aiming = false;
+        _Fighting = false;
         _Movement.Aiming = false;
         _Anim.SetBool("Aim", false);
         _Cam.Normal();
+        _Crosshair.SetActive(false);
     }
 }

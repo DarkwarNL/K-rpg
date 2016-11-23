@@ -30,10 +30,7 @@ public class Enemy_Leecher : Enemy
     {
         Vector3 pos = _Target.position - transform.position;
         var distance = pos.magnitude;
-        var angle = Vector3.Angle(pos, transform.forward);
-        var thing = transform.forward * _AttackRange;
-        var thing1 = Quaternion.Euler(0, 45, 0) * thing;
-        var thing2 = Quaternion.Euler(0, -45, 0) * thing;
+        var angle = Vector3.Angle(pos, transform.forward); 
         
         if (distance <= _AttackRange && angle <= 45)
         {

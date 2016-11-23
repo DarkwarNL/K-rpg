@@ -70,11 +70,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraFacingBilboard.cs" />
-    <Compile Include="Assets\Scripts\Character\Archer\Archer.cs" />
-    <Compile Include="Assets\Scripts\Character\Archer\ArrowSlot.cs" />
     <Compile Include="Assets\Scripts\Character\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Character\CharacterMovement.cs" />
+    <Compile Include="Assets\Scripts\Character\Fighting\Archer\Archer.cs" />
+    <Compile Include="Assets\Scripts\Character\Fighting\Archer\ArrowSlot.cs" />
     <Compile Include="Assets\Scripts\Character\Fighting\Combat.cs" />
+    <Compile Include="Assets\Scripts\Character\Fighting\CombatStyle.cs" />
+    <Compile Include="Assets\Scripts\Character\Fighting\Swordsman\Swordsman.cs" />
     <Compile Include="Assets\Scripts\Character\Fighting\Weapon.cs" />
     <Compile Include="Assets\Scripts\Character\Fighting\WeaponSlot.cs" />
     <Compile Include="Assets\Scripts\Character\Health.cs" />
@@ -93,6 +95,7 @@
     <Compile Include="Assets\Scripts\Enemy\PopupDamage.cs" />
     <Compile Include="Assets\Scripts\Projectiles\Arrow.cs" />
     <Compile Include="Assets\Scripts\Projectiles\Arrow_Basic.cs" />
+    <Compile Include="Assets\Scripts\Statics.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />

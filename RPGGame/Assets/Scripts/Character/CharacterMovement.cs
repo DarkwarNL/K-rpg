@@ -22,11 +22,21 @@ public class CharacterMovement : MonoBehaviour {
         _Anim.SetFloat("Speed", moveV);
         _Anim.SetFloat("SideSpeed", moveH);
 
+        if (moveH >= 0.1f)
+        {
+            transform.Rotate(Vector3.up * Time.deltaTime * 200.0f * moveH);
+
+        }
+        else if (moveH <= -0.1f)
+        {
+            transform.Rotate(Vector3.down * Time.deltaTime * 200.0f * -moveH);
+        }
+
         if (Input.GetButtonDown("Jump"))
         {
             _Anim.SetTrigger("Jump");
         }
-        
+
         if (Aiming)
         {
             Quaternion newRot = spine.rotation;
@@ -39,11 +49,11 @@ public class CharacterMovement : MonoBehaviour {
             newRotation.x = transform.rotation.x;
             newRotation.z = transform.rotation.z;
             transform.rotation = newRotation;
-            
+
         }
-        else if(moveV > 0)
+        else if (moveV != 0 || moveH != 0)
         {
-            Vector3 movement = new Vector3(0, 0f, moveV);
+            Vector3 movement = new Vector3(moveH, 0f, moveV);
 
             movement = Camera.main.transform.TransformDirection(movement);
             Quaternion targetRotation = Quaternion.LookRotation(movement, Vector3.up);
@@ -52,6 +62,9 @@ public class CharacterMovement : MonoBehaviour {
             newRotation.x = transform.rotation.x;
             newRotation.z = transform.rotation.z;
             transform.rotation = newRotation;
-        }        
+        }
     }
 }
+
+
+        

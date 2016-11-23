@@ -37,7 +37,7 @@ abstract public class Enemy : MonoBehaviour {
     {
         _StartPos = transform.position;
         _AggroObject.SetData(this, _AttackRange);
-
+    
         transform.GetComponentInChildren<EnemyName>().SetName(_Name);
         transform.GetComponentInChildren<EnemyLevel>().SetLevel( "Lv " + _Level.ToString());       
 
@@ -73,8 +73,10 @@ abstract public class Enemy : MonoBehaviour {
     {
         _Health = GetComponent<EnemyHealth>();
         _Nav = GetComponent<NavMeshAgent>();
-        _AggroObject = (Instantiate(new GameObject(), transform.position, Quaternion.identity) as GameObject).AddComponent<EnemyAggro>();
-        _AggroObject.transform.SetParent(transform);
+
+        GameObject obj = new GameObject();
+        obj.transform.SetParent(transform);
+        _AggroObject = obj.AddComponent<EnemyAggro>();
     }
 
     void FixedUpdate()

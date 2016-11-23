@@ -188,7 +188,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Strike_BasicSlash02
       takeName: mixamo.com
-      firstFrame: 0
+      firstFrame: 26
       lastFrame: 100
       wrapMode: 0
       orientationOffsetY: 0

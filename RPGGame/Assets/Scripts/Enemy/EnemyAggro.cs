@@ -20,7 +20,7 @@ public class EnemyAggro : MonoBehaviour {
     {
         if (other.GetComponent<Stats>())
         {
-            GameObject aggro = Instantiate(Resources.Load("Prefabs/EnemyAggroComp", typeof(GameObject)), transform.position, Quaternion.identity) as GameObject;
+            GameObject aggro = (GameObject)Instantiate(Resources.Load("Prefabs/EnemyAggroComp", typeof(GameObject)), transform);
             aggro.GetComponent<AggroComponent>().SetTarget(other.transform);
             Destroy(aggro, 5);
             _Enemy.SetTarget(other.transform);

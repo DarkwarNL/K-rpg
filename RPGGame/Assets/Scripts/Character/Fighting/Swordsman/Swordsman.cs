@@ -9,6 +9,8 @@ public class Swordsman : CombatStyle
 
     protected override void Aim()
     {
+        _Movement.Aiming = true;
+        _Cam.Aiming();
         _Targetted = true;
         _Anim.SetBool("Aim", true);
     }

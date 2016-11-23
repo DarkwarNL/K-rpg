@@ -140,24 +140,24 @@ public class Combat : MonoBehaviour {
         {
             case WeaponType.Bow:
                 GetComponent<Archer>().SetDelegates(this, _Anim, _SelectedWeapon);
-                layer = 0;
+                layer = 1;
                 _WeaponSlotLeft.UnSheath(weapon);
                 break;
             case WeaponType.Sword:
                 _WeaponSlotRight.UnSheath(weapon);
                 GetComponent<Swordsman>().SetDelegates(this, _Anim, _SelectedWeapon);
-                layer = 1;
+                layer = 2;
                 break;
             case WeaponType.TwoHandedSword:
                 _WeaponSlotRight.UnSheath(weapon);
                 GetComponent<Archer>().SetDelegates(this, _Anim, _SelectedWeapon);
-                layer = 2;
+                layer = 3;
                 break;
             case WeaponType.Daggers:
                 _WeaponSlotLeft.UnSheath(weapon);
                 _WeaponSlotRight.UnSheath(weapon);
                 GetComponent<Archer>().SetDelegates(this, _Anim, _SelectedWeapon);
-                layer = 3;
+                layer = 4;
                 break;
         }
         for(int i = 0; i < _Anim.layerCount; i++)

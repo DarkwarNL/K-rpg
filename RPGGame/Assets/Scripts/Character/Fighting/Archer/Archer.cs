@@ -43,15 +43,12 @@ public class Archer : CombatStyle
     protected override void Attack()
     {
         if (!_CanAttack) return;
-        for (int i = 0; i < _Anim.layerCount; i++)
+        AnimatorStateInfo stateInfo = _Anim.GetCurrentAnimatorStateInfo(1);
+        if (stateInfo.IsName("Aim_Movement"))
         {
-            AnimatorStateInfo stateInfo = _Anim.GetCurrentAnimatorStateInfo(i);
-            if (stateInfo.IsName("Aim_Movement"))
-            {
-                _ArrowSlot.Shoot();
-                StartCoroutine(Cooldown(1));
-            }
-        }
+            _ArrowSlot.Shoot();
+            StartCoroutine(Cooldown(1));
+        }        
     }
 
     protected override void ReleaseAim()
@@ -63,7 +60,6 @@ public class Archer : CombatStyle
         _Cam.Normal();
         _Crosshair.SetActive(false);
     }
-
     protected override bool IsFighting()
     {
         return _Aiming;

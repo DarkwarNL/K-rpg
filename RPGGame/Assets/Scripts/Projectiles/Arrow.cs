@@ -7,11 +7,13 @@ abstract public class Arrow : MonoBehaviour {
     protected float _Damage = 2f;
     protected GameObject _Owner;
     protected bool _Holding = false;
+    protected TrailRenderer _Trail;
 
     void Awake()
     {
         BoxCollider col = GetComponent<BoxCollider>();
-        col.isTrigger = true;        
+        col.isTrigger = true;
+        _Trail = GetComponent<TrailRenderer>();
     }
     
 	void FixedUpdate ()
@@ -24,6 +26,7 @@ abstract public class Arrow : MonoBehaviour {
     internal void Release()
     {
         _Holding = false;
+        _Trail.enabled = true;
     }
 
     internal void SetDamage(float damage)
@@ -49,6 +52,8 @@ abstract public class Arrow : MonoBehaviour {
         _Damage = damage;
         _Owner = owner;
         _Holding = holding;
+
+        _Trail.enabled = false;
     }
 
     void OnTriggerEnter(Collider other)
@@ -61,12 +66,17 @@ abstract public class Arrow : MonoBehaviour {
         if (player)
         {
             HitPlayer(player);
-            Destroy(gameObject);
+            transform.SetParent(player.transform);
+            if (GetComponent<TrailRenderer>()) Destroy(GetComponent<TrailRenderer>());
+            Destroy(this);
         }
         else if (enemy)
         {
             HitEnemy(enemy);
-            Destroy(gameObject);
+            _Owner.GetComponent<Stats>().DeltaExperience(_Damage);
+            transform.SetParent(enemy.transform);
+            if (GetComponent<TrailRenderer>()) Destroy(GetComponent<TrailRenderer>());
+            Destroy(this);
         }
         else
         {

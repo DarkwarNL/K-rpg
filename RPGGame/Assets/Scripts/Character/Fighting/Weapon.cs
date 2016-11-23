@@ -13,4 +13,5 @@ public class Weapon : MonoBehaviour
 {
     public float BaseDamage;
     public WeaponType Type;
+    public bool IsSheathed = false;
 }

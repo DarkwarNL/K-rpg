@@ -49,12 +49,15 @@ public class Stats : MonoBehaviour {
 
     internal void DeltaExperience(float delta)
     {
-        Experience += delta;
+        Experience += delta /10;
+
         if (Experience >= MaxExperience)
         {
             Experience -= MaxExperience;
             LevelUp();
         }
+
+        UpdateUI();
     }
 
     public void UpdateUI()
@@ -63,11 +66,11 @@ public class Stats : MonoBehaviour {
         ExperienceParticle.startSpeed = _BaseSpeedExp * ExpPercentage;
         ExperienceBar.fillAmount = ExpPercentage;
 
+        if (!_Health) return;
         float HPPercentage = _Health.GetPercentage();
         HealthParticle.startSpeed = _BaseSpeedHP * HPPercentage;
         HealthBar.fillAmount = HPPercentage;
     }
-
 
     protected void LevelUp()
     {

@@ -4,37 +4,31 @@ using System.Collections;
 public class WeaponSlot : MonoBehaviour
 {
     protected Weapon _CurrentWeapon = null;
-    protected GameObject _CurrentObject;
+    protected GameObject _SheathingParticle;
 
-    public bool CanSwitch(Weapon nextWeapon)
+    protected GameObject _WeaponObject;
+
+    void Awake()
     {
-        if(_CurrentWeapon != nextWeapon)
-        {            
-            Switch(nextWeapon);       
-            return true;
-        }
-        return false;
+        _SheathingParticle = Resources.Load<GameObject>("Particles/Sheathing");
     }
 
-    public void Sheath()
+    internal void Sheath()
     {
-        Destroy(_CurrentObject);
+        if (!_WeaponObject) return;
+        ParticleSystem sheatingParticle = (Instantiate(_SheathingParticle, transform.position, transform.rotation, transform) as GameObject).GetComponent<ParticleSystem>();
+        Destroy(sheatingParticle.gameObject, sheatingParticle.startLifetime);
+        Destroy(_WeaponObject);
     }
 
-    public void UnSheath()
+    internal void UnSheath(Weapon nextWeapon)
     {
-        Switch(_CurrentWeapon);
-    }
-
-    protected void Switch(Weapon nextWeapon)
-    {
-        if(_CurrentObject)
-            Destroy(_CurrentObject);
+        if (_WeaponObject != null) return;
 
         _CurrentWeapon = nextWeapon;
-        _CurrentObject = Instantiate(_CurrentWeapon.gameObject);
-        _CurrentObject.transform.SetParent(transform);
-        _CurrentObject.transform.localPosition = new Vector3(0,0,0);
-        _CurrentObject.transform.rotation = new Quaternion();
+        _WeaponObject = (GameObject)Instantiate(nextWeapon.gameObject, transform, false);
+
+        ParticleSystem sheatingParticle = (Instantiate(_SheathingParticle, transform.position, transform.rotation, transform) as GameObject).GetComponent<ParticleSystem>();
+        Destroy(sheatingParticle.gameObject, sheatingParticle.startLifetime);
     }
 }

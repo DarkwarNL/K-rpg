@@ -19,13 +19,13 @@ public class PlayerHealth : Health {
 
     protected override void DamageTaken(float amount)
     {
-        _Popup.SpawnDamageText(amount.ToString("0"));
+        _Popup.SpawnDamageText(Statics.GetNumber(amount));
         UpdateUI();
     }
 
     protected override void HealTaken(float amount)
     {
-        _Popup.SpawnDamageText(amount.ToString("0"));
+        _Popup.SpawnDamageText(Statics.GetNumber(amount));
         UpdateUI();
     }
 

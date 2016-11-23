@@ -6,7 +6,7 @@ public class Arrow_Basic : Arrow
 {
     protected override void HitEnemy(Enemy enemy)
     {
-        enemy.GetHealth().DeltaHealth(_Damage);
+        enemy.GetHealth().DeltaHealth(_Damage);        
     }
 
     protected override void HitOther(Collider other)

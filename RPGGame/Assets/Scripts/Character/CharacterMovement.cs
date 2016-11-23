@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(CharacterController), typeof(Animator))]
+[RequireComponent(typeof(Animator))]
 public class CharacterMovement : MonoBehaviour {
     private Stats _Stats;
     private Animator _Anim;
@@ -21,6 +21,11 @@ public class CharacterMovement : MonoBehaviour {
         float moveH = Input.GetAxis("Horizontal");
         _Anim.SetFloat("Speed", moveV);
         _Anim.SetFloat("SideSpeed", moveH);
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            _Anim.SetTrigger("Jump");
+        }
         
         if (Aiming)
         {

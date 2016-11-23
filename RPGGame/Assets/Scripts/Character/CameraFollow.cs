@@ -107,7 +107,7 @@ public class CameraFollow : MonoBehaviour
     public void Aiming()
     {
         _TargetHeight = 2f;
-        _Distance = 1.5f;
+        _Distance = 2.5f;
        // _Add = _Target.transform.right / 2;
         _DesiredDistance = _Distance;
         _CorrectedDistance = _Distance;

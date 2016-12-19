@@ -7,20 +7,15 @@ public class Combat : MonoBehaviour {
     protected WeaponSlot _WeaponSlotLeft;
     protected WeaponSlot _WeaponSlotRight;
     protected Animator _Anim;
+    protected WeaponTabUI _WeaponTab;
 
-    protected int _CurrentAttack = 0;
-    protected float _AttackSpeed = 2;
     protected float _CombatTime = 0;
 
-    internal delegate void Aim();
     internal delegate void Attack();
-    internal delegate void ReleaseAim();
     internal delegate void ReleaseAttack();
     internal delegate bool IsFighting();
 
-    internal Aim AimDelegate;
     internal Attack AttackDelegate;
-    internal ReleaseAim ReleaseAimDelegate;
     internal ReleaseAttack ReleaseAttackDelegate;
     internal IsFighting IsFightingDelegate;
 
@@ -31,6 +26,7 @@ public class Combat : MonoBehaviour {
         _WeaponSlotLeft = GetComponentInChildren<WeaponSlot>();
         _WeaponSlotRight = GetComponentInChildren<ArrowSlot>().transform.parent.GetComponentInChildren<WeaponSlot>();
         GetComponent<Swordsman>().SetDelegates(this, _Anim, _SelectedWeapon);
+        _WeaponTab = WeaponTabUI.Instance;
     }
 
     public bool InCombat()
@@ -42,27 +38,25 @@ public class Combat : MonoBehaviour {
     {
         SwitchWeapon(Input.GetAxis("WeaponSwitchX"), Input.GetAxis("WeaponSwitchY"));
 
-        if (Input.GetAxis("Aiming") > 0.1f)
+        if (Input.GetAxis("Attack") > 0.1f)
         {
-            if (!IsFightingDelegate())
-            {
-                WeaponCheck(_SelectedWeapon);
-            }
-            AimDelegate();
-        }
-        else
-        {
-            ReleaseAimDelegate();
-        }
-
-        if (Input.GetAxis("Attack") > 0.1f && IsFightingDelegate())
-        {
-            AttackDelegate();              
+            WeaponCheck(_SelectedWeapon);
+            AttackDelegate();
         }
 
         if(Input.GetAxis("Attack") <= 0)
         {
-            ReleaseAttackDelegate();
+            for (int i = 0; i < _Anim.layerCount; i++)
+            {
+                AnimatorStateInfo stateInfo = _Anim.GetCurrentAnimatorStateInfo(i);
+                if (stateInfo.IsName("Movement"))
+                {
+                    ReleaseAttackDelegate();
+                    if(_SelectedWeapon)
+                        if(_SelectedWeapon.IsSheathed)
+                            Sheath();
+                }
+            }
         }
                
         if (!IsFightingDelegate())
@@ -84,14 +78,14 @@ public class Combat : MonoBehaviour {
             }
             else
             {
-                MakeSwitch(2); // Sword
+                MakeSwitch(3); // Sword
             }
         }
         else if (x != 0)
         {
             if (x < 0)
             {
-                MakeSwitch(3); // 2Handed
+                MakeSwitch(2); // 2Handed
             }
             else
             {
@@ -130,40 +124,47 @@ public class Combat : MonoBehaviour {
 
     protected void UnSheath(Weapon weapon)
     {
-        Sheath();
+        if(_SelectedWeapon)
+            _SelectedWeapon.IsSheathed = false;
+        _WeaponSlotLeft.Sheath();
+        _WeaponSlotRight.Sheath();
+
         _SelectedWeapon = weapon;
         _SelectedWeapon.IsSheathed = true;        
         _Anim.SetTrigger("UnSheath");
+        _WeaponTab.SelectedWeapon(weapon.Type);
 
         int layer = 0;
         switch (_SelectedWeapon.Type)
         {
             case WeaponType.Bow:
                 GetComponent<Archer>().SetDelegates(this, _Anim, _SelectedWeapon);
-                layer = 1;
+                layer = 2;
                 _WeaponSlotLeft.UnSheath(weapon);
                 break;
             case WeaponType.Sword:
                 _WeaponSlotRight.UnSheath(weapon);
                 GetComponent<Swordsman>().SetDelegates(this, _Anim, _SelectedWeapon);
-                layer = 2;
+                GetComponent<Swordsman>().AnimLayer = 3;
+                layer = 3;
                 break;
             case WeaponType.TwoHandedSword:
                 _WeaponSlotRight.UnSheath(weapon);
-                GetComponent<Archer>().SetDelegates(this, _Anim, _SelectedWeapon);
-                layer = 3;
+                GetComponent<Swordsman>().SetDelegates(this, _Anim, _SelectedWeapon);
+                GetComponent<Swordsman>().AnimLayer = 4;
+                layer = 4;
                 break;
             case WeaponType.Daggers:
                 _WeaponSlotLeft.UnSheath(weapon);
                 _WeaponSlotRight.UnSheath(weapon);
                 GetComponent<Archer>().SetDelegates(this, _Anim, _SelectedWeapon);
-                layer = 4;
+                layer = 5;
                 break;
         }
         for(int i = 0; i < _Anim.layerCount; i++)
         {
             _Anim.SetLayerWeight(i, 0);
-            if (layer == i) _Anim.SetLayerWeight(i, 1);
+            if (layer == i || i == 1) _Anim.SetLayerWeight(i, 1);
         }
     }   
 
@@ -171,10 +172,15 @@ public class Combat : MonoBehaviour {
     {
         if (!_SelectedWeapon) return;
         _CombatTime = 0;
-        _CurrentAttack = 0;
         _SelectedWeapon.IsSheathed = false;
         _WeaponSlotLeft.Sheath();
         _WeaponSlotRight.Sheath();
         _Anim.SetTrigger("Sheath");
+
+        for (int i = 0; i < _Anim.layerCount; i++)
+        {
+            _Anim.SetLayerWeight(i, 0);
+            if (0 == i || 1 == i) _Anim.SetLayerWeight(i, 1);
+        }
     }
 }

@@ -6,32 +6,10 @@ public class Archer : CombatStyle
 {
     public Arrow _SelectedArrow;
     private ArrowSlot _ArrowSlot;    
-    private bool _Aiming = false;
 
     void Start()
     {        
         _ArrowSlot = GetComponentInChildren<ArrowSlot>();
-    }
-
-    protected override void Aim()
-    {
-        _Anim.SetBool("Aim", true);
-        _Cam.Aiming();
-        _Movement.Aiming = true;        
-        _Crosshair.SetActive( true);
-        _Aiming = true;
-        for (int i = 0; i < _Anim.layerCount; i++)
-        {
-            AnimatorStateInfo stateInfo = _Anim.GetCurrentAnimatorStateInfo(i);
-            if (stateInfo.IsName("Aim_Movement"))
-            {
-                SetCrosshair();
-            }
-            else if(stateInfo.IsName("Aim_Start"))
-            {
-                _ArrowSlot.SpawnArrow(_SelectedArrow, _Weapon.BaseDamage);
-            }
-        }
     }
 
     private void SetCrosshair()
@@ -42,31 +20,36 @@ public class Archer : CombatStyle
 
     protected override void Attack()
     {
+        OnStart();
+
+        _Movement.Aiming = true;
+        _Cam.Aiming();
+        SetCrosshair();
+
+        AnimatorStateInfo stateInfo = _Anim.GetCurrentAnimatorStateInfo(2);
+
+        if (stateInfo.IsName("Aim_Start"))
+        {
+            _ArrowSlot.SpawnArrow(_SelectedArrow, _Weapon.BaseDamage);
+        }
+       
         if (!_CanAttack) return;
-        AnimatorStateInfo stateInfo = _Anim.GetCurrentAnimatorStateInfo(1);
-        if (stateInfo.IsName("Aim_Movement"))
+
+        if (stateInfo.IsName("Movement"))
         {
             _ArrowSlot.Shoot();
             StartCoroutine(Cooldown(1));
         }        
     }
 
-    protected override void ReleaseAim()
-    {
-        _Aiming = false;
-        _ArrowSlot.Release();
-        _Movement.Aiming = false;
-        _Anim.SetBool("Aim", false);
-        _Cam.Normal();
-        _Crosshair.SetActive(false);
-    }
     protected override bool IsFighting()
     {
-        return _Aiming;
+        return _Fighting;
     }
 
     protected override void ReleaseAttack()
     {
-        
+        OnEnd();
+        _ArrowSlot.Release();        
     }
 }

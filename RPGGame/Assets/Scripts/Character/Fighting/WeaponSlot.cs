@@ -16,8 +16,6 @@ public class WeaponSlot : MonoBehaviour
     internal void Sheath()
     {
         if (!_WeaponObject) return;
-        ParticleSystem sheatingParticle = (Instantiate(_SheathingParticle, transform.position, transform.rotation, transform) as GameObject).GetComponent<ParticleSystem>();
-        Destroy(sheatingParticle.gameObject, sheatingParticle.startLifetime);
         Destroy(_WeaponObject);
     }
 

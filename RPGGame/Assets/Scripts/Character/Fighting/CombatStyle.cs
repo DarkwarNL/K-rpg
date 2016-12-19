@@ -9,6 +9,8 @@ abstract public class CombatStyle : MonoBehaviour {
     protected GameObject _Crosshair;
     protected bool _CanAttack = true;
 
+    protected bool _Fighting;
+
     void Awake()
     {
         _Cam = CameraFollow.Instance;
@@ -21,10 +23,8 @@ abstract public class CombatStyle : MonoBehaviour {
     {
         _Anim = anim;
         _Weapon = weapon;
-        combat.AimDelegate = Aim;
         combat.AttackDelegate = Attack;
         combat.IsFightingDelegate = IsFighting;
-        combat.ReleaseAimDelegate = ReleaseAim;
         combat.ReleaseAttackDelegate = ReleaseAttack;
     }
 
@@ -37,9 +37,26 @@ abstract public class CombatStyle : MonoBehaviour {
         _CanAttack = true;
     }
 
-    protected abstract void Aim();
+    protected void OnStart()
+    {
+        if (_Fighting) return;
+        _Fighting = true;
+
+        _Anim.SetBool("Combat", true);
+        _Crosshair.SetActive(true);
+    }
+
+    protected void OnEnd()
+    {
+        if (!_Fighting) return;
+        _Fighting = false;
+        _Movement.Aiming = false;
+        _Anim.SetBool("Combat", false);
+        _Cam.Normal();
+        _Crosshair.SetActive(false);
+    }
+   
     protected abstract void Attack();
     protected abstract bool IsFighting();
-    protected abstract void ReleaseAim();
     protected abstract void ReleaseAttack();
 }

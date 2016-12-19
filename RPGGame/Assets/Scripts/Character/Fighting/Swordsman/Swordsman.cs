@@ -4,31 +4,22 @@ using System;
 
 public class Swordsman : CombatStyle
 {
-    private bool _Targetted;
     private int _CurrentAttack;
-
-    protected override void Aim()
-    {
-        _Movement.Aiming = true;
-        _Cam.Aiming();
-        _Targetted = true;
-        _Anim.SetBool("Aim", true);
-    }
+    public int AnimLayer;
 
     protected override void Attack()
     {
+        OnStart();
         if (!_CanAttack) return;
-        for (int i = 0; i < _Anim.layerCount; i++)
+
+        AnimatorStateInfo stateInfo = _Anim.GetCurrentAnimatorStateInfo(AnimLayer);
+        if (stateInfo.IsName("Movement"))
         {
-            AnimatorStateInfo stateInfo = _Anim.GetCurrentAnimatorStateInfo(i);
-            if (stateInfo.IsName("Sword_Movement"))
-            {
-                if (_CurrentAttack > 5) _CurrentAttack = 0;
-                _CurrentAttack++;
-                _Anim.SetFloat("CurrentAttack", _CurrentAttack);
-                StartCoroutine(Cooldown(.5f));
-            }
-        }
+            if (_CurrentAttack > 5) _CurrentAttack = 0;
+            _CurrentAttack++;
+            _Anim.SetFloat("CurrentAttack", _CurrentAttack);
+            StartCoroutine(Cooldown(.3f));
+        }        
     }
 
     public void Strike()
@@ -51,19 +42,13 @@ public class Swordsman : CombatStyle
 
     protected override bool IsFighting()
     {
-        return _Targetted;
+        return _Fighting;
     }
-
-    protected override void ReleaseAim()
-    {
-        _CurrentAttack = 0;
-        _Anim.SetFloat("CurrentAttack", _CurrentAttack);
-        _Targetted = false;
-    }
-
+    
     protected override void ReleaseAttack()
     {
+        OnEnd();
         _CurrentAttack = 0;
-        _Anim.SetFloat("CurrentAttack", _CurrentAttack);
+        _Anim.SetFloat("CurrentAttack", _CurrentAttack);       
     }
 }

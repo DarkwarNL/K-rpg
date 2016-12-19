@@ -34,11 +34,17 @@ public class CharacterMovement : MonoBehaviour {
 
         if (Input.GetButtonDown("Jump"))
         {
-            _Anim.SetTrigger("Jump");
+            AnimatorStateInfo stateInfo = _Anim.GetCurrentAnimatorStateInfo(0);
+            if (stateInfo.IsName("Movement"))
+            {
+                _Anim.SetTrigger("Jump");
+            }           
         }
 
         if (Aiming)
         {
+            _Anim.SetFloat("Speed", moveV);
+            _Anim.SetFloat("SideSpeed", moveH);
             Quaternion newRot = spine.rotation;
             newRot.x = Camera.main.transform.rotation.x;
             spine.rotation = newRot;
@@ -62,6 +68,10 @@ public class CharacterMovement : MonoBehaviour {
             newRotation.x = transform.rotation.x;
             newRotation.z = transform.rotation.z;
             transform.rotation = newRotation;
+
+            if (moveV < 0) moveV = -moveV;
+            if (moveH < 0) moveH = -moveH;
+            _Anim.SetFloat("Speed", moveV + moveH);
         }
     }
 }

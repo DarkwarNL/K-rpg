@@ -38,13 +38,12 @@ public class Combat : MonoBehaviour {
     {
         SwitchWeapon(Input.GetAxis("WeaponSwitchX"), Input.GetAxis("WeaponSwitchY"));
 
-        if (Input.GetAxis("Attack") > 0.1f)
+        if (Input.GetMouseButton(0))
         {
             WeaponCheck(_SelectedWeapon);
             AttackDelegate();
         }
-
-        if(Input.GetAxis("Attack") <= 0)
+        else //if(Input.GetAxis("Attack") <= 0)
         {
             for (int i = 0; i < _Anim.layerCount; i++)
             {

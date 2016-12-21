@@ -13,6 +13,7 @@ public class CharacterMovement : MonoBehaviour {
     {
         _Stats = GetComponent<Stats>(); 
         _Anim = GetComponent<Animator>();
+        Cursor.visible = false;
     }
 
     void LateUpdate()
@@ -24,7 +25,7 @@ public class CharacterMovement : MonoBehaviour {
 
         if (moveH >= 0.1f)
         {
-            transform.Rotate(Vector3.up * Time.deltaTime * 200.0f * moveH);
+            transform.Rotate(Vector3.up * Time.deltaTime * 100.0f * moveH);
 
         }
         else if (moveH <= -0.1f)

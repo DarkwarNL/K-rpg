@@ -8,7 +8,7 @@ public class CameraFollow : MonoBehaviour
     private float _TargetHeight = 1.7f;
     private float _Distance = 5.0f;
 
-    private float _MaxDistance = 20;
+    private float _MaxDistance = 5;
     private float _MinDistance = .6f;
 
     private float _XSpeed = 3f;
@@ -61,10 +61,11 @@ public class CameraFollow : MonoBehaviour
             return;
 
         // If either mouse buttons are down, let the mouse govern camera position
-        if (Input.GetAxis("RVertical") != 0 || Input.GetAxis("RHorizontal") != 0)
+        //if (Input.GetAxis("RVertical") != 0 || Input.GetAxis("RHorizontal") != 0)
+        if(Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
         {
-            _X += Input.GetAxis("RHorizontal") * _YSpeed ;
-            _Y -= Input.GetAxis("RVertical") * _XSpeed;
+            _X += Input.GetAxis("Mouse X") * _YSpeed ;
+            _Y -= Input.GetAxis("Mouse Y") * _XSpeed;
         }
 
         _Y = ClampAngle(_Y, _YMinLimit, _YMaxLimit);

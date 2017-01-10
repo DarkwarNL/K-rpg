@@ -3,7 +3,6 @@ using System.Collections;
 
 [RequireComponent(typeof(Animator))]
 public class CharacterMovement : MonoBehaviour {
-    private Stats _Stats;
     private Animator _Anim;
     private float _RotationSpeed = 30;
     internal bool Aiming;
@@ -11,7 +10,6 @@ public class CharacterMovement : MonoBehaviour {
 
     void Awake()
     {
-        _Stats = GetComponent<Stats>(); 
         _Anim = GetComponent<Animator>();
         Cursor.visible = false;
     }

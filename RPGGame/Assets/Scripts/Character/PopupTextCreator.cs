@@ -4,11 +4,6 @@ using UnityEngine.UI;
 public class PopupTextCreator : MonoBehaviour {
     private GameObject TextObject;
 
-    private AnimationClip[] Damage;
-    private AnimationClip[] Heal;
-    private AnimationClip[] Critical;
-
-
     private static PopupTextCreator _PopupTextCreator;
 
     public static PopupTextCreator Instance
@@ -23,32 +18,37 @@ public class PopupTextCreator : MonoBehaviour {
 
     void Awake()
     {
-        TextObject = Resources.Load<GameObject>("Prefabs/PopupText");
-        Damage = Resources.LoadAll<AnimationClip>("UI/Animations/Damage");
-        Heal = Resources.LoadAll<AnimationClip>("UI/Animations/Heal");
-        Critical = Resources.LoadAll<AnimationClip>("UI/Animations/Critical");
+        TextObject = Resources.Load<GameObject>("UI/PopupText");
     }
 
     public void SpawnDamageText(string text)
     {
-        Animation anim = CreateObject(text);
-        anim.clip = Damage[Random.Range(0, Damage.Length)];
-        anim.Play();
+        Animator anim = CreateObject(text);
+        anim.SetTrigger("Damage");
     }
 
     public void SpawnHealthText(string text)
     {
-        Animation anim = CreateObject(text);
-        anim.clip = Heal[Random.Range(0, Heal.Length)];
-        anim.Play();
+        Animator anim = CreateObject(text);
+        anim.SetTrigger("Heal");
     }
 
-    Animation CreateObject(string text)
+    public void SpawnCriticalText(string text)
+    {
+        Animator anim = CreateObject(text);
+        anim.SetTrigger("Critical");
+    }
+
+    Animator CreateObject(string text)
     {
         GameObject textObj = Instantiate(TextObject);
         textObj.transform.SetParent(transform);
+        RectTransform rect = textObj.GetComponent<RectTransform>();
+        rect.localPosition = new Vector3();
+        rect.rotation = new Quaternion();
+        rect.localScale = new Vector3(1, 1, 1);
         textObj.GetComponent<Text>().text = text;
         Destroy(textObj, 4);
-        return textObj.GetComponent<Animation>();
+        return textObj.GetComponent<Animator>();
     }
 }

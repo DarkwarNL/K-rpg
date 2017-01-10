@@ -5,6 +5,7 @@ public class Statics : MonoBehaviour {
 
     public static string GetNumber(float number)
     {
-        return number.ToString("0.00");
+        number = number < 0 ? number * -1 : number * 1;
+        return number.ToString("0");
     }
 }

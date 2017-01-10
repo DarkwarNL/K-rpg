@@ -2,21 +2,38 @@
 using System.Collections;
 [RequireComponent(typeof(Combat))]
 abstract public class CombatStyle : MonoBehaviour {
+    protected KeyCode[] keys = new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4};
+
     protected CameraFollow _Cam;
     protected CharacterMovement _Movement;
     protected Animator _Anim;
     protected Weapon _Weapon;
     protected GameObject _Crosshair;
     protected bool _CanAttack = true;
-
     protected bool _Fighting;
 
+    /// <summary>
+    /// Skills
+    /// </summary>
+    public Skill[] SelectedSkills;
+    
     void Awake()
     {
         _Cam = CameraFollow.Instance;
         _Movement = GetComponent<CharacterMovement>();
 
         _Crosshair = GameObject.FindGameObjectWithTag("Crosshair");
+    }
+    
+    void FixedUpdate()
+    {
+        for (int i = 0; i < keys.Length; i++)
+        {
+            if (Input.GetKeyDown(keys[i]) && SelectedSkills[i].CanCast())
+            {
+                CheckSkill(i);
+            }
+        }
     }
 
     internal void SetDelegates(Combat combat, Animator anim, Weapon weapon)
@@ -26,6 +43,7 @@ abstract public class CombatStyle : MonoBehaviour {
         combat.AttackDelegate = Attack;
         combat.IsFightingDelegate = IsFighting;
         combat.ReleaseAttackDelegate = ReleaseAttack;
+        combat.CancelAttackDelegate = CancelAttack;
     }
 
     protected IEnumerator Cooldown(float time)
@@ -59,4 +77,6 @@ abstract public class CombatStyle : MonoBehaviour {
     protected abstract void Attack();
     protected abstract bool IsFighting();
     protected abstract void ReleaseAttack();
+    protected abstract void CancelAttack();
+    protected abstract void CheckSkill(int skill);
 }

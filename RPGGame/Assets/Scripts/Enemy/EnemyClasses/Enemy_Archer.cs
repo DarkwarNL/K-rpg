@@ -6,7 +6,7 @@ public class Enemy_Archer : Enemy {
 
     void Start ()
     {
-        _Projectile = Resources.Load<GameObject>("Prefabs/Arrow");
+        _Projectile = Resources.Load<GameObject>("Prefabs/Arrows/Arrow");
 
         _Name = "Cube Archer";
         _AggroRange = 10;

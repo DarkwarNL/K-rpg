@@ -2,14 +2,14 @@
 using UnityEngine.UI;
 using System.Collections;
 
-[RequireComponent(typeof(EnemyHealth), typeof(NavMeshAgent))]
+[RequireComponent(typeof(EnemyHealth), typeof(UnityEngine.AI.NavMeshAgent))]
 abstract public class Enemy : MonoBehaviour {
     private CapsuleCollider _Collider;
 
     #region PROTECTED_MEMBER_VARIABLES
     //protected vars
     protected EnemyHealth _Health;
-    protected NavMeshAgent _Nav;
+    protected UnityEngine.AI.NavMeshAgent _Nav;
     protected string _Name = "Unkown";
 
     protected bool _Aggro;
@@ -36,10 +36,9 @@ abstract public class Enemy : MonoBehaviour {
     protected void SetData(float healthValue)
     {
         _StartPos = transform.position;
-        _AggroObject.SetData(this, _AttackRange);
+        _AggroObject.SetData(this, _AggroRange);
     
         transform.GetComponentInChildren<EnemyName>().SetName(_Name);
-        transform.GetComponentInChildren<EnemyLevel>().SetLevel( "Lv " + _Level.ToString());       
 
         _Damage = _Level * (_Damage * _Multiplier);
         _Health.SetMaxHealth(_Level * (healthValue * _Multiplier));
@@ -50,8 +49,8 @@ abstract public class Enemy : MonoBehaviour {
         for (int i = 0; i < 30; i++)
         {
             Vector3 randomPoint = _StartPos + Random.insideUnitSphere * 4;
-            NavMeshHit hit;
-            if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            UnityEngine.AI.NavMeshHit hit;
+            if (UnityEngine.AI.NavMesh.SamplePosition(randomPoint, out hit, 1.0f, UnityEngine.AI.NavMesh.AllAreas))
             {
                 return hit.position;
             }
@@ -72,7 +71,7 @@ abstract public class Enemy : MonoBehaviour {
     void Awake()
     {
         _Health = GetComponent<EnemyHealth>();
-        _Nav = GetComponent<NavMeshAgent>();
+        _Nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
         GameObject obj = new GameObject();
         obj.transform.SetParent(transform);
@@ -135,6 +134,12 @@ abstract public class Enemy : MonoBehaviour {
     internal EnemyHealth GetHealth()
     {
         return _Health;
+    }
+
+    internal void Dead()
+    {
+        _Nav.Stop();
+        _CanAttack = false;
     }
 
     abstract protected void Attack();

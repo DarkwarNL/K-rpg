@@ -14,10 +14,12 @@ public class Combat : MonoBehaviour {
     internal delegate void Attack();
     internal delegate void ReleaseAttack();
     internal delegate bool IsFighting();
+    internal delegate void CancelAttack();
 
     internal Attack AttackDelegate;
     internal ReleaseAttack ReleaseAttackDelegate;
     internal IsFighting IsFightingDelegate;
+    internal CancelAttack CancelAttackDelegate;
 
     void Awake()
     {
@@ -37,13 +39,16 @@ public class Combat : MonoBehaviour {
     void FixedUpdate()
     {
         SwitchWeapon(Input.GetAxis("WeaponSwitchX"), Input.GetAxis("WeaponSwitchY"));
-
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(1))
+        {
+            CancelAttackDelegate();
+        }
+        else if (Input.GetMouseButton(0))
         {
             WeaponCheck(_SelectedWeapon);
             AttackDelegate();
         }
-        else //if(Input.GetAxis("Attack") <= 0)
+        else if(Input.GetMouseButtonUp(0))
         {
             for (int i = 0; i < _Anim.layerCount; i++)
             {
@@ -51,9 +56,6 @@ public class Combat : MonoBehaviour {
                 if (stateInfo.IsName("Movement"))
                 {
                     ReleaseAttackDelegate();
-                    if(_SelectedWeapon)
-                        if(_SelectedWeapon.IsSheathed)
-                            Sheath();
                 }
             }
         }

@@ -8,12 +8,12 @@ public class ArrowSlot : MonoBehaviour
 
     void Awake()
     {
-        _WieldArrow = Resources.Load<GameObject>("Particles/Sheathing");
+        _WieldArrow = Resources.Load<GameObject>("Particles/Sheathing_02");
     }
 
     internal void SetArrowRotation(Vector3 target)
     {
-        if(_CurrentArrow && target != null)
+        if(_CurrentArrow)
         {            
             _CurrentArrow.transform.LookAt(target);
         }
@@ -24,12 +24,13 @@ public class ArrowSlot : MonoBehaviour
         if (_CurrentArrow) return;
 
         _CurrentArrow = (Instantiate(newArrow, transform.position, Quaternion.identity, transform) as Arrow);
-        _CurrentArrow.SetData(damage, gameObject.GetComponentInParent<Combat>().gameObject, true);
+        
+        _CurrentArrow.SetData(damage, gameObject.GetComponentInParent<Stats>().gameObject, true);
         _CurrentArrow.transform.localPosition = new Vector3(0, 0, 0.35f);
         _CurrentArrow.transform.localRotation = new Quaternion();
-
+        
         ParticleSystem sheatingParticle = (Instantiate(_WieldArrow, transform.position, transform.rotation, transform) as GameObject).GetComponent<ParticleSystem>();
-        Destroy(sheatingParticle.gameObject, sheatingParticle.startLifetime);
+        Destroy(sheatingParticle.gameObject, sheatingParticle.main.startLifetime.constant);
     }
 
     public void Shoot()

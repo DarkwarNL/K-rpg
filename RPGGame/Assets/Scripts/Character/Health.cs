@@ -17,7 +17,7 @@ abstract public class Health : MonoBehaviour
         return (_CurrentHealth/ _MaxHealth);
     }
 
-    public void DeltaHealth(float delta)
+    public bool DeltaHealth(float delta)
     {
         InCombat = true;
 
@@ -38,6 +38,7 @@ abstract public class Health : MonoBehaviour
         {
             Dead();
         }
+        return _CurrentHealth <= 0;
     }
 
     float DamageReduction()

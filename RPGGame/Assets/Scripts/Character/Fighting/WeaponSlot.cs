@@ -27,6 +27,6 @@ public class WeaponSlot : MonoBehaviour
         _WeaponObject = (GameObject)Instantiate(nextWeapon.gameObject, transform, false);
 
         ParticleSystem sheatingParticle = (Instantiate(_SheathingParticle, transform.position, transform.rotation, transform) as GameObject).GetComponent<ParticleSystem>();
-        Destroy(sheatingParticle.gameObject, sheatingParticle.startLifetime);
+        Destroy(sheatingParticle.gameObject, sheatingParticle.main.startLifetime.constant);
     }
 }

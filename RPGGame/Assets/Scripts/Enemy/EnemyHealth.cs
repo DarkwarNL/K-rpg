@@ -18,13 +18,13 @@ public class EnemyHealth : Health
 
     protected override void DamageTaken(float amount)
     {
-        _Popup.SpawnDamageText(Statics.GetNumber(amount));
+        _Popup.CreateFloatingDamageText(Statics.GetNumber(amount), "Damage");
         GetComponent<Enemy>().SetTarget(FindObjectOfType<Stats>().transform);
     }
 
     protected override void HealTaken(float amount)
     {
-        _Popup.SpawnHealthText(Statics.GetNumber(amount));
+        _Popup.CreateFloatingDamageText(Statics.GetNumber(amount), "Heal");
     }
 
     protected override void UpdateUI()
@@ -32,11 +32,12 @@ public class EnemyHealth : Health
         HealthSlider.maxValue = _MaxHealth;
         HealthSlider.value = _CurrentHealth;
         HealthValue.text = Statics.GetNumber(_CurrentHealth) + " / " + Statics.GetNumber(_MaxHealth);
-        HealthSlider.fillRect.GetComponent<Image>().color = GetColor();
+        HealthSlider.fillRect.GetComponent<Image>().color = Color.red;
     }
 
     protected override void Dead()
     {
+        transform.GetComponent<Enemy>().Dead();
         Destroy(gameObject, 1);
     }
 }

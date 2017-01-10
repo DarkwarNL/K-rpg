@@ -2,6 +2,13 @@
 using UnityEngine.UI;
 using System.Collections;
 
+public enum ElementType
+{
+    Fire,
+    Electric,
+    Ice
+}
+
 public class Stats : MonoBehaviour {
     public Image HealthBar;
     public Image ExperienceBar;
@@ -42,8 +49,8 @@ public class Stats : MonoBehaviour {
     {
         _Health = GetComponent<PlayerHealth>();
         _Combat = GetComponent<Combat>();
-        _BaseSpeedExp = ExperienceParticle.startSpeed;
-        _BaseSpeedHP = HealthParticle.startSpeed;
+        _BaseSpeedExp = ExperienceParticle.main.startSpeed.constant;
+        _BaseSpeedHP = HealthParticle.main.startSpeed.constant;
         UpdateUI();
     }
 
@@ -63,12 +70,14 @@ public class Stats : MonoBehaviour {
     public void UpdateUI()
     {
         float ExpPercentage = (Experience / MaxExperience);
-        ExperienceParticle.startSpeed = _BaseSpeedExp * ExpPercentage;
+        var mainExp = ExperienceParticle.main;
+        mainExp.startSpeed = _BaseSpeedExp * ExpPercentage;
         ExperienceBar.fillAmount = ExpPercentage;
 
         if (!_Health) return;
         float HPPercentage = _Health.GetPercentage();
-        HealthParticle.startSpeed = _BaseSpeedHP * HPPercentage;
+        var mainHP = HealthParticle.main;
+        mainHP.startSpeed = _BaseSpeedHP * HPPercentage;
         HealthBar.fillAmount = HPPercentage;
     }
 

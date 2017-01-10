@@ -10,6 +10,7 @@ public class AggroComponent : MonoBehaviour {
         SphereCollider col = GetComponent<SphereCollider>();
         col.radius = 10;
         col.isTrigger = true;
+        transform.localPosition = new Vector3();
     }
 
     public void SetTarget(Transform target)

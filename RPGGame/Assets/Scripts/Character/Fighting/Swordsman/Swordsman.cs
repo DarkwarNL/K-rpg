@@ -7,6 +7,16 @@ public class Swordsman : CombatStyle
     private int _CurrentAttack;
     public int AnimLayer;
 
+    void Awake()
+    {
+
+        SelectedSkills = Resources.LoadAll<Skill>("Prefabs/ArcherParticleAttacks");
+    }
+
+    protected override void CheckSkill(int skill)
+    {
+    }
+
     protected override void Attack()
     {
         OnStart();
@@ -50,5 +60,10 @@ public class Swordsman : CombatStyle
         OnEnd();
         _CurrentAttack = 0;
         _Anim.SetFloat("CurrentAttack", _CurrentAttack);       
+    }
+
+    protected override void CancelAttack()
+    {
+        
     }
 }

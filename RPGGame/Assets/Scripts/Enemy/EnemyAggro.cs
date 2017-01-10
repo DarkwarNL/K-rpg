@@ -14,6 +14,7 @@ public class EnemyAggro : MonoBehaviour {
         col.isTrigger = true;
         col.radius = aggroRange;
         gameObject.layer = 2;
+        transform.localPosition = new Vector3();
     }
 
     void OnTriggerEnter(Collider other)

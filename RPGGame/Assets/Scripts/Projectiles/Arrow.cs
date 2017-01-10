@@ -1,32 +1,40 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public enum ArrowType
+{
+    Normal,
+    Elemental,
+    Exploding,
+
+}
+
 [RequireComponent(typeof(BoxCollider))]
 abstract public class Arrow : MonoBehaviour {
     protected float _Speed = 25f;
     protected float _Damage = 2f;
     protected GameObject _Owner;
     protected bool _Holding = false;
-    protected TrailRenderer _Trail;
+    protected GameObject _Target;
 
     void Awake()
     {
         BoxCollider col = GetComponent<BoxCollider>();
         col.isTrigger = true;
-        _Trail = GetComponent<TrailRenderer>();
     }
     
 	void FixedUpdate ()
     {
         if (_Holding) return;
+        if (_Target) transform.LookAt(_Target.transform);
+
         Vector3 forward = transform.forward * Time.deltaTime * _Speed;
         transform.position += forward;
-	}
+    }
 
     internal void Release()
     {
         _Holding = false;
-        _Trail.enabled = true;
     }
 
     internal void SetDamage(float damage)
@@ -41,6 +49,14 @@ abstract public class Arrow : MonoBehaviour {
         _Owner = owner;
     }
 
+    internal void SetData(float speed, float damage, GameObject owner, GameObject target)
+    {
+        _Speed = speed;
+        _Damage = damage;
+        _Owner = owner;
+        _Target = target;
+    }
+
     internal void SetData(float damage, GameObject owner)
     {
         _Damage = damage;
@@ -53,7 +69,6 @@ abstract public class Arrow : MonoBehaviour {
         _Owner = owner;
         _Holding = holding;
 
-        _Trail.enabled = false;
     }
 
     void OnTriggerEnter(Collider other)
@@ -73,7 +88,8 @@ abstract public class Arrow : MonoBehaviour {
         else if (enemy)
         {
             HitEnemy(enemy);
-            _Owner.GetComponent<Stats>().DeltaExperience(_Damage);
+            if(!_Owner.GetComponent<Enemy>())
+                _Owner.GetComponent<Stats>().DeltaExperience(_Damage);
             transform.SetParent(enemy.transform);
             if (GetComponent<TrailRenderer>()) Destroy(GetComponent<TrailRenderer>());
             Destroy(this);

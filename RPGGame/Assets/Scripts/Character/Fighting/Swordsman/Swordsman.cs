@@ -9,8 +9,6 @@ public class Swordsman : CombatStyle
 
     void Awake()
     {
-
-        SelectedSkills = Resources.LoadAll<Skill>("Prefabs/ArcherParticleAttacks");
     }
 
     protected override void CheckSkill(int skill)

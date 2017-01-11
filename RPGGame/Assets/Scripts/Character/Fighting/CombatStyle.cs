@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
 [RequireComponent(typeof(Combat))]
 abstract public class CombatStyle : MonoBehaviour {
     protected KeyCode[] keys = new KeyCode[] { KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4};
-
+    protected ActionBar _ActionBar;
     protected CameraFollow _Cam;
     protected CharacterMovement _Movement;
     protected Animator _Anim;
@@ -15,10 +17,11 @@ abstract public class CombatStyle : MonoBehaviour {
     /// <summary>
     /// Skills
     /// </summary>
-    public Skill[] SelectedSkills;
+    public List<Skill> SelectedSkills;
     
     void Awake()
     {
+        _ActionBar = ActionBar.Instance;
         _Cam = CameraFollow.Instance;
         _Movement = GetComponent<CharacterMovement>();
 
@@ -27,6 +30,8 @@ abstract public class CombatStyle : MonoBehaviour {
     
     void FixedUpdate()
     {
+        if (SelectedSkills.Count <= 0) return;
+
         for (int i = 0; i < keys.Length; i++)
         {
             if (Input.GetKeyDown(keys[i]) && SelectedSkills[i].CanCast())

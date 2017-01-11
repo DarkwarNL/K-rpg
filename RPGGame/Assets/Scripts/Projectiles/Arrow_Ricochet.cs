@@ -25,7 +25,7 @@ public class Arrow_Ricochet : Arrow {
             if(Vector3.Distance(transform.position, e.transform.position)< 10)
             {
                 targets.Add(e);
-                if (targets.Count == 3) break;
+                if (targets.Count == _TargetCount) break;
             }
         }
 

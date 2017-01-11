@@ -4,6 +4,7 @@ using System.Collections;
 public class CameraFollow : MonoBehaviour
 {
     internal Transform _Target;
+    public LayerMask mask;
 
     private float _TargetHeight = 1.7f;
     private float _Distance = 5.0f;
@@ -87,7 +88,7 @@ public class CameraFollow : MonoBehaviour
 
         // if there was a collision, correct the camera position and calculate the corrected distance
         bool isCorrected = false;
-        if (Physics.Linecast(trueTargetPosition, position, out collisionHit))
+        if (Physics.Linecast(trueTargetPosition, position, out collisionHit, mask))
         {
             position = collisionHit.point;
             _CorrectedDistance = Vector3.Distance(trueTargetPosition, position);

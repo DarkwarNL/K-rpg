@@ -6,7 +6,6 @@ using UnityEngine;
 public class Arrow_Multi : Arrow
 {
     private Arrow StandardArrow;
-    private int _TargetCount = 3;
     public int _ArrowCount = 20;
 
     void Start()

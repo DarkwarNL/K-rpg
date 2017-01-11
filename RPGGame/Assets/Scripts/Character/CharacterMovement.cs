@@ -42,8 +42,6 @@ public class CharacterMovement : MonoBehaviour {
 
         if (Aiming)
         {
-            _Anim.SetFloat("Speed", moveV);
-            _Anim.SetFloat("SideSpeed", moveH);
             Quaternion newRot = spine.rotation;
             newRot.x = Camera.main.transform.rotation.x;
             spine.rotation = newRot;

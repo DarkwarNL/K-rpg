@@ -1,18 +1,48 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Skill : MonoBehaviour
-{
-    protected float _CastCooldown = 5;
-    public bool CanCastSkill = true;
+{  
+    public string ArrowLocation;
     public Sprite Sprite;
 
-    public IEnumerator CastCooldown()
+    public Arrow Arrow;   
+
+    protected float _CastCooldown = 5;
+    private bool CanCastSkill = true;
+    private Image _CooldownImage;
+
+    void Start()
+    {
+        Arrow = Resources.Load<Arrow>("Prefabs/Arrows/" + ArrowLocation);
+
+        transform.GetChild(0).GetComponent<Image>().sprite = Sprite;
+        _CooldownImage = transform.GetChild(1).GetComponent<Image>();
+    }
+
+    public void CastSkill()
+    {
+        StartCoroutine(CastCooldown());
+    }
+
+    internal IEnumerator CastCooldown()
     {
         CanCastSkill = false;
+        StartCoroutine(SetImageCooldown());
         yield return new WaitForSeconds(_CastCooldown);
         CanCastSkill = true;
+    }
+
+    private IEnumerator SetImageCooldown()
+    {
+        float endTime = Time.time + _CastCooldown;
+        while (Time.time < endTime)
+        {
+            _CooldownImage.fillAmount = (endTime - Time.time) / _CastCooldown;
+            yield return null;
+        }
     }
 
     public bool CanCast()
@@ -21,7 +51,7 @@ public class Skill : MonoBehaviour
     }
 }
 
-public class OffensiveSkill : Skill
+public class OffensiveSkill : MonoBehaviour
 {
     protected float _Damage = -10;
     protected float _DamageCooldown = 5;

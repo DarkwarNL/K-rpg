@@ -10,8 +10,8 @@ public class Archer : CombatStyle
     void Start()
     {
         _ArrowSlot = GetComponentInChildren<ArrowSlot>();
-        _SelectedArrow = Resources.Load<Arrow>("Prefabs/Arrows/TeleportArrow");
-        SelectedSkills = Resources.LoadAll<Skill>("Prefabs/ArcherParticleAttacks");
+        _SelectedArrow = Resources.Load<Arrow>("Prefabs/Arrows/Arrow");
+        SelectedSkills = ActionBar.Instance.Skills;
     }
 
     private void SetCrosshair()
@@ -29,32 +29,27 @@ public class Archer : CombatStyle
 
     protected override void CheckSkill(int i)
     {
-        if (SelectedSkills[i].GetComponent<Skill_RainOfArrows>())
+        Skill skill = SelectedSkills[i];
+        if (skill.Arrow)
         {
-            Vector3 fwd = transform.TransformDirection(_Cam.transform.forward);
-            LayerMask layerMask = 1 << 0;
-            RaycastHit hit;
-
-            if (Physics.Raycast(_Cam.transform.position, fwd, out hit, 500, layerMask))
-            {
-                GameObject rainOfArrows = Instantiate(SelectedSkills[i].gameObject);
-                
-                rainOfArrows.GetComponent<Skill_RainOfArrows>().SetPosition(hit.point);
-
-                StartCoroutine(SelectedSkills[i].CastCooldown());
-
-                StartCoroutine(ActionBar.Instance.SetCooldown(i, 5));
-            }
+            SpawnSkillArrow(skill.Arrow);
+            StartCoroutine(ActionBar.Instance.Skills[i].CastCooldown());
+            
         }
-        else if (SelectedSkills[i].GetComponent<Skill_MissileArrows>())
+        /*
+        else if (skill.GetComponent<Skill_MissileArrows>())
         {
             Instantiate(SelectedSkills[i].gameObject, transform.position + transform.up, transform.rotation);
 
-            StartCoroutine(SelectedSkills[i].CastCooldown());
-            StartCoroutine(ActionBar.Instance.SetCooldown(i, 5));
-        }
-        
-         
+            StartCoroutine(ActionBar.Instance.Skills[i].CastCooldown());
+        }*/
+    }
+
+    protected void SpawnSkillArrow(Arrow arrow)
+    {
+        _Anim.SetTrigger("Break");
+        _ArrowSlot.Release();
+        _ArrowSlot.SpawnArrow(arrow, _Weapon.BaseDamage);
     }
 
     protected override bool IsFighting()
@@ -67,7 +62,6 @@ public class Archer : CombatStyle
                 _ArrowSlot.SpawnArrow(_SelectedArrow, _Weapon.BaseDamage);
             }
         }
-
 
         return _Fighting;
     }

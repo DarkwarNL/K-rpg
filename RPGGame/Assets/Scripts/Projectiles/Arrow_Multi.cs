@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Arrow_Multi : Arrow
+public class Arrow_Multi : Arrow_Skill
 {
+    protected string _Name = "MultiArrow";
     private Arrow StandardArrow;
     public int _ArrowCount = 20;
 
@@ -39,5 +40,8 @@ public class Arrow_Multi : Arrow
         
     }
 
-
+    public override string GetName()
+    {
+        return _Name;
+    }
 }

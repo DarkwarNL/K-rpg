@@ -24,7 +24,6 @@ public class PopupDamage : MonoBehaviour {
 
         Animator anim = textObj.GetComponent<Animator>();
         anim.SetTrigger(animText);
-        Debug.Log(anim.GetCurrentAnimatorClipInfo(0).Length);
         Destroy(anim.gameObject, 4);
     }
 }

@@ -3,14 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Arrow_RainOfArrows : Arrow
+public class Arrow_RainOfArrows : Arrow_Skill
 {
+    protected string _Name = "RainOfArrows";
+
     private GameObject _Particle;
 
     void Start()
     {
         _Speed = 15;
         _Particle = Resources.Load<GameObject>("Prefabs/ArcherParticleAttacks/Particle_RainOfArrows");
+        
     }
 
     void Update()
@@ -38,5 +41,10 @@ public class Arrow_RainOfArrows : Arrow
     protected override void HitPlayer(PlayerHealth player)
     {
 
+    }
+
+    public override string GetName()
+    {
+        return _Name;
     }
 }

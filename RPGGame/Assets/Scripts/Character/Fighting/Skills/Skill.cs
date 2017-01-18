@@ -2,35 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using System;
 
-public class Skill : MonoBehaviour
+[Serializable]
+public class Skill
 {  
-    public string ArrowLocation;
-    public Sprite Sprite;
+    internal string SkillName;
+    internal Sprite Sprite;
 
-    public Arrow Arrow;   
+    internal Arrow Arrow;
 
     protected float _CastCooldown = 5;
     private bool CanCastSkill = true;
     private Image _CooldownImage;
 
-    void Start()
+    public Skill(float cooldown, string name, Sprite sprite, Arrow arrow)
     {
-        Arrow = Resources.Load<Arrow>("Prefabs/Arrows/" + ArrowLocation);
-
-        transform.GetChild(0).GetComponent<Image>().sprite = Sprite;
-        _CooldownImage = transform.GetChild(1).GetComponent<Image>();
-    }
-
-    public void CastSkill()
-    {
-        StartCoroutine(CastCooldown());
+        _CastCooldown = cooldown;        
+        SkillName = name;
+        Sprite = sprite;
+        Arrow = arrow;
     }
 
     internal IEnumerator CastCooldown()
     {
         CanCastSkill = false;
-        StartCoroutine(SetImageCooldown());
         yield return new WaitForSeconds(_CastCooldown);
         CanCastSkill = true;
     }
@@ -53,6 +49,7 @@ public class Skill : MonoBehaviour
 
 public class OffensiveSkill : MonoBehaviour
 {
+    protected Skill _Skill;
     protected float _Damage = -10;
     protected float _DamageCooldown = 5;
     protected float _DamageMultiplier = 2; // 150% of base weapon damage
@@ -69,5 +66,4 @@ public class OffensiveSkill : MonoBehaviour
         yield return new WaitForSeconds(_DamageCooldown);
         _CanDamage = true;
     }
-
 }

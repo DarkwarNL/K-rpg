@@ -3,15 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Arrow_Teleporter : Arrow
+public class Arrow_Teleporter : Arrow_Skill
 {
+    protected string _Name = "TeleportArrow";
     private GameObject _Particle;
 
     void Start()
     {
         _Speed = 15;
         _Particle = Resources.Load<GameObject>("Particles/Particle_TeleportCircle");
-        Destroy(Instantiate(_Particle, transform.position, Quaternion.identity), 5);
+        Destroy(Instantiate(_Particle, transform.position, Quaternion.identity), 5);        
     }
 
     void Update()
@@ -40,5 +41,10 @@ public class Arrow_Teleporter : Arrow
     protected override void HitPlayer(PlayerHealth player)
     {
 
+    }
+
+    public override string GetName()
+    {
+        return _Name;
     }
 }

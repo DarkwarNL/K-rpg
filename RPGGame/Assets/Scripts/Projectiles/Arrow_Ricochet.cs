@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Arrow_Ricochet : Arrow {
-
+public class Arrow_Ricochet : Arrow_Skill {
+    protected string _Name = "Ricochet";
     private Arrow StandardArrow;
     private int _TargetCount = 3;
 
@@ -47,5 +47,10 @@ public class Arrow_Ricochet : Arrow {
 
     protected override void HitPlayer(PlayerHealth player)
     {
+    }
+
+    public override string GetName()
+    {
+        return _Name;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class SplashDamage : MonoBehaviour
 {
     private SphereCollider _Trigger;
-    public float _Damage;
+    private float _Damage;
 
     void Start()
     {
@@ -28,5 +28,4 @@ public class SplashDamage : MonoBehaviour
             enemy.DeltaHealth(_Damage);
         }
     }
-
 }

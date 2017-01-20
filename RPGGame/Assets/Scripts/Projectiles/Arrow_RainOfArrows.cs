@@ -42,9 +42,4 @@ public class Arrow_RainOfArrows : Arrow_Skill
     {
 
     }
-
-    public override string GetName()
-    {
-        return _Name;
-    }
 }

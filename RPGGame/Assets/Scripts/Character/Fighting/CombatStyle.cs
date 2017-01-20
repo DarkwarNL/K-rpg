@@ -17,7 +17,7 @@ abstract public class CombatStyle : MonoBehaviour {
     /// <summary>
     /// Skills
     /// </summary>
-    public List<Skill> SelectedSkills;
+    private SkillDatabase _SkillDatabase;
     
     void Awake()
     {
@@ -26,17 +26,19 @@ abstract public class CombatStyle : MonoBehaviour {
         _Movement = GetComponent<CharacterMovement>();
 
         _Crosshair = GameObject.FindGameObjectWithTag("Crosshair");
+        _SkillDatabase = SkillDatabase.Instance;
     }
     
     void FixedUpdate()
     {
-        if (SelectedSkills.Count <= 0) return;
+        if (!_SkillDatabase) return;
+        if (_SkillDatabase.GetSelectedSkills().Length <= 0) return;
 
         for (int i = 0; i < keys.Length; i++)
         {
-            if (Input.GetKeyDown(keys[i]) && SelectedSkills[i].CanCast())
+            if (Input.GetKeyDown(keys[i]) && _SkillDatabase.GetSelectedSkills()[i].CanCast())
             {
-                CheckSkill(i);
+                CheckSkill(_SkillDatabase.GetSelectedSkills()[i]);                
             }
         }
     }
@@ -83,5 +85,5 @@ abstract public class CombatStyle : MonoBehaviour {
     protected abstract bool IsFighting();
     protected abstract void ReleaseAttack();
     protected abstract void CancelAttack();
-    protected abstract void CheckSkill(int skill);
+    protected abstract void CheckSkill(Skill skill);
 }

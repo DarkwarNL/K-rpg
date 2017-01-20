@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Arrow_Teleporter : Arrow_Skill
 {
-    protected string _Name = "TeleportArrow";
     private GameObject _Particle;
 
     void Start()
@@ -41,10 +40,5 @@ public class Arrow_Teleporter : Arrow_Skill
     protected override void HitPlayer(PlayerHealth player)
     {
 
-    }
-
-    public override string GetName()
-    {
-        return _Name;
     }
 }

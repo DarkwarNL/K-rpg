@@ -10,7 +10,7 @@ public class CameraFacingBilboard : MonoBehaviour
         m_Camera = FindObjectOfType<Camera>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         transform.LookAt(transform.position + m_Camera.transform.rotation * Vector3.forward,
             m_Camera.transform.rotation * Vector3.up);

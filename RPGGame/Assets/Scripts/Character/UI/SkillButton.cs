@@ -18,12 +18,12 @@ public class SkillButton : MonoBehaviour {
 
 
         _Number = transform.FindChild("KeyNumber").GetComponent<Text>();
-        _Button.onClick.AddListener(() => GetComponentInParent<SkillsSelector>().ChangingSkill(KeyNumber, this));
+        _Button.onClick.AddListener(() => GetComponentInParent<SkillsSelector>().ChangingSkill(KeyNumber-1, this));
     }
 
-    public void SetData(Sprite sprite, string name)
+    internal void SetData(Skill skill)
     {
-        _Icon.sprite = sprite;
-        _Name.text = name;
+        _Icon.sprite = skill.Sprite;
+        _Name.text = skill.SkillName;
     }
 }

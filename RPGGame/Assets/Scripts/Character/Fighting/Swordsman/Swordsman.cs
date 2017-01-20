@@ -11,7 +11,7 @@ public class Swordsman : CombatStyle
     {
     }
 
-    protected override void CheckSkill(int skill)
+    protected override void CheckSkill(Skill skill)
     {
     }
 

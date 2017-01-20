@@ -15,13 +15,14 @@ public class SkillSelectButton : MonoBehaviour {
         _Icon = transform.FindChild("Icon").GetComponent<Image>();        
         _Name = transform.FindChild("Name").GetComponent<Text>();
 
-        _Button.onClick.AddListener(() => GetComponentInParent<SkillsSelector>().SelectedSkill(_Skill));
     }
 
-    public void SetData(Skill skill)
+    public void SetData(Skill skill, int num, SkillsSelector selector)
     {        
         _Skill = skill;
         _Icon.sprite = skill.Sprite;
         _Name.text = skill.SkillName;
+
+        _Button.onClick.AddListener(() => selector.SelectedSkill(_Skill, num));
     }
 }

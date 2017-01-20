@@ -11,7 +11,6 @@ public class Archer : CombatStyle
     {
         _ArrowSlot = GetComponentInChildren<ArrowSlot>();
         _SelectedArrow = Resources.Load<Arrow>("Prefabs/Arrows/Arrow");
-        SelectedSkills = ActionBar.Instance.Skills;
     }
 
     private void SetCrosshair()
@@ -27,14 +26,14 @@ public class Archer : CombatStyle
         _Cam.Aiming();      
     }
 
-    protected override void CheckSkill(int i)
+    protected override void CheckSkill(Skill skill)
     {
-        Skill skill = SelectedSkills[i];
+        StartCoroutine(skill.CastCooldown());
+        StartCoroutine(skill.SetImageCooldown());
+
         if (skill.Arrow)
         {
-            SpawnSkillArrow(skill.Arrow);
-            StartCoroutine(ActionBar.Instance.Skills[i].CastCooldown());
-            
+            SpawnSkillArrow(skill.Arrow);         
         }
         /*
         else if (skill.GetComponent<Skill_MissileArrows>())

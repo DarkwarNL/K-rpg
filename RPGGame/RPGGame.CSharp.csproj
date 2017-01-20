@@ -76,7 +76,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraFacingBilboard.cs" />
-    <Compile Include="Assets\Scripts\Character\ActionBar.cs" />
     <Compile Include="Assets\Scripts\Character\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Character\CharacterMovement.cs" />
     <Compile Include="Assets\Scripts\Character\Fighting\Archer\Archer.cs" />
@@ -93,8 +92,15 @@
     <Compile Include="Assets\Scripts\Character\Health.cs" />
     <Compile Include="Assets\Scripts\Character\Player.cs" />
     <Compile Include="Assets\Scripts\Character\PlayerHealth.cs" />
-    <Compile Include="Assets\Scripts\Character\PopupTextCreator.cs" />
     <Compile Include="Assets\Scripts\Character\Stats.cs" />
+    <Compile Include="Assets\Scripts\Character\UI\ActionBar.cs" />
+    <Compile Include="Assets\Scripts\Character\UI\ActionBarObject.cs" />
+    <Compile Include="Assets\Scripts\Character\UI\PopupTextCreator.cs" />
+    <Compile Include="Assets\Scripts\Character\UI\SkillButton.cs" />
+    <Compile Include="Assets\Scripts\Character\UI\SkillDatabase.cs" />
+    <Compile Include="Assets\Scripts\Character\UI\SkillSelectButton.cs" />
+    <Compile Include="Assets\Scripts\Character\UI\SkillsSelector.cs" />
+    <Compile Include="Assets\Scripts\Character\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\AggroComponent.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAggro.cs" />
@@ -109,8 +115,9 @@
     <Compile Include="Assets\Scripts\Projectiles\Arrow_Basic.cs" />
     <Compile Include="Assets\Scripts\Projectiles\Arrow_Elemental.cs" />
     <Compile Include="Assets\Scripts\Projectiles\Arrow_Multi.cs" />
+    <Compile Include="Assets\Scripts\Projectiles\Arrow_RainOfArrows.cs" />
     <Compile Include="Assets\Scripts\Projectiles\Arrow_Ricochet.cs" />
-    <Compile Include="Assets\Scripts\Projectiles\Arrow_Stunner.cs" />
+    <Compile Include="Assets\Scripts\Projectiles\Arrow_Skill.cs" />
     <Compile Include="Assets\Scripts\Projectiles\Arrow_Teleporter.cs" />
     <Compile Include="Assets\Scripts\Statics.cs" />
     <Compile Include="Assets\WeaponTabUI.cs" />

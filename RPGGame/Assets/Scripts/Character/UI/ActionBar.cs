@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ActionBar : MonoBehaviour {
-    internal List<Skill> Skills = new List<Skill>();
-
+    private List<ActionBarObject> _ActionBarObjects = new List<ActionBarObject>();
     private static ActionBar _ActionBar;
 
     public static ActionBar Instance
@@ -16,12 +15,26 @@ public class ActionBar : MonoBehaviour {
             return _ActionBar;
         }
     }
-
     void Awake()
     {
-        foreach (Transform trans in transform)
+        GetActionBarObjects();
+    }
+
+    private void GetActionBarObjects()
+    {
+        foreach (Transform obj in transform)
         {
-           // Skills.Add(trans.GetComponent<Skill>());
+            ActionBarObject actionObj = obj.GetComponent<ActionBarObject>();
+            if (actionObj) _ActionBarObjects.Add(actionObj);
+        }
+    }
+
+    public void SkillsChanged(Skill[] skills)
+    {
+        if (_ActionBarObjects.Count <= 0) GetActionBarObjects();
+        for (int i = 0; i < transform.childCount; i++)
+        {            
+            skills[i].SetCooldownImage(_ActionBarObjects[i].SetData(skills[i].Sprite));
         }
     }
 }

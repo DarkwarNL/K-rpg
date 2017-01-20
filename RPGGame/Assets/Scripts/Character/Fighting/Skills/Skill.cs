@@ -7,14 +7,19 @@ using System;
 [Serializable]
 public class Skill
 {  
-    internal string SkillName;
-    internal Sprite Sprite;
-
-    internal Arrow Arrow;
+    public string SkillName;
+    public Sprite Sprite;
+    
+    public Arrow Arrow;
 
     protected float _CastCooldown = 5;
     private bool CanCastSkill = true;
     private Image _CooldownImage;
+
+    public Skill()
+    {
+
+    }
 
     public Skill(float cooldown, string name, Sprite sprite, Arrow arrow)
     {
@@ -24,14 +29,12 @@ public class Skill
         Arrow = arrow;
     }
 
-    internal IEnumerator CastCooldown()
+    public void SetCooldownImage(Image img)
     {
-        CanCastSkill = false;
-        yield return new WaitForSeconds(_CastCooldown);
-        CanCastSkill = true;
+        _CooldownImage = img;
     }
 
-    private IEnumerator SetImageCooldown()
+    internal IEnumerator SetImageCooldown()
     {
         float endTime = Time.time + _CastCooldown;
         while (Time.time < endTime)
@@ -39,6 +42,13 @@ public class Skill
             _CooldownImage.fillAmount = (endTime - Time.time) / _CastCooldown;
             yield return null;
         }
+    }
+
+    internal IEnumerator CastCooldown()
+    {
+        CanCastSkill = false;        
+        yield return new WaitForSeconds(_CastCooldown);
+        CanCastSkill = true;
     }
 
     public bool CanCast()
@@ -65,5 +75,10 @@ public class OffensiveSkill : MonoBehaviour
         _CanDamage = false;
         yield return new WaitForSeconds(_DamageCooldown);
         _CanDamage = true;
+    }
+
+    public string GetName()
+    {
+        return _Skill.SkillName;
     }
 }

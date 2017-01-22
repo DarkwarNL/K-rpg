@@ -23,7 +23,8 @@ public class SkillButton : MonoBehaviour {
 
     internal void SetData(Skill skill)
     {
-        _Icon.sprite = skill.Sprite;
+        if (skill == null) return;
+        _Icon.sprite = skill.GetSprite();
         _Name.text = skill.SkillName;
     }
 }

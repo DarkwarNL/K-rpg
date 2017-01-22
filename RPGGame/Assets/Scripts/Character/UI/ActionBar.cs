@@ -32,9 +32,11 @@ public class ActionBar : MonoBehaviour {
     public void SkillsChanged(Skill[] skills)
     {
         if (_ActionBarObjects.Count <= 0) GetActionBarObjects();
+       
         for (int i = 0; i < transform.childCount; i++)
-        {            
-            skills[i].SetCooldownImage(_ActionBarObjects[i].SetData(skills[i].Sprite));
+        {
+            if (skills[i] == null) continue;
+            skills[i].SetCooldownImage(_ActionBarObjects[i].SetData(Resources.Load<Sprite>(skills[i].Sprite)));
         }
     }
 }

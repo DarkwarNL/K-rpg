@@ -31,9 +31,9 @@ public class Archer : CombatStyle
         StartCoroutine(skill.CastCooldown());
         StartCoroutine(skill.SetImageCooldown());
 
-        if (skill.Arrow)
+        if (skill.Arrow != null)
         {
-            SpawnSkillArrow(skill.Arrow);         
+            SpawnSkillArrow(skill.GetArrow());         
         }
         /*
         else if (skill.GetComponent<Skill_MissileArrows>())

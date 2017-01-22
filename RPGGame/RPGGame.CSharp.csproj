@@ -92,6 +92,7 @@
     <Compile Include="Assets\Scripts\Character\Health.cs" />
     <Compile Include="Assets\Scripts\Character\Player.cs" />
     <Compile Include="Assets\Scripts\Character\PlayerHealth.cs" />
+    <Compile Include="Assets\Scripts\Character\SaveLoad.cs" />
     <Compile Include="Assets\Scripts\Character\Stats.cs" />
     <Compile Include="Assets\Scripts\Character\UI\ActionBar.cs" />
     <Compile Include="Assets\Scripts\Character\UI\ActionBarObject.cs" />

@@ -19,6 +19,8 @@ public class Stats : MonoBehaviour {
     /// <summary>
     /// Stats
     /// </summary>
+
+    public Player _Player;
     private PlayerHealth _Health;
     private Combat _Combat;
 

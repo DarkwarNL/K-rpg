@@ -6,7 +6,7 @@ public class UIManager : MonoBehaviour {
     protected KeyCode[] keys = new KeyCode[] { KeyCode.K};
     private SkillsSelector _SkillSelector;
 
-    void Awake()
+    void Start()
     {
         _SkillSelector = GetComponentInChildren<SkillsSelector>();
         SkillMenu();

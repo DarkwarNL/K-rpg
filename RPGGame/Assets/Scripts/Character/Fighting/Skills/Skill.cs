@@ -8,9 +8,8 @@ using System;
 public class Skill
 {  
     public string SkillName;
-    public Sprite Sprite;
-    
-    public Arrow Arrow;
+    public string Sprite;    
+    public string Arrow;
 
     protected float _CastCooldown = 5;
     private bool CanCastSkill = true;
@@ -21,12 +20,22 @@ public class Skill
 
     }
 
-    public Skill(float cooldown, string name, Sprite sprite, Arrow arrow)
+    public Skill(float cooldown, string name, string sprite, string arrow)
     {
         _CastCooldown = cooldown;        
         SkillName = name;
         Sprite = sprite;
         Arrow = arrow;
+    }
+
+    public Sprite GetSprite()
+    {
+        return Resources.Load<Sprite>(Sprite);
+    }
+
+    public Arrow GetArrow()
+    {
+        return Resources.Load<Arrow>(Arrow);
     }
 
     public void SetCooldownImage(Image img)

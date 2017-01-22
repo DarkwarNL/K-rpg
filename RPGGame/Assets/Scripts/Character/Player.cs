@@ -1,16 +1,39 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
-[RequireComponent(typeof(Stats), typeof(PlayerHealth), typeof(CharacterMovement))]
-public class Player : MonoBehaviour {
-    protected Stats _Stats;
-    protected PlayerHealth _PlayerHealth;
-    protected CharacterMovement _Movement;
+[Serializable]
+public class Player{
+    public string PlayerName;
+    private Skill[] _SelectedSkills = new Skill[4];
+
+    private static Player _Player;
 
     void Awake()
     {
-        _Stats = GetComponent<Stats>();
-        _PlayerHealth = GetComponent<PlayerHealth>();
-        _Movement = GetComponent<CharacterMovement>();
+        SaveLoad.Load();
+        foreach(Player player in SaveLoad.savedPlayers)
+        {
+            if(player.PlayerName == PlayerName)
+            {
+                SetData(player);
+            }
+        }
+    }
+
+    void SetData(Player player)
+    {
+        _SelectedSkills = player._SelectedSkills;
+    }
+
+    internal Skill[] GetSelectedSkills()
+    {
+        return _SelectedSkills;
+    }
+
+    internal void SetSkills(Skill[] selectedSkills)
+    {
+        _SelectedSkills = selectedSkills;
+        SaveLoad.Save(this);
     }
 }

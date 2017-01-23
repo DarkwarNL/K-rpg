@@ -7,13 +7,14 @@ using System;
 [Serializable]
 public class Skill
 {  
-    public string SkillName;
-    public string Sprite;    
-    public string Arrow;
+    public string SkillName { get; private set; }
+    public int SkillNumber { get; private set; }
+
+    private string Sprite;    
+    private string Arrow;
 
     protected float _CastCooldown = 5;
     private bool CanCastSkill = true;
-    private Image _CooldownImage;
 
     public Skill()
     {
@@ -38,17 +39,18 @@ public class Skill
         return Resources.Load<Arrow>(Arrow);
     }
 
-    public void SetCooldownImage(Image img)
+    public void SetCooldownImage(int num)
     {
-        _CooldownImage = img;
+        SkillNumber = num;
     }
 
     internal IEnumerator SetImageCooldown()
     {
+        Image cooldownImage = ActionBar.Instance.GetCooldownImage(SkillNumber);
         float endTime = Time.time + _CastCooldown;
         while (Time.time < endTime)
         {
-            _CooldownImage.fillAmount = (endTime - Time.time) / _CastCooldown;
+            cooldownImage.fillAmount = (endTime - Time.time) / _CastCooldown;
             yield return null;
         }
     }

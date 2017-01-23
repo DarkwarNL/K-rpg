@@ -81,7 +81,7 @@ abstract public class Arrow : MonoBehaviour {
         if (player)
         {
             HitPlayer(player);
-            transform.SetParent(player.transform);
+            //transform.SetParent(player.transform);
             if (GetComponent<TrailRenderer>()) Destroy(GetComponent<TrailRenderer>());
             Destroy(this);
         }

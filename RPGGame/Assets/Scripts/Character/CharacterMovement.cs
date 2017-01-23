@@ -4,8 +4,9 @@ using System.Collections;
 [RequireComponent(typeof(Animator))]
 public class CharacterMovement : MonoBehaviour {
     private Animator _Anim;
-    private float _RotationSpeed = 30;
+    private float _RotationSpeed = 10;
     internal bool Aiming;
+    private float _Speed;
     public Transform spine;
 
     void Awake()
@@ -15,20 +16,13 @@ public class CharacterMovement : MonoBehaviour {
     }
 
     void LateUpdate()
-    {
+    {      
         float moveV = Input.GetAxis("Vertical");
         float moveH = Input.GetAxis("Horizontal");
-        _Anim.SetFloat("Speed", moveV);
-        _Anim.SetFloat("SideSpeed", moveH);
-
-        if (moveH >= 0.1f)
+        if (Input.GetKey(KeyCode.LeftShift))
         {
-            transform.Rotate(Vector3.up * Time.deltaTime * 100.0f * moveH);
-
-        }
-        else if (moveH <= -0.1f)
-        {
-            transform.Rotate(Vector3.down * Time.deltaTime * 200.0f * -moveH);
+            moveV = moveV *2;
+            moveH = moveH *2;
         }
 
         if (Input.GetButtonDown("Jump"))
@@ -68,8 +62,10 @@ public class CharacterMovement : MonoBehaviour {
 
             if (moveV < 0) moveV = -moveV;
             if (moveH < 0) moveH = -moveH;
-            _Anim.SetFloat("Speed", moveV + moveH);
         }
+
+        _Speed = Mathf.Lerp(_Speed, moveV + moveH, Time.deltaTime * 3);
+        _Anim.SetFloat("Speed", _Speed);
     }
 }
 

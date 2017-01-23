@@ -10,8 +10,19 @@ public static class SaveLoad
 
     //it's static so we can call it from anywhere
     public static void Save(Player player)
-    {
-        SaveLoad.savedPlayers.Add(player);
+    {           
+        for(int i = 0; i < savedPlayers.Count; i++)
+        {
+            if (SaveLoad.savedPlayers[i].PlayerName == player.PlayerName)
+            {
+                SaveLoad.savedPlayers[i] = player;
+            }
+            else
+            {
+                SaveLoad.savedPlayers.Add(player);
+            }
+        }
+        Debug.Log(Application.persistentDataPath);
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/savedPlayers.gd"); //you can call it anything you want
         bf.Serialize(file, SaveLoad.savedPlayers);

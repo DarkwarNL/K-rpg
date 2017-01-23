@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ActionBarObject : MonoBehaviour {
+    private int _SkillNumber;
     private Image _Icon;
     private Image _CooldownImage;
 
@@ -14,9 +15,24 @@ public class ActionBarObject : MonoBehaviour {
 
     }
 
-    public Image SetData(Sprite sprite)
+    internal void SetSkillNumber(int num)
+    {
+        _SkillNumber = num;
+    }
+
+    internal int SetData(Sprite sprite)
     {
         _Icon.sprite = sprite;
+        return _SkillNumber;
+    }
+
+    internal bool CheckSkillNumber(int num)
+    {
+        return num == _SkillNumber;
+    }
+
+    internal Image GetImage()
+    {
         return _CooldownImage;
     }
 }

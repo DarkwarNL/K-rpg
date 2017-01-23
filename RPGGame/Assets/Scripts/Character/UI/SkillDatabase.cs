@@ -34,7 +34,7 @@ public class SkillDatabase : MonoBehaviour
         _ArcherSkills.Add(new Skill(10, skillName, _SpriteLocation + skillName, _ArrowLocation + skillName));
 
         _Player = GetComponent<Stats>()._Player;
-        _ActionBar = ActionBar.Instance;
+        _ActionBar = ActionBar.Instance;       
 
         _ActionBar.SkillsChanged(_Player.GetSelectedSkills());
     }

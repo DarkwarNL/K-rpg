@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 using System.Collections;
 
 public class Enemy_Leecher : Enemy
@@ -17,15 +18,36 @@ public class Enemy_Leecher : Enemy
         SetData(15);
     }
 
+    protected override void EnemyBehaviour()
+    {
+        if (CanAttack())
+        {
+            SetRotation();
+
+            Vector3 pos = _Target.position - transform.position;
+            var angle = Vector3.Angle(pos, transform.forward);
+            
+            if (angle <= 25)
+            {
+                Attack();
+            }
+        }
+        if (!_Nav.isActiveAndEnabled) return;
+
+        if (_Nav.remainingDistance <= _Nav.stoppingDistance)
+            _Nav.SetDestination(GetRandomPos(_Target.position, _AttackRange *1.5f));
+    }
+
     protected override void Idle()
     {
         if(_Nav.remainingDistance < 2)
         {            
-            _Nav.SetDestination(GetRandomPos());
+            _Nav.SetDestination(GetRandomPos(_StartPos, 10));
             
             _Nav.speed = _WalkSpeed;
         }
     }
+
     protected override void Attack()
     {
         Vector3 pos = _Target.position - transform.position;
@@ -37,5 +59,7 @@ public class Enemy_Leecher : Enemy
             _Target.GetComponent<PlayerHealth>().DeltaHealth(_Damage);
             DamageOverTime(_Target.GetComponent<PlayerHealth>());
         }
+
+        StartCoroutine(Cooldown());
     }
 }

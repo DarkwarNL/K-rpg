@@ -53,6 +53,7 @@ public class Stats : MonoBehaviour {
         Debug.Log(SaveLoad.savedPlayers.Count);
         _Health = GetComponent<PlayerHealth>();
         _Combat = GetComponent<Combat>();
+                
         _BaseSpeedExp = ExperienceParticle.main.startSpeed.constant;
         _BaseSpeedHP = HealthParticle.main.startSpeed.constant;
         UpdateUI();

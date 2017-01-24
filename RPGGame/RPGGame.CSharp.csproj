@@ -94,14 +94,6 @@
     <Compile Include="Assets\Scripts\Character\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\Character\SaveLoad.cs" />
     <Compile Include="Assets\Scripts\Character\Stats.cs" />
-    <Compile Include="Assets\Scripts\Character\UI\ActionBar.cs" />
-    <Compile Include="Assets\Scripts\Character\UI\ActionBarObject.cs" />
-    <Compile Include="Assets\Scripts\Character\UI\PopupTextCreator.cs" />
-    <Compile Include="Assets\Scripts\Character\UI\SkillButton.cs" />
-    <Compile Include="Assets\Scripts\Character\UI\SkillDatabase.cs" />
-    <Compile Include="Assets\Scripts\Character\UI\SkillSelectButton.cs" />
-    <Compile Include="Assets\Scripts\Character\UI\SkillsSelector.cs" />
-    <Compile Include="Assets\Scripts\Character\UI\UIManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\AggroComponent.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAggro.cs" />
@@ -121,6 +113,18 @@
     <Compile Include="Assets\Scripts\Projectiles\Arrow_Skill.cs" />
     <Compile Include="Assets\Scripts\Projectiles\Arrow_Teleporter.cs" />
     <Compile Include="Assets\Scripts\Statics.cs" />
+    <Compile Include="Assets\Scripts\UI\ActionBar.cs" />
+    <Compile Include="Assets\Scripts\UI\ActionBarObject.cs" />
+    <Compile Include="Assets\Scripts\UI\Inventory\Inventory.cs" />
+    <Compile Include="Assets\Scripts\UI\Inventory\Item.cs" />
+    <Compile Include="Assets\Scripts\UI\Inventory\ItemSlot.cs" />
+    <Compile Include="Assets\Scripts\UI\Inventory\ItemTooltip.cs" />
+    <Compile Include="Assets\Scripts\UI\PopupTextCreator.cs" />
+    <Compile Include="Assets\Scripts\UI\SkillButton.cs" />
+    <Compile Include="Assets\Scripts\UI\SkillDatabase.cs" />
+    <Compile Include="Assets\Scripts\UI\SkillSelectButton.cs" />
+    <Compile Include="Assets\Scripts\UI\SkillsSelector.cs" />
+    <Compile Include="Assets\Scripts\UI\UIManager.cs" />
     <Compile Include="Assets\WeaponTabUI.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />

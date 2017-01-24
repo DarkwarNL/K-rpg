@@ -4,10 +4,14 @@ using System.Collections;
 [RequireComponent(typeof(Animator))]
 public class CharacterMovement : MonoBehaviour {
     private Animator _Anim;
-    private float _RotationSpeed = 10;
-    internal bool Aiming;
+    private float _RotationSpeed = 10;   
     private float _Speed;
+    private float _SideSpeed;
+
+    private const int LerpValue = 5;
+
     public Transform spine;
+    internal bool Aiming;
 
     void Awake()
     {
@@ -19,10 +23,11 @@ public class CharacterMovement : MonoBehaviour {
     {      
         float moveV = Input.GetAxis("Vertical");
         float moveH = Input.GetAxis("Horizontal");
+
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            moveV = moveV *2;
-            moveH = moveH *2;
+            moveV = moveV * 2f;
+            moveH = moveH * 2f;
         }
 
         if (Input.GetButtonDown("Jump"))
@@ -47,6 +52,11 @@ public class CharacterMovement : MonoBehaviour {
             newRotation.z = transform.rotation.z;
             transform.rotation = newRotation;
 
+            _SideSpeed = Mathf.Lerp(_SideSpeed, moveH, Time.deltaTime * LerpValue);
+            _Speed = Mathf.Lerp(_Speed, moveV, Time.deltaTime * LerpValue);
+
+            _Anim.SetFloat("SideSpeed", _SideSpeed);
+            _Anim.SetFloat("Speed", _Speed);
         }
         else if (moveV != 0 || moveH != 0)
         {
@@ -64,8 +74,11 @@ public class CharacterMovement : MonoBehaviour {
             if (moveH < 0) moveH = -moveH;
         }
 
-        _Speed = Mathf.Lerp(_Speed, moveV + moveH, Time.deltaTime * 3);
-        _Anim.SetFloat("Speed", _Speed);
+        if (!Aiming)
+        {
+            _Speed = Mathf.Lerp(_Speed, moveV + moveH, Time.deltaTime * LerpValue);
+            _Anim.SetFloat("Speed", _Speed);
+        }
     }
 }
 

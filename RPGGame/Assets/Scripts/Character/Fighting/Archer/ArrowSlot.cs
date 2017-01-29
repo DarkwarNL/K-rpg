@@ -4,11 +4,11 @@ using System.Collections;
 public class ArrowSlot : MonoBehaviour
 {
     private Arrow _CurrentArrow = null;
-    private GameObject _WieldArrow;
+    private ParticleSystem _SheathingParticle;
 
     void Awake()
     {
-        _WieldArrow = Resources.Load<GameObject>("Particles/Sheathing_02");
+        _SheathingParticle = Instantiate(Resources.Load<GameObject>("Particles/Sheathing_02"), transform, false).GetComponent<ParticleSystem>();
     }
 
     internal void SetArrowRotation(Vector3 target)
@@ -28,9 +28,8 @@ public class ArrowSlot : MonoBehaviour
         _CurrentArrow.SetData(damage, gameObject.GetComponentInParent<Stats>().gameObject, true);
         _CurrentArrow.transform.localPosition = new Vector3(0, 0, 0.35f);
         _CurrentArrow.transform.localRotation = new Quaternion();
-        
-        ParticleSystem sheatingParticle = (Instantiate(_WieldArrow, transform.position, transform.rotation, transform) as GameObject).GetComponent<ParticleSystem>();
-        Destroy(sheatingParticle.gameObject, sheatingParticle.main.startLifetime.constant);
+
+        _SheathingParticle.Play();
     }
 
     public void Shoot()

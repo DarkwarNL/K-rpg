@@ -13,8 +13,12 @@ public enum ItemType
 [CreateAssetMenu]
 public class Item : ScriptableObject {
     public Sprite Sprite;
-    public GameObject ItemObject;
-
-    public ItemType Type;
+    public ItemType ItemType;
     public int Price, MinumumPower, MaximumPower;
+
+    /// <summary>
+    /// Spawning weapons etc.
+    /// </summary>
+    public Mesh ItemMesh;
+    public Material[] Materials;
 }

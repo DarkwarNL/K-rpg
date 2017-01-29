@@ -48,7 +48,7 @@ public class Archer : CombatStyle
     {
         _Anim.SetTrigger("Break");
         _ArrowSlot.Release();
-        _ArrowSlot.SpawnArrow(arrow, _Weapon.BaseDamage);
+        _ArrowSlot.SpawnArrow(arrow, _Weapon.GetDamage());
     }
 
     protected override bool IsFighting()
@@ -58,7 +58,7 @@ public class Archer : CombatStyle
             AnimatorStateInfo stateInfo = _Anim.GetCurrentAnimatorStateInfo(2);
             if (stateInfo.IsName("Aim_Start"))
             {
-                _ArrowSlot.SpawnArrow(_SelectedArrow, _Weapon.BaseDamage);
+                _ArrowSlot.SpawnArrow(_SelectedArrow, _Weapon.GetDamage());
             }
         }
 

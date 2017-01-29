@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 77325f36e14d79e43af0527786301a0b
-timeCreated: 1485202909
+guid: 64bcd36f33c75864bbe3b74380007e30
+timeCreated: 1485369124
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -137,7 +137,7 @@ ModelImporter:
     400126: Spine
     400128: Spine1
     400130: Spine2
-    7400000: standing_aim_walk_right
+    7400000: picking_up
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -164,18 +164,18 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: standing_aim_walk_right
+      name: picking_up
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 78
+      lastFrame: 573
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 1
+      loopTime: 0
+      loopBlend: 0
       loopBlendOrientation: 1
       loopBlendPositionY: 1
       loopBlendPositionXZ: 0

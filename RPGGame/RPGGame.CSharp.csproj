@@ -86,7 +86,6 @@
     <Compile Include="Assets\Scripts\Character\Fighting\Skills\Skill_MissileArrows.cs" />
     <Compile Include="Assets\Scripts\Character\Fighting\Skills\Skill_RainOfArrows.cs" />
     <Compile Include="Assets\Scripts\Character\Fighting\Swordsman\Swordsman.cs" />
-    <Compile Include="Assets\Scripts\Character\Fighting\Weapon.cs" />
     <Compile Include="Assets\Scripts\Character\Fighting\WeaponSlot.cs" />
     <Compile Include="Assets\Scripts\Character\FootstepsParticle.cs" />
     <Compile Include="Assets\Scripts\Character\Health.cs" />
@@ -119,6 +118,7 @@
     <Compile Include="Assets\Scripts\UI\Inventory\Item.cs" />
     <Compile Include="Assets\Scripts\UI\Inventory\ItemSlot.cs" />
     <Compile Include="Assets\Scripts\UI\Inventory\ItemTooltip.cs" />
+    <Compile Include="Assets\Scripts\UI\Inventory\Weapon.cs" />
     <Compile Include="Assets\Scripts\UI\PopupTextCreator.cs" />
     <Compile Include="Assets\Scripts\UI\SkillButton.cs" />
     <Compile Include="Assets\Scripts\UI\SkillDatabase.cs" />

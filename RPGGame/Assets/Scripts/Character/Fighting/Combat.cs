@@ -3,11 +3,12 @@ using System.Collections;
 
 public class Combat : MonoBehaviour {
     protected Weapon _SelectedWeapon = null;
-    protected GameObject[] _Weapons;
+    protected Weapon[] _Weapons;
     protected WeaponSlot _WeaponSlotLeft;
     protected WeaponSlot _WeaponSlotRight;
     protected Animator _Anim;
     protected WeaponTabUI _WeaponTab;
+    protected bool _IsWielding;
 
     protected float _CombatTime = 0;
 
@@ -23,7 +24,7 @@ public class Combat : MonoBehaviour {
 
     void Awake()
     {
-        _Weapons = Resources.LoadAll<GameObject>("Prefabs/Weapons");
+        _Weapons = Resources.LoadAll<Weapon>("Items/Weapons");
         _Anim = GetComponent<Animator>();
         _WeaponSlotLeft = GetComponentInChildren<WeaponSlot>();
         _WeaponSlotRight = GetComponentInChildren<ArrowSlot>().transform.parent.GetComponentInChildren<WeaponSlot>();
@@ -62,7 +63,7 @@ public class Combat : MonoBehaviour {
                
         if (!IsFightingDelegate())
         {    
-            if ((_CombatTime += Time.deltaTime )>= 10)
+            if ((_CombatTime += Time.deltaTime )>= 10 && _IsWielding)
             {
                 Sheath();               
             }
@@ -99,7 +100,7 @@ public class Combat : MonoBehaviour {
     {
         if (_Weapons.Length > number)
         {
-            Weapon weapon = _Weapons[number].GetComponent<Weapon>();
+            Weapon weapon = _Weapons[number];
             if (weapon != _SelectedWeapon)
             {
                 WeaponCheck(weapon);
@@ -115,9 +116,9 @@ public class Combat : MonoBehaviour {
         }
         else if (!_SelectedWeapon)
         {
-            UnSheath(_Weapons[0].GetComponent<Weapon>());
+            UnSheath(_Weapons[0]);
         }
-        else if (!_SelectedWeapon.IsSheathed && !IsFightingDelegate())
+        else if (!_IsWielding && !IsFightingDelegate())
         {
             UnSheath(_SelectedWeapon);
         }
@@ -125,18 +126,20 @@ public class Combat : MonoBehaviour {
 
     protected void UnSheath(Weapon weapon)
     {
-        if(_SelectedWeapon)
-            _SelectedWeapon.IsSheathed = false;
+        if (_IsWielding) return;
+
         _WeaponSlotLeft.Sheath();
         _WeaponSlotRight.Sheath();
 
         _SelectedWeapon = weapon;
-        _SelectedWeapon.IsSheathed = true;        
+
+        _IsWielding = true;
+
         _Anim.SetTrigger("UnSheath");
-        _WeaponTab.SelectedWeapon(weapon.Type);
+        _WeaponTab.SelectedWeapon(weapon.WeaponType);
 
         int layer = 0;
-        switch (_SelectedWeapon.Type)
+        switch (_SelectedWeapon.WeaponType)
         {
             case WeaponType.Bow:
                 GetComponent<Archer>().SetDelegates(this, _Anim, _SelectedWeapon);
@@ -173,7 +176,7 @@ public class Combat : MonoBehaviour {
     {
         if (!_SelectedWeapon) return;
         _CombatTime = 0;
-        _SelectedWeapon.IsSheathed = false;
+        _IsWielding = false;
         _WeaponSlotLeft.Sheath();
         _WeaponSlotRight.Sheath();
         _Anim.SetTrigger("Sheath");

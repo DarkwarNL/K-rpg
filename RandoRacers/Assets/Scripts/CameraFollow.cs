@@ -54,29 +54,13 @@ public class CameraFollow : MonoBehaviour
     /**
      * Camera logic on LateUpdate to only update after all character movement logic has been handled.
      */
-    void Update()
+    void FixedUpdate()
     {
-        // Don't do anything if target is not defined
         if (!_Target)
             return;
-        /*
-        // If either mouse buttons are down, let the mouse govern camera position
-        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
-        //if(Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
-        {
-            _X += Input.GetAxis(" X") * _YSpeed ;
-            _Y -= Input.GetAxis("Mouse Y") * _XSpeed;
-        }
-        */
-        _Y = ClampAngle(_Y, _YMinLimit, _YMaxLimit);
 
-        // set camera rotation
+        // set local camera rotation
         Quaternion rotation = Quaternion.LookRotation(_Target.transform.forward, Vector3.up);
-
-        // calculate the desired distance
-        _DesiredDistance -= Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime * _ZoomAmount * Mathf.Abs(_DesiredDistance);
-        _DesiredDistance = Mathf.Clamp(_DesiredDistance, _MinDistance, _MaxDistance);
-        _CorrectedDistance = _DesiredDistance;
 
         // calculate desired camera position
         Vector3 position = _Target.position - (rotation * Vector3.forward * _DesiredDistance + new Vector3(0, -_TargetHeight, 0));
@@ -102,14 +86,5 @@ public class CameraFollow : MonoBehaviour
 
         transform.rotation = rotation;
         transform.position = position;
-    }
-
-    private static float ClampAngle(float angle, float min, float max)
-    {
-        if (angle < -360)
-            angle += 360;
-        if (angle > 360)
-            angle -= 360;
-        return Mathf.Clamp(angle, min, max);
     }
 }

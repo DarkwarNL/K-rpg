@@ -7,16 +7,16 @@ public class VehicleController : MonoBehaviour {
     private Rigidbody _RB;
 
     /// <summary>
-    /// Zet de eerste twee als de voorste wielen
+    /// Set the front wheels first
     /// </summary>
     [SerializeField]
     private WheelCollider[] _WheelColliders = new WheelCollider[WheelAmount];
     /// <summary>
-    /// Zet de eerste twee als de voorste wielen
+    /// set the front wheels first
     /// </summary>
     [SerializeField]
-    private GameObject[] _WheelMeshes = new GameObject[WheelAmount];
-    
+    private GameObject[] _WheelMeshes = new GameObject[WheelAmount];   
+
     private float _MaxSpeedAmount = 200;
     private float _MaxSteerAmount = 25;
     private float _ForceBrakeAmount;
@@ -37,44 +37,49 @@ public class VehicleController : MonoBehaviour {
     #endregion
 
     #region PUBLIC_MEMBER_VARIABLES
-    public const int WheelAmount = 4;
 
+    public const int WheelAmount = 4;
+    public string Name = "Fury";
 
     #endregion
+
     void Awake()
     {
         _ForceBrakeAmount = float.MaxValue;
         _RB = GetComponent<Rigidbody>();
-
         _CurrentTorque = _MaxWheelTorque - (_TractionControl * _MaxWheelTorque);
+
+        RaceManager.Instance.AddPlayer(Name);
     }
 
-	public void SetVehicleData(float steer, float acceleration, float brake, float forceBrake)
+    #region VEHICLE_MOVEMENT_FUNCTIONS
+
+    public void SetVehicleData(float steer, float acceleration, float brake, float forceBrake)
     {
         for (int i = 0; i < WheelAmount; i++)
         {
             Quaternion quat;
             Vector3 position;
 
-            // kijken waar de wielen horen te zitten
+            // Check where the wheels are supposed to be located
             _WheelColliders[i].GetWorldPose(out position, out quat);
 
-            //de wielen op de juiste plek zetten
+            // Set the wheels on the correct location
             _WheelMeshes[i].transform.position = position;
             _WheelMeshes[i].transform.rotation = quat;
         }
 
-        //alle variabelen clampen
+        //clamp variables
         steer = Mathf.Clamp(steer, -1, 1);
         acceleration = Mathf.Clamp(acceleration, 0, 1);
         brake = -1 * Mathf.Clamp(brake, -1, 0);
         forceBrake = Mathf.Clamp(forceBrake, 0, 1);
 
-        //de steer op de voorste wielen zetten
+        //Steer the front wheels
         float steerAmount = steer * _MaxSteerAmount;
         _WheelColliders[0].steerAngle = steerAmount;
         _WheelColliders[1].steerAngle = steerAmount;
-
+        
         SteerHelper();
         MoveVehicle(acceleration, brake);
         CalculateSpeed();
@@ -92,7 +97,9 @@ public class VehicleController : MonoBehaviour {
             _WheelColliders[3].brakeTorque = 0;
         }
 
+        //add force down so the car wont flip
         AddForceDown();
+
         TractionControl();
     }
 
@@ -179,5 +186,13 @@ public class VehicleController : MonoBehaviour {
                 _CurrentTorque = _MaxWheelTorque;
             }
         }
+    }
+    #endregion
+
+    public void OnDead()
+    {
+        _RB.Sleep();
+        RaceManager.Instance.GetLastWaypointByName(Name).Respawn(this);
+        _RB.WakeUp();
     }
 }

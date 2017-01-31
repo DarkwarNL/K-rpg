@@ -3,28 +3,14 @@ using System.Collections;
 
 public class CameraFollow : MonoBehaviour
 {
-    internal Transform _Target;
+    internal Transform Target;
     public LayerMask mask;
-
-    private float _TargetHeight = 1.7f;
-    private float _Distance = 10.0f;
-
-    private float _MaxDistance = 10;
-    private float _MinDistance = .6f;
-
-    private float _XSpeed = 3f;
-    private float _YSpeed = 5f;
-
-    private int _YMinLimit = -65;
-    private int _YMaxLimit = 50;
-
-    private int _ZoomAmount = 20;
-    private float _ZoomDampening = 5.0f;
-
-    private float _X = 0.0f;
-    private float _Y = 0.0f;
+    
+    private float _DesiredDistance = 10.0f;
+    private float _DesiredHeight = 3.5f;
+    private float _Dampening = 25.0f;
+    
     private float _CurrentDistance;
-    private float _DesiredDistance;
     private float _CorrectedDistance;
     private static CameraFollow _CameraFollow;
 
@@ -37,37 +23,28 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
-
     void Start()
-    {
-        _Target = FindObjectOfType<VehicleController>().transform;
-
-        Vector3 angles = transform.eulerAngles;
-        _X = angles.x;
-        _Y = angles.y;
-
-        _CurrentDistance = _Distance;
-        _DesiredDistance = _Distance;
-        _CorrectedDistance = _Distance;
+    {   
+        _CurrentDistance = _DesiredDistance;
+        _CorrectedDistance = _DesiredDistance;
     }
 
     /**
-     * Camera logic on LateUpdate to only update after all character movement logic has been handled.
+     * Camera logic on LateUpdate to only update after all Vehicle movement logic has been handled.
      */
-    void FixedUpdate()
+    void LateUpdate()
     {
-        if (!_Target)
+        if (!Target)
             return;
-
         // set local camera rotation
-        Quaternion rotation = Quaternion.LookRotation(_Target.transform.forward, Vector3.up);
+        Quaternion rotation = Quaternion.LookRotation(Target.transform.forward, Vector3.up);
 
         // calculate desired camera position
-        Vector3 position = _Target.position - (rotation * Vector3.forward * _DesiredDistance + new Vector3(0, -_TargetHeight, 0));
+        Vector3 position = Target.position - (rotation * Vector3.forward * _DesiredDistance + new Vector3(0, -_DesiredHeight, 0));
 
         // check for collision using the true target's desired registration point as set by user using height
         RaycastHit collisionHit;
-        Vector3 trueTargetPosition = new Vector3(_Target.position.x, _Target.position.y + _TargetHeight, _Target.position.z);
+        Vector3 trueTargetPosition = new Vector3(Target.position.x, Target.position.y + _DesiredHeight, Target.position.z);
 
         // if there was a collision, correct the camera position and calculate the corrected distance
         bool isCorrected = false;
@@ -79,12 +56,14 @@ public class CameraFollow : MonoBehaviour
         }
 
         // For smoothing, lerp distance only if either distance wasn't corrected, or correctedDistance is more than currentDistance
-        _CurrentDistance = !isCorrected || _CorrectedDistance > _CurrentDistance ? Mathf.Lerp(_CurrentDistance, _CorrectedDistance, Time.deltaTime * _ZoomDampening) : _CorrectedDistance;
+        _CurrentDistance = !isCorrected || _CorrectedDistance > _CurrentDistance ? Mathf.Lerp(_CurrentDistance, _CorrectedDistance, Time.deltaTime * _Dampening) : _CorrectedDistance;
 
         // recalculate position based on the new currentDistance
-        position = _Target.position - (rotation * Vector3.forward * _CurrentDistance + new Vector3(0, -_TargetHeight, 0));
+        position = Target.position - (rotation * Vector3.forward * _CurrentDistance + new Vector3(0, -_DesiredHeight, 0));
 
         transform.rotation = rotation;
         transform.position = position;
     }
+
+
 }

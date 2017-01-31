@@ -9,8 +9,8 @@ public class RespawnVehicle : MonoBehaviour {
     {
         BoxCollider col = GetComponent<BoxCollider>();
         col.isTrigger = true;
-        col.size = new Vector3(500, 50, 500);
-        col.center = new Vector3(250, 25, 250);
+        col.size = new Vector3(1000, 75, 1000);
+        col.center = new Vector3(250, 50, 250);
     } 
 
     void OnTriggerEnter(Collider other)
@@ -18,7 +18,9 @@ public class RespawnVehicle : MonoBehaviour {
         VehicleController veh = other.GetComponent<VehicleController>();
         if (veh)
         {
-            veh.Invoke("OnDead", 1.5f);
+            veh.FollowingCamera.Target = null;
+            Instantiate(Resources.Load<GameObject>("Prefabs/VehicleExplosion"), veh.transform,false);     
+            veh.Invoke("OnDead", 2f);
         }
     }
 }

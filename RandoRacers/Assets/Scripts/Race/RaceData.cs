@@ -6,15 +6,20 @@ using UnityEngine;
 public class RaceData{
     [SerializeField]
     public string Name;
-    public int Ranked;
+    public int Rank;
     public int CurrentLap;
-    public Waypoint LastWaypoint;
-    public int RaceTime;
+    public int LastWaypoint;
+    public float RaceTime;
     public bool Completed = false;
+    public RaceGUI GUI;
 
-    public RaceData(string name)
+    public bool IsBot;
+
+    public RaceData(string name, bool bot, int rank)
     {
         Name = name;
+        IsBot = bot;
+        Rank = rank;
     }
 
     public RaceData()

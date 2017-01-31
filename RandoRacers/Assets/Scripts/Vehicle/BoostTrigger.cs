@@ -12,7 +12,6 @@ public class BoostTrigger : MonoBehaviour
     {
         if (other.GetComponent<VehicleController>())
         {
-            Debug.Log("adding force");
             other.GetComponent<Rigidbody>().AddForce(other.transform.forward * _BoostAmount, ForceMode.Impulse);
         }
     }

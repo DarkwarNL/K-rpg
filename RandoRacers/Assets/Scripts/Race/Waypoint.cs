@@ -7,7 +7,10 @@ public class Waypoint : MonoBehaviour
 {
     [SerializeField]
     private bool _FirstWaypoint;
+
     private RaceManager _Manager;
+
+    internal int PointNumber;
 
     void Awake()
     {

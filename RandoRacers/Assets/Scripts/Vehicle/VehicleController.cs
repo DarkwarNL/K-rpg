@@ -15,7 +15,10 @@ public class VehicleController : MonoBehaviour {
     /// set the front wheels first
     /// </summary>
     [SerializeField]
-    private GameObject[] _WheelMeshes = new GameObject[WheelAmount];   
+    private GameObject[] _WheelMeshes = new GameObject[WheelAmount];
+
+    [SerializeField]
+    private Vector3 _CentreMassOffset;
 
     private float _MaxSpeedAmount = 200;
     private float _MaxSteerAmount = 25;
@@ -32,24 +35,25 @@ public class VehicleController : MonoBehaviour {
     private float _ForceDown = 100;
 
     private float _CurrentTorque;
-    private float _CurrentSpeed;
     private float _PreviousRotation;
     #endregion
 
     #region PUBLIC_MEMBER_VARIABLES
-
+    public float CurrentSpeed { get; private set; }
+    public CameraFollow FollowingCamera;
     public const int WheelAmount = 4;
     public string Name = "Fury";
-
+    public bool IsBot = false;
     #endregion
 
     void Awake()
     {
+        //lowering the center mass of the rigid body so the vehicle won't flip over as fast 
+        _WheelColliders[0].attachedRigidbody.centerOfMass = _CentreMassOffset;
+
         _ForceBrakeAmount = float.MaxValue;
         _RB = GetComponent<Rigidbody>();
         _CurrentTorque = _MaxWheelTorque - (_TractionControl * _MaxWheelTorque);
-
-        RaceManager.Instance.AddPlayer(Name);
     }
 
     #region VEHICLE_MOVEMENT_FUNCTIONS
@@ -111,7 +115,7 @@ public class VehicleController : MonoBehaviour {
         if (speed > _MaxSpeedAmount)
             _RB.velocity = (_MaxSpeedAmount / 3.6f) * _RB.velocity.normalized;
 
-        _CurrentSpeed = speed;
+        CurrentSpeed = speed;
     }
 
     private void SteerHelper()
@@ -148,7 +152,7 @@ public class VehicleController : MonoBehaviour {
 
         for (int i = 0; i < 4; i++)
         {
-            if (_CurrentSpeed > 5 && Vector3.Angle(transform.forward, _RB.velocity) < 50f)
+            if (CurrentSpeed > 5 && Vector3.Angle(transform.forward, _RB.velocity) < 50f)
             {
                 _WheelColliders[i].brakeTorque = _BrakeAmount * brake;
             }
@@ -193,6 +197,7 @@ public class VehicleController : MonoBehaviour {
     {
         _RB.Sleep();
         RaceManager.Instance.GetLastWaypointByName(Name).Respawn(this);
+        FollowingCamera.Target = transform;
         _RB.WakeUp();
     }
 }

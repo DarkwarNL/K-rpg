@@ -10,6 +10,8 @@ public class RaceGUI : MonoBehaviour {
     private Text _PositionText;
     [SerializeField]
     private Text _SpeedText;
+    [SerializeField]
+    private Text _LapText;
 
     private float _Timer;
 
@@ -17,7 +19,7 @@ public class RaceGUI : MonoBehaviour {
 
     void LateUpdate()
     {
-        _SpeedText.text = Vehicle.CurrentSpeed.ToString("00");
+        _SpeedText.text = Vehicle.CurrentSpeed.ToString("00") + "Kmpu";
 
         _Timer += Time.deltaTime;
         string minutes = Mathf.Floor(_Timer / 60).ToString("00");
@@ -25,8 +27,13 @@ public class RaceGUI : MonoBehaviour {
         _RaceTimeText.text = minutes + ":" + seconds;
     }
 
-    public void SetPositionText(string text)
+    public void SetPositionText(int text)
     {
-        _PositionText.text = text;
+        _PositionText.text = "<b>" + text + "</b>" + " th";
+    }
+
+    public void SetLap(int text)
+    {
+        _LapText.text =  "Lap " + "<b>"+text+"</b>";
     }
 }

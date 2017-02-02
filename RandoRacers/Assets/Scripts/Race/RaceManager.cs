@@ -9,7 +9,10 @@ public class RaceManager : MonoBehaviour
     /// </summary>
     public Waypoint[] Waypoints = new Waypoint[4];
 
+    private Vector3 _SpawnPoint = new Vector3(100,100,65);
+
     public List<RaceData> _Players = new List<RaceData>();
+    public int _LapCount;
     private float _StartTime;
 
     private static RaceManager _RaceManager;
@@ -30,31 +33,41 @@ public class RaceManager : MonoBehaviour
         {
             Waypoints[i].PointNumber = i;
         }
+    }
 
-        List<VehicleController> players = new List<VehicleController>();
-        VehicleController[] vehicles = FindObjectsOfType<VehicleController>();
-
-        for(int i = 0; i < vehicles.Length; i++)
+    public void CreatePlayers(List<Player> players)
+    {
+        List<VehicleController> vehicles = new List<VehicleController>();        
+        foreach (Player player in players)
         {
-            if(AddPlayer(vehicles[i].Name, vehicles[i].IsBot, i))
-            {
-                players.Add(vehicles[i]);
-            }
+            if (player == null) continue;
+            if (player.Name == null) continue;
+            AddPlayer(player.Name, false);
+
+            VehicleController veh = Instantiate(Resources.Load<GameObject>("Prefabs/Vehicle"), _SpawnPoint* Random.Range(1.1f,1.2f), Quaternion.identity).GetComponent<VehicleController>();
+            veh.SetColor(player.VehicleColor);
+            veh.Name = player.Name;
+            vehicles.Add(veh);
         }
 
-        if (players.Count <= 1)
+        if (vehicles.Count <= 1)
         {
-            CreateRaceCamera(players[0], new Rect(0, 0, 1, 1), 0, "RaceCanvas");            
+            CreateRaceCamera(vehicles[0], new Rect(0, 0, 1, 1), 0, "RaceCanvas");
         }
         else
         {
             for (int i = 0; i < 2; i++)
             {
-                CreateRaceCamera(players[i], new Rect(0, i * 0.5f, 1, 0.5f), i, "RaceCanvasSplitscreen");
+                CreateRaceCamera(vehicles[i], new Rect(0, i * 0.5f, 1, 0.5f), i, "RaceCanvasSplitscreen");
             }
         }
     }
 
+    public void SetLapCount(int count)
+    {
+        _LapCount = count;
+    }
+    
     private void CreateRaceCamera(VehicleController vehicle, Rect rect, int number, string canvasName)
     {
         GameObject camera = Instantiate(Resources.Load<GameObject>("Prefabs/CameraObject"));
@@ -71,18 +84,26 @@ public class RaceManager : MonoBehaviour
         RaceGUI raceGUI = gui.GetComponent<RaceGUI>();
         raceGUI.Vehicle = vehicle;
         GetRaceDataByName(vehicle.Name).GUI = raceGUI;
+
+        raceGUI.SetPositionText(number + 1);
+        raceGUI.SetLap(0);
     }
 
-    private bool AddPlayer(string name, bool bot, int rank)
+    private bool AddPlayer(string name, bool bot)
     {
-        RaceData data = new RaceData(name, bot, rank + 1);
+        RaceData data = new RaceData(name, bot, _Players.Count + 1);
         _Players.Add(data);
         return !bot;
     }
 
-    private void Finished(RaceData data)
+    private void Finished()
     {
+        foreach (RaceData data in _Players)
+        {
+            if (!data.Completed) return;
+        }
 
+        MainMenu.Instance.OpenRaceMenu(_Players);
     }
 
     public void CrossedWayPoint(string name, Waypoint waypoint)
@@ -99,18 +120,18 @@ public class RaceManager : MonoBehaviour
                     continue;
                 }       
 
-                if(raceData.CurrentLap >= 3)
+                if(raceData.CurrentLap >= _LapCount)
                 {
                     raceData.Completed = true;
                     raceData.RaceTime = Time.time - _StartTime;
 
                     UpdateRank(raceData);
-                    Finished(raceData);
+                    Finished();
                     continue;
                 }
                 raceData.CurrentLap++;
                 raceData.LastWaypoint = waypoint.PointNumber;
-
+                raceData.GUI.SetLap(raceData.CurrentLap);
                 UpdateRank(raceData);
             }
         }
@@ -122,7 +143,7 @@ public class RaceManager : MonoBehaviour
 
         foreach(RaceData data in _Players)
         {
-            if (data == Racedata || data.Rank < Racedata.Rank) continue;
+            if (data == Racedata || data.Rank > Racedata.Rank) continue;
 
             if(Racedata.CurrentLap > data.CurrentLap)
             {
@@ -137,8 +158,8 @@ public class RaceManager : MonoBehaviour
                     data.Rank++;
                 }
             }
-            Racedata.GUI.SetPositionText(Racedata.Rank.ToString());
-            data.GUI.SetPositionText(data.Rank.ToString());
+            Racedata.GUI.SetPositionText(Racedata.Rank);
+            data.GUI.SetPositionText(data.Rank);
         }        
     }
 

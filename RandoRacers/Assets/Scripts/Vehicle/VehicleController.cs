@@ -42,7 +42,7 @@ public class VehicleController : MonoBehaviour {
     public float CurrentSpeed { get; private set; }
     public CameraFollow FollowingCamera;
     public const int WheelAmount = 4;
-    public string Name = "Fury";
+    public string Name;
     public bool IsBot = false;
     #endregion
 
@@ -192,6 +192,15 @@ public class VehicleController : MonoBehaviour {
         }
     }
     #endregion
+
+    public void SetColor(Color32 color)
+    {
+        foreach(Renderer render in transform.GetComponentsInChildren<Renderer>())
+        {
+            if(render)
+                render.materials[0].color = color;
+        }
+    }
 
     public void OnDead()
     {

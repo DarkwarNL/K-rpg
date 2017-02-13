@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class SkillDatabase : MonoBehaviour
 {
-    private List<Skill> _ArcherSkills = new List<Skill>();
-
-    private string _SpriteLocation = "UI/Skills/";
-    private string _ArrowLocation = "Prefabs/Arrows/SkillArrows/";
-
+    public Skill Empty;
+    public Skill_Archer[] _ArcherSkills = new Skill_Archer[4];
+    public Skill[] _SelectedSkills { get; private set; }
     private ActionBar _ActionBar;
     private Player _Player;
+
     private static SkillDatabase _Skilldatabase;
 
     public static SkillDatabase Instance
@@ -24,44 +23,64 @@ public class SkillDatabase : MonoBehaviour
 
     void Awake()
     {
-        string skillName = "MultiArrow";
-        _ArcherSkills.Add(new Skill(10, skillName, _SpriteLocation + skillName, _ArrowLocation + skillName));
-        skillName = "RainOfArrows";
-        _ArcherSkills.Add(new Skill(10, skillName,_SpriteLocation + skillName, _ArrowLocation + skillName));
-        skillName = "Ricochet";
-        _ArcherSkills.Add(new Skill(10, skillName, _SpriteLocation + skillName, _ArrowLocation + skillName));
-        skillName = "TeleportArrow";
-        _ArcherSkills.Add(new Skill(10, skillName, _SpriteLocation + skillName, _ArrowLocation + skillName));
+        _ArcherSkills = Resources.LoadAll<Skill_Archer>("Skills/ArcherSkills");
+        _Player = GetComponent<Stats>().Player;
+        _ActionBar = ActionBar.Instance;
 
-        _Player = GetComponent<Stats>()._Player;
-        _ActionBar = ActionBar.Instance;       
+        string[] skillNames = _Player.GetSelectedSkills();
 
-        _ActionBar.SkillsChanged(_Player.GetSelectedSkills());
+        _SelectedSkills = new Skill[4];
+        for (int i = 0; i < _SelectedSkills.Length; i++)
+        {
+            foreach(Skill skill in _ArcherSkills)
+            {
+                if (skill.name == skillNames[i])
+                {
+                    _SelectedSkills[i] = skill;
+                    continue;
+                }
+            }
+            if (_SelectedSkills[i] == null)
+                _SelectedSkills[i] = Empty;
+        }
+      _ActionBar.SkillsChanged(_SelectedSkills);
     }
 
     internal void SetSelectedSkill(int number, Skill skill)
     {
-        Skill[] selectedSkills = _Player.GetSelectedSkills();
-        for(int i = 0; i < selectedSkills.Length; i++)
+        for (int i = 0; i < _SelectedSkills.Length; i++)
         {
-            if(selectedSkills[i] == skill)
+            if(_SelectedSkills[i] == skill)
             {
-                selectedSkills[i] = new Skill();
+                _SelectedSkills[i] = Empty;
                 break;
             }
         }
-        selectedSkills[number] = skill;
-        _ActionBar.SkillsChanged(selectedSkills);
+        _SelectedSkills[number] = skill;
+        _ActionBar.SkillsChanged(_SelectedSkills);
+        SendPlayerSkills();
+    }
+
+    private void SendPlayerSkills()
+    {
+        string[] selectedSkills = new string[4];
+        for(int i = 0; i < selectedSkills.Length; i++)
+        {
+            if(_SelectedSkills[i] != null)
+                selectedSkills[i] = _SelectedSkills[i].SkillName;
+
+            selectedSkills[i] = "";
+        }
+
         _Player.SetSkills(selectedSkills);
     }
 
     internal Skill[] GetSelectedSkills()
     {
-        if(_Player == null) _Player = GetComponent<Stats>()._Player;
-        return _Player.GetSelectedSkills();
+        return _SelectedSkills;
     }
 
-    internal List<Skill> GetArcherSkills()
+    internal Skill[] GetArcherSkills()
     {
         return _ArcherSkills;
     }

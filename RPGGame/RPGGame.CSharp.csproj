@@ -75,16 +75,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\CameraFacingBilboard.cs" />
     <Compile Include="Assets\Scripts\Character\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\Character\CharacterMovement.cs" />
     <Compile Include="Assets\Scripts\Character\Fighting\Archer\Archer.cs" />
     <Compile Include="Assets\Scripts\Character\Fighting\Archer\ArrowSlot.cs" />
     <Compile Include="Assets\Scripts\Character\Fighting\Combat.cs" />
     <Compile Include="Assets\Scripts\Character\Fighting\CombatStyle.cs" />
-    <Compile Include="Assets\Scripts\Character\Fighting\Skills\Skill.cs" />
-    <Compile Include="Assets\Scripts\Character\Fighting\Skills\Skill_MissileArrows.cs" />
-    <Compile Include="Assets\Scripts\Character\Fighting\Skills\Skill_RainOfArrows.cs" />
     <Compile Include="Assets\Scripts\Character\Fighting\Swordsman\Swordsman.cs" />
     <Compile Include="Assets\Scripts\Character\Fighting\WeaponSlot.cs" />
     <Compile Include="Assets\Scripts\Character\FootstepsParticle.cs" />
@@ -92,6 +88,9 @@
     <Compile Include="Assets\Scripts\Character\Player.cs" />
     <Compile Include="Assets\Scripts\Character\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\Character\SaveLoad.cs" />
+    <Compile Include="Assets\Scripts\Character\Skills\Offensive\Skill_ParticleCollision.cs" />
+    <Compile Include="Assets\Scripts\Character\Skills\Skill.cs" />
+    <Compile Include="Assets\Scripts\Character\Skills\Skill_Archer.cs" />
     <Compile Include="Assets\Scripts\Character\Stats.cs" />
     <Compile Include="Assets\Scripts\Enemy\AggroComponent.cs" />
     <Compile Include="Assets\Scripts\Enemy\Enemy.cs" />
@@ -114,6 +113,7 @@
     <Compile Include="Assets\Scripts\Statics.cs" />
     <Compile Include="Assets\Scripts\UI\ActionBar.cs" />
     <Compile Include="Assets\Scripts\UI\ActionBarObject.cs" />
+    <Compile Include="Assets\Scripts\UI\CameraFacingBilboard.cs" />
     <Compile Include="Assets\Scripts\UI\Inventory\Inventory.cs" />
     <Compile Include="Assets\Scripts\UI\Inventory\Item.cs" />
     <Compile Include="Assets\Scripts\UI\Inventory\ItemSlot.cs" />
@@ -125,7 +125,7 @@
     <Compile Include="Assets\Scripts\UI\SkillSelectButton.cs" />
     <Compile Include="Assets\Scripts\UI\SkillsSelector.cs" />
     <Compile Include="Assets\Scripts\UI\UIManager.cs" />
-    <Compile Include="Assets\WeaponTabUI.cs" />
+    <Compile Include="Assets\Scripts\UI\WeaponTabUI.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

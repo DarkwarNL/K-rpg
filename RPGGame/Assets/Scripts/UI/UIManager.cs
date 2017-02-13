@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour {
     protected KeyCode[] keys = new KeyCode[] { KeyCode.K};
+    [SerializeField]
     private SkillsSelector _SkillSelector;
-
-    void Start()
-    {
-        _SkillSelector = GetComponentInChildren<SkillsSelector>();
-        SkillMenu();
-    }
 
     void FixedUpdate()
     {

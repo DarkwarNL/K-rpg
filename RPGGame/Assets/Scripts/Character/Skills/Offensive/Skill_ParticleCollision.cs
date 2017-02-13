@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skill_MissileArrows : OffensiveSkill
+public class Skill_ParticleCollision : OffensiveSkill
 {
     private ParticleSystem _Part;
     public List<ParticleCollisionEvent> collisionEvents;

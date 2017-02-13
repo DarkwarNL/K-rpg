@@ -6,7 +6,6 @@ public enum ArrowType
     Normal,
     Elemental,
     Exploding,
-
 }
 
 [RequireComponent(typeof(BoxCollider))]
@@ -68,7 +67,6 @@ abstract public class Arrow : MonoBehaviour {
         _Damage = damage;
         _Owner = owner;
         _Holding = holding;
-
     }
 
     void OnTriggerEnter(Collider other)
@@ -81,7 +79,6 @@ abstract public class Arrow : MonoBehaviour {
         if (player)
         {
             HitPlayer(player);
-            //transform.SetParent(player.transform);
             if (GetComponent<TrailRenderer>()) Destroy(GetComponent<TrailRenderer>());
             Destroy(this);
         }

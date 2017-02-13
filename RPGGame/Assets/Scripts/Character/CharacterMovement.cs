@@ -23,11 +23,15 @@ public class CharacterMovement : MonoBehaviour {
     {      
         float moveV = Input.GetAxis("Vertical");
         float moveH = Input.GetAxis("Horizontal");
+        float newSpeed = 0;
+        float maxClamp = 1;
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
             moveV = moveV * 2f;
             moveH = moveH * 2f;
+
+            maxClamp = 2;
         }
 
         if (Input.GetButtonDown("Jump"))
@@ -53,12 +57,10 @@ public class CharacterMovement : MonoBehaviour {
             transform.rotation = newRotation;
 
             _SideSpeed = Mathf.Lerp(_SideSpeed, moveH, Time.deltaTime * LerpValue);
-            _Speed = Mathf.Lerp(_Speed, moveV, Time.deltaTime * LerpValue);
-
-            _Anim.SetFloat("SideSpeed", _SideSpeed);
-            _Anim.SetFloat("Speed", _Speed);
+            newSpeed = moveV;
+            maxClamp = 1;
         }
-        else if (moveV != 0 || moveH != 0)
+        else if(moveH != 0 || moveV != 0)
         {
             Vector3 movement = new Vector3(moveH, 0f, moveV);
 
@@ -72,15 +74,12 @@ public class CharacterMovement : MonoBehaviour {
 
             if (moveV < 0) moveV = -moveV;
             if (moveH < 0) moveH = -moveH;
-        }
 
-        if (!Aiming)
-        {
-            _Speed = Mathf.Lerp(_Speed, moveV + moveH, Time.deltaTime * LerpValue);
-            _Anim.SetFloat("Speed", _Speed);
+            newSpeed = Mathf.Clamp(moveV + moveH, 0, maxClamp);
         }
+        
+        _Speed = Mathf.Lerp(_Speed, newSpeed, Time.deltaTime * LerpValue);
+        _Anim.SetFloat("SideSpeed", _SideSpeed);
+        _Anim.SetFloat("Speed", _Speed);
     }
 }
-
-
-        

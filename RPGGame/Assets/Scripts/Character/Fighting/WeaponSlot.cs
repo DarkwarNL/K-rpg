@@ -17,7 +17,7 @@ public class WeaponSlot : MonoBehaviour
 
     void Awake()
     {
-        _SheathingParticle = Instantiate(Resources.Load<GameObject>("Particles/Sheathing_02"), transform, false).GetComponent<ParticleSystem>();
+        _SheathingParticle = Instantiate(Resources.Load<GameObject>("Particles/SheathingItems"), transform, false).GetComponent<ParticleSystem>();
         _WeaponObject = new GameObject("WeaponObject");
         _WeaponObject.transform.SetParent(transform, false);
 

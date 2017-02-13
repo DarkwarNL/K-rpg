@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class SkillsSelector : MonoBehaviour {
     List<SkillButton> _Buttons = new List<SkillButton>();
@@ -29,14 +28,14 @@ public class SkillsSelector : MonoBehaviour {
         _SkillChangePanel = transform.parent.FindChild("SkillChangePanel");
         _SkillChangeButtonPanel = _SkillChangePanel.FindChild("SkillChangeButtonPanel");
 
-        _SkillSelectButton = Resources.Load<GameObject>("UI/SkillSelectButton");
+        _SkillSelectButton = Resources.Load<GameObject>("UI/Skills/SkillSelectButton");
         _SkillDatabase = SkillDatabase.Instance;
 	}
 
     internal void ChangingSkill(int num, SkillButton button)
     {
         _SkillChangePanel.gameObject.SetActive(true);
-        List<Skill> skills = _SkillDatabase.GetArcherSkills();
+        Skill[] skills = _SkillDatabase.GetArcherSkills();
 
         foreach(Skill skill in skills)
         {
@@ -51,16 +50,10 @@ public class SkillsSelector : MonoBehaviour {
         _SkillDatabase.SetSelectedSkill(number, skill);
         UpdateSkills();
     }
-
-    void OnEnable()
-    {
-        UpdateSkills();
-    }
-
+    
     private void UpdateSkills()
     {
         Skill[] selectedSkills = _SkillDatabase.GetSelectedSkills();
-
         for (int i = 0; i < transform.childCount; i++)
         {
             SkillButton button = transform.GetChild(i).GetComponent<SkillButton>();
@@ -74,6 +67,11 @@ public class SkillsSelector : MonoBehaviour {
             Destroy(item.gameObject);
         }
         _SelectButtons = new List<SkillSelectButton>();
+    }
+
+    void OnEnable()
+    {
+        UpdateSkills();
     }
 
     void OnDisable()

@@ -4,39 +4,21 @@ using UnityEngine.UI;
 using UnityEngine;
 using System;
 
-[Serializable]
-public class Skill
-{  
-    public string SkillName { get; private set; }
+[CreateAssetMenu]
+public class Skill : ScriptableObject
+{
+    [SerializeField]
+    public string SkillName;
     public int SkillNumber { get; private set; }
 
-    private string Sprite;    
-    private string Arrow;
-
-    protected float _CastCooldown = 5;
-    private bool CanCastSkill = true;
+    public float PowerMultiplier = 2;
+    public Sprite Sprite;
+    public float Cooldown = 5;
+    public bool CanCastSkill = true;
 
     public Skill()
     {
 
-    }
-
-    public Skill(float cooldown, string name, string sprite, string arrow)
-    {
-        _CastCooldown = cooldown;        
-        SkillName = name;
-        Sprite = sprite;
-        Arrow = arrow;
-    }
-
-    public Sprite GetSprite()
-    {
-        return Resources.Load<Sprite>(Sprite);
-    }
-
-    public Arrow GetArrow()
-    {
-        return Resources.Load<Arrow>(Arrow);
     }
 
     public void SetCooldownImage(int num)
@@ -47,10 +29,10 @@ public class Skill
     internal IEnumerator SetImageCooldown()
     {
         Image cooldownImage = ActionBar.Instance.GetCooldownImage(SkillNumber);
-        float endTime = Time.time + _CastCooldown;
+        float endTime = Time.time + Cooldown;
         while (Time.time < endTime)
         {
-            cooldownImage.fillAmount = (endTime - Time.time) / _CastCooldown;
+            cooldownImage.fillAmount = (endTime - Time.time) / Cooldown;
             yield return null;
         }
     }
@@ -58,7 +40,7 @@ public class Skill
     internal IEnumerator CastCooldown()
     {
         CanCastSkill = false;        
-        yield return new WaitForSeconds(_CastCooldown);
+        yield return new WaitForSeconds(Cooldown);
         CanCastSkill = true;
     }
 
@@ -70,15 +52,15 @@ public class Skill
 
 public class OffensiveSkill : MonoBehaviour
 {
-    protected Skill _Skill;
-    protected float _Damage = -10;
+    public Skill Skill;
+    protected float _Damage = 5;
     protected float _DamageCooldown = 5;
-    protected float _DamageMultiplier = 2; // 150% of base weapon damage
+     // 150% of base weapon damage
     protected bool _CanDamage = true;
 
     protected float CalculateDamage()
     {
-        return _Damage * _DamageMultiplier;
+        return _Damage * Skill.PowerMultiplier;
     }
 
     protected IEnumerator DamageCooldown()
@@ -90,6 +72,6 @@ public class OffensiveSkill : MonoBehaviour
 
     public string GetName()
     {
-        return _Skill.SkillName;
+        return Skill.SkillName;
     }
 }

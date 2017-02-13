@@ -20,7 +20,7 @@ public class SkillButton : MonoBehaviour {
     internal void SetData(Skill skill)
     {
         if (skill == null) return;
-        _Icon.sprite = skill.GetSprite();
+        _Icon.sprite = skill.Sprite;
         _Name.text = skill.SkillName;
     }
 }

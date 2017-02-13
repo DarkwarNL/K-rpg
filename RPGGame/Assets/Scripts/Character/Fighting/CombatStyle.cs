@@ -32,7 +32,7 @@ abstract public class CombatStyle : MonoBehaviour {
     void FixedUpdate()
     {
         if (!_SkillDatabase) return;
-        if (_SkillDatabase.GetSelectedSkills().Length <= 0) return;
+        if (_SkillDatabase.GetSelectedSkills() == null) return;
 
         for (int i = 0; i < keys.Length; i++)
         {

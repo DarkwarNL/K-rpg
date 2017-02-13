@@ -28,20 +28,14 @@ public class Archer : CombatStyle
 
     protected override void CheckSkill(Skill skill)
     {
-        StartCoroutine(skill.CastCooldown());
-        StartCoroutine(skill.SetImageCooldown());
-        Arrow arrow = skill.GetArrow();
+        Skill_Archer skillToCast = (Skill_Archer)skill;
+        StartCoroutine(skillToCast.CastCooldown());
+        StartCoroutine(skillToCast.SetImageCooldown());
+        Arrow arrow = skillToCast.Arrow;
         if (arrow != null)
         {
             SpawnSkillArrow(arrow);         
         }
-        /*
-        else if (skill.GetComponent<Skill_MissileArrows>())
-        {
-            Instantiate(SelectedSkills[i].gameObject, transform.position + transform.up, transform.rotation);
-
-            StartCoroutine(ActionBar.Instance.Skills[i].CastCooldown());
-        }*/
     }
 
     protected void SpawnSkillArrow(Arrow arrow)

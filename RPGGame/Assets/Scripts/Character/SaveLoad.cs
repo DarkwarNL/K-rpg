@@ -10,19 +10,25 @@ public static class SaveLoad
 
     //it's static so we can call it from anywhere
     public static void Save(Player player)
-    {           
-        for(int i = 0; i < savedPlayers.Count; i++)
+    {      
+        if(savedPlayers.Count > 0)
         {
-            if (SaveLoad.savedPlayers[i].PlayerName == player.PlayerName)
+            for (int i = 0; i < savedPlayers.Count; i++)
             {
-                SaveLoad.savedPlayers[i] = player;
-            }
-            else
-            {
-                SaveLoad.savedPlayers.Add(player);
+                if (SaveLoad.savedPlayers[i].PlayerName == player.PlayerName)
+                {
+                    SaveLoad.savedPlayers[i] = player;
+                }
+                else
+                {
+                    SaveLoad.savedPlayers.Add(player);
+                }
             }
         }
-        Debug.Log(Application.persistentDataPath);
+        else
+        {
+            SaveLoad.savedPlayers.Add(player);
+        }
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/savedPlayers.gd"); //you can call it anything you want
         bf.Serialize(file, SaveLoad.savedPlayers);
@@ -38,5 +44,17 @@ public static class SaveLoad
             SaveLoad.savedPlayers = (List<Player>)bf.Deserialize(file);
             file.Close();
         }
+    }
+
+    public static Player GetPlayer(string name)
+    {
+        foreach(Player player in savedPlayers)
+        {
+            if(player.PlayerName == name)
+            {
+                return player;
+            }
+        }
+        return new Player();
     }
 }

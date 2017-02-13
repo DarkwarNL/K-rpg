@@ -20,7 +20,7 @@ public class SkillSelectButton : MonoBehaviour {
     public void SetData(Skill skill, int num, SkillsSelector selector)
     {        
         _Skill = skill;
-        _Icon.sprite = skill.GetSprite();
+        _Icon.sprite = skill.Sprite;
         _Name.text = skill.SkillName;
 
         _Button.onClick.AddListener(() => selector.SelectedSkill(_Skill, num));

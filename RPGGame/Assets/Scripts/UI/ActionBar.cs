@@ -41,8 +41,7 @@ public class ActionBar : MonoBehaviour {
         for (int i = 0; i < _ActionBarObjects.Length; i++)
         {
             if (skills[i] == null) continue;
-            Debug.Log(skills.Length + "--" + _ActionBarObjects.Length);
-            skills[i].SetCooldownImage(_ActionBarObjects[i].SetData(skills[i].GetSprite()));
+            skills[i].SetCooldownImage(_ActionBarObjects[i].SetData(skills[i].Sprite));
         }
     }
 }

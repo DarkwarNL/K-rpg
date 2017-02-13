@@ -20,7 +20,7 @@ public class Stats : MonoBehaviour {
     /// Stats
     /// </summary>
 
-    public Player _Player;
+    public Player Player;
     private PlayerHealth _Health;
     private Combat _Combat;
 
@@ -49,8 +49,6 @@ public class Stats : MonoBehaviour {
 
     void Awake()
     {
-    //    SaveLoad.Load();
-        Debug.Log(SaveLoad.savedPlayers.Count);
         _Health = GetComponent<PlayerHealth>();
         _Combat = GetComponent<Combat>();
                 

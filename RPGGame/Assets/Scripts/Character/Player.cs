@@ -5,20 +5,14 @@ using System;
 [Serializable]
 public class Player{
     public string PlayerName;
-    private Skill[] _SelectedSkills = new Skill[4];
+    private string[] _SelectedSkills = new string[4];
 
     private static Player _Player;
 
     void Awake()
     {
         SaveLoad.Load();
-        foreach(Player player in SaveLoad.savedPlayers)
-        {
-            if(player.PlayerName == PlayerName)
-            {
-                SetData(player);
-            }
-        }
+        SetData(SaveLoad.GetPlayer(PlayerName));
     }
 
     void SetData(Player player)
@@ -26,12 +20,12 @@ public class Player{
         _SelectedSkills = player._SelectedSkills;
     }
 
-    internal Skill[] GetSelectedSkills()
+    internal string[] GetSelectedSkills()
     {
         return _SelectedSkills;
     }
 
-    internal void SetSkills(Skill[] selectedSkills)
+    internal void SetSkills(string[] selectedSkills)
     {
         _SelectedSkills = selectedSkills;
         SaveLoad.Save(this);

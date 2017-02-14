@@ -11,15 +11,13 @@ public class MainMenu : MonoBehaviour
 
     [SerializeField]
     private GameObject _CurrentMenu;
-    
+
+    /// <summary>
+    /// Game Settings
+    /// </summary>
+    /// 
     [SerializeField]
     private Button _GameSettingsButton;
-    /// <summary>
-    /// Options menu
-    /// </summary>
-    [SerializeField]
-    private Button _OptionsButton;
-
     [SerializeField]
     private Slider _PlayerCountSlider;
     [SerializeField]
@@ -48,6 +46,12 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private Button _GameSettingsBackButton;
 
+    /// <summary>
+    /// Options
+    /// </summary>
+    /// 
+    [SerializeField]
+    private Button _OptionsButton;
     [SerializeField]
     private Slider _VolumeSlider;
     [SerializeField]
@@ -59,6 +63,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private Button _OptionsBackButton;
 
+    /// <summary>
+    /// Panels
+    /// </summary>
     [SerializeField]
     private GameObject _MainMenuPanel;
     [SerializeField]
@@ -66,12 +73,28 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private GameObject _OptionsPanel;
     [SerializeField]
+    private GameObject _InfoPanel;
+    [SerializeField]
     private GameObject _RaceResultPanel;
+    [SerializeField]
+    private GameObject _PauseGamePanel;
 
+    /// <summary>
+    /// Info
+    /// </summary>
+
+    [SerializeField]
+    private Button _InfoButton;
+    [SerializeField]
+    private Button _InfoBackButton;
+
+    /// <summary>
+    /// Race Results
+    /// </summary>
     [SerializeField]
     private Transform _VerticalRaceResultPanel;
     [SerializeField]
-    private Button _ResultsBackToMainMenu;
+    private Button _ResultsBackButton;
 
     private static MainMenu _MainMenu;
     public static MainMenu Instance
@@ -81,6 +104,11 @@ public class MainMenu : MonoBehaviour
             if (!_MainMenu) _MainMenu = FindObjectOfType<MainMenu>();
             return _MainMenu;
         }
+    }
+
+    public void PauseGame()
+    {
+        // open pause menu;
     }
 
     public void OpenRaceMenu(List<RaceData> raceData)
@@ -93,7 +121,8 @@ public class MainMenu : MonoBehaviour
         OpenMenu(_RaceResultPanel);
         foreach(RaceData data in raceData)
         {
-            Instantiate(Resources.Load<GameObject>("Prefabs/ResultPanel"), _VerticalRaceResultPanel, true).GetComponent<ResultPanel>().SetData(data);
+            ResultPanel resultWindow = Instantiate(Resources.Load<GameObject>("Prefabs/ResultPanel"), _VerticalRaceResultPanel, false).GetComponent<ResultPanel>();
+            resultWindow.SetData(data);
         }
     }
 
@@ -102,6 +131,7 @@ public class MainMenu : MonoBehaviour
     {
         _CurrentMenu.GetComponent<Animator>().SetTrigger("OnEnter");
 
+        _InfoButton.onClick.AddListener(() => OpenMenu(_InfoPanel));
         _GameSettingsButton.onClick.AddListener(() => OpenMenu(_GameSettingsPanel));
         _OptionsButton.onClick.AddListener(() => OpenMenu(_OptionsPanel));        
         _PlayerCountSlider.onValueChanged.AddListener(delegate { SetPlayerCount((int)_PlayerCountSlider.value); });
@@ -119,14 +149,15 @@ public class MainMenu : MonoBehaviour
         _PlayerTwoNameInput.onEndEdit.AddListener(delegate { SetName(_PlayerTwoNameInput.text, _Players[1]); });
         _LapCountSlider.onValueChanged.AddListener(delegate { SetLapCount((int)_LapCountSlider.value); });        
         _StartGameButton.onClick.AddListener(() => StartGame());
-        _GameSettingsBackButton.onClick.AddListener(() => OpenMenu(_MainMenuPanel));
 
         //Options menu
         _VolumeSlider.onValueChanged.AddListener(delegate { SetVolume((int)_VolumeSlider.value); });
         _GameQualitySlider.onValueChanged.AddListener(delegate { SetGameQuality((int)_GameQualitySlider.value); });
         _OptionsBackButton.onClick.AddListener(() => OpenMenu(_MainMenuPanel));
 
-        _ResultsBackToMainMenu.onClick.AddListener(() => OpenMenu(_MainMenuPanel));
+        _GameSettingsBackButton.onClick.AddListener(() => OpenMenu(_MainMenuPanel));
+        _InfoBackButton.onClick.AddListener(() => OpenMenu(_MainMenuPanel));
+        _ResultsBackButton.onClick.AddListener(() => OpenMenu(_MainMenuPanel));
     }
 
     private void OpenMenu(GameObject menu)

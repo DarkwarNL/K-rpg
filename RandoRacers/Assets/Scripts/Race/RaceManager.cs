@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,12 +8,13 @@ public class RaceManager : MonoBehaviour
     /// <summary>
     /// Add in correct order!!!
     /// </summary>
-    public Waypoint[] Waypoints = new Waypoint[4];
+    [SerializeField]
+    private Waypoint[] Waypoints = new Waypoint[4];
 
     private Vector3 _SpawnPoint = new Vector3(100,100,65);
 
-    public List<RaceData> _Players = new List<RaceData>();
-    public int _LapCount;
+    private List<RaceData> _Players = new List<RaceData>();
+    private int _LapCount;
     private float _StartTime;
 
     private static RaceManager _RaceManager;
@@ -32,7 +34,7 @@ public class RaceManager : MonoBehaviour
         for (int i =0; i < Waypoints.Length; i++)
         {
             Waypoints[i].PointNumber = i;
-        }
+        }        
     }
 
     public void CreatePlayers(List<Player> players)
@@ -102,7 +104,7 @@ public class RaceManager : MonoBehaviour
         {
             if (!data.Completed) return;
         }
-
+        _Players = _Players.OrderBy(x => x.Rank).ToList();
         MainMenu.Instance.OpenRaceMenu(_Players);
     }
 

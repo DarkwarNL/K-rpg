@@ -15,7 +15,10 @@ public class ResultPanel : MonoBehaviour {
     public void SetData(RaceData data)
     {
         Name.text = data.Name;
-        Time.text = data.RaceTime.ToString();
+        string minutes = Mathf.Floor(data.RaceTime / 60).ToString("00");
+        string seconds = Mathf.Floor(data.RaceTime % 60).ToString("00");
+
+        Time.text = minutes+ ":" + seconds ;
         Rank.text = data.Rank.ToString();
     }
 }

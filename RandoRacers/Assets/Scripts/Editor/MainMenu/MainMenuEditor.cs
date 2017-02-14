@@ -46,6 +46,22 @@ public class MainMenuEditor : Editor {
     private SerializedProperty MainMenuPanelProperty;
     private SerializedProperty GameSettingsPanelProperty;
     private SerializedProperty OptionsPanelProperty;
+    private SerializedProperty MainMenuRaceResultPanelProperty;
+    private SerializedProperty MainMenuInfoPanelProperty;
+    private SerializedProperty MainMenuPauseGamePanelProperty;
+    /// <summary>
+    /// Info
+    /// </summary>
+    private bool ShowInfo;
+    private SerializedProperty MainMenuInfoBackButtonProperty;
+    private SerializedProperty MainMenuInfoButtonProperty;
+
+    /// <summary>
+    /// race Results
+    /// </summary>
+    private bool ShowRaceResults;
+    private SerializedProperty MainMenuVerticalRaceResultPanelProperty;
+    private SerializedProperty MainMenuResultsBackProperty;
 
     /// <summary>
     /// MainMenu Button names
@@ -79,18 +95,30 @@ public class MainMenuEditor : Editor {
     private const string MainMenuOptionsBackButtonName = "_OptionsBackButton";
 
     /// <summary>
+    /// InfoBack Button
+    /// </summary>
+    private const string MainMenuInfoBackButtonName = "_InfoBackButton";
+    private const string MainMenuInfoButtonName = "_InfoButton";
+    /// <summary>                                                   
+    /// Race Results
+    /// </summary>
+    private const string MainMenuVerticalRaceResultPanelName = "_VerticalRaceResultPanel";
+    private const string MainMenuResultsBackName = "_ResultsBackButton";
+
+    /// <summary>
     /// Panel Names
     /// </summary>
     private const string MainMenuCurrentMenuName = "_CurrentMenu";
     private const string MainMenuPanelName = "_MainMenuPanel";
     private const string MainMenuGameSettingsPanelName = "_GameSettingsPanel";
     private const string MainMenuOptionsPanelName = "_OptionsPanel";
+    private const string MainMenuRaceResultPanelName = "_RaceResultPanel";
+    private const string MainMenuInfoPanelName = "_InfoPanel";
+    private const string MainMenuPauseGamePanelName = "_PauseGamePanel";
 
-    private SerializedProperty _Players;
 
     private void OnEnable()
     {
-        _Players = serializedObject.FindProperty("_Players");
         //Game Settings
         PlayerCountSliderProperty = serializedObject.FindProperty(MainMenuPlayerCountSliderName);
         PlayerValueTextProperty = serializedObject.FindProperty(MainMenuPlayerValueTextName);
@@ -117,6 +145,18 @@ public class MainMenuEditor : Editor {
         MainMenuPanelProperty = serializedObject.FindProperty(MainMenuPanelName);
         GameSettingsPanelProperty = serializedObject.FindProperty(MainMenuGameSettingsPanelName);
         OptionsPanelProperty = serializedObject.FindProperty(MainMenuOptionsPanelName);
+        MainMenuInfoPanelProperty = serializedObject.FindProperty(MainMenuInfoPanelName);
+        MainMenuRaceResultPanelProperty = serializedObject.FindProperty(MainMenuRaceResultPanelName);
+
+        MainMenuPauseGamePanelProperty = serializedObject.FindProperty(MainMenuPauseGamePanelName);
+
+        //Info
+        MainMenuInfoBackButtonProperty = serializedObject.FindProperty(MainMenuInfoBackButtonName);
+        MainMenuInfoButtonProperty = serializedObject.FindProperty(MainMenuInfoButtonName);
+
+        //RaceResults
+        MainMenuVerticalRaceResultPanelProperty =serializedObject.FindProperty(MainMenuVerticalRaceResultPanelName);
+        MainMenuResultsBackProperty = serializedObject.FindProperty(MainMenuResultsBackName);
     }
 
 
@@ -127,6 +167,8 @@ public class MainMenuEditor : Editor {
         GameSettings();
         Options();
         Panels();
+        Info();
+        RaceResults();
 
         serializedObject.ApplyModifiedProperties();
     }
@@ -134,13 +176,6 @@ public class MainMenuEditor : Editor {
     private void GameSettings()
     {
         EditorGUILayout.BeginVertical(GUI.skin.box);
-
-        EditorGUI.indentLevel++;
-        for(int i = 0; i < 2; i++)
-        {
-            EditorGUILayout.PropertyField(_Players.GetArrayElementAtIndex(i));
-        }
-
         ShowGameSettings = EditorGUILayout.Foldout(ShowGameSettings ,"GameSettings");
         if (ShowGameSettings)
         {
@@ -242,8 +277,44 @@ public class MainMenuEditor : Editor {
             EditorGUILayout.PropertyField(MainMenuPanelProperty);
             EditorGUILayout.PropertyField(GameSettingsPanelProperty);
             EditorGUILayout.PropertyField(OptionsPanelProperty);
+            EditorGUILayout.PropertyField(MainMenuRaceResultPanelProperty);
+            EditorGUILayout.PropertyField(MainMenuInfoPanelProperty);
+            EditorGUILayout.PropertyField(MainMenuPauseGamePanelProperty);
+
             EditorGUI.indentLevel--;
         }
+        EditorGUI.indentLevel--;
+        EditorGUILayout.EndVertical();
+    }
+
+    private void Info()
+    {
+        EditorGUILayout.BeginVertical(GUI.skin.box);
+        EditorGUI.indentLevel++;
+
+        ShowInfo = EditorGUILayout.Foldout(ShowInfo, "Info");
+        if (ShowInfo)
+        {
+            EditorGUILayout.PropertyField(MainMenuInfoButtonProperty);
+            EditorGUILayout.PropertyField(MainMenuInfoBackButtonProperty);
+        }
+
+        EditorGUI.indentLevel--;
+        EditorGUILayout.EndVertical();
+    }
+
+    private void RaceResults()
+    {
+        EditorGUILayout.BeginVertical(GUI.skin.box);
+        EditorGUI.indentLevel++;
+
+        ShowRaceResults = EditorGUILayout.Foldout(ShowRaceResults, "Race Results");
+        if (ShowRaceResults)
+        {
+            EditorGUILayout.PropertyField(MainMenuVerticalRaceResultPanelProperty);
+            EditorGUILayout.PropertyField(MainMenuResultsBackProperty);
+        }
+
         EditorGUI.indentLevel--;
         EditorGUILayout.EndVertical();
     }

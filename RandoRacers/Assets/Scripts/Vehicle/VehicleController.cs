@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class VehicleController : MonoBehaviour {
-    #region PRIVATE_MEMBER_VARIABLES
+    #region PRIVATE_VARIABLES
     private Rigidbody _RB;
 
     /// <summary>
@@ -20,15 +20,15 @@ public class VehicleController : MonoBehaviour {
     [SerializeField]
     private Vector3 _CentreMassOffset;
 
-    private float _MaxSpeedAmount = 200;
-    private float _MaxSteerAmount = 25;
+    private float _MaxSpeedAmount = 130;
+    private float _MaxSteerAmount = 10;
     private float _ForceBrakeAmount;
     private float _MaxWheelTorque = 2500;
     private float _MaxSlipAmount = 2f;
     private float _TractionControl = 1;
     private float _BrakeAmount = 20000;
     private float _ReverseSpeed = 500;
-    private float _SteerHelper = .75f;
+    private float _SteerHelper = .6f;
     /// <summary>
     /// The amount of force to keep the vehicle on the ground
     /// </summary>
@@ -38,7 +38,7 @@ public class VehicleController : MonoBehaviour {
     private float _PreviousRotation;
     #endregion
 
-    #region PUBLIC_MEMBER_VARIABLES
+    #region PUBLIC_VARIABLES
     public float CurrentSpeed { get; private set; }
     public CameraFollow FollowingCamera;
     public const int WheelAmount = 4;
@@ -200,6 +200,7 @@ public class VehicleController : MonoBehaviour {
             if(render)
                 render.materials[0].color = color;
         }
+        GetComponentInChildren<VehicleMinimap>().SetTarget(transform);
     }
 
     public void OnDead()

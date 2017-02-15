@@ -21,5 +21,10 @@ public class VehicleInput : MonoBehaviour {
         float b = Input.GetAxis("Brake" + PlayerString + PlayerNumber);
 
         _Vehicle.SetVehicleData(h, v, v, b);
+
+        if (Input.GetButtonDown("PauseGame"))
+        {
+            MainMenu.Instance.PauseGame();
+        }
     }
 }

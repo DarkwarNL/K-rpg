@@ -1,0 +1,167 @@
+fileFormatVersion: 2
+guid: fe54b0c0ec0a10d4fbd47054a92995a1
+timeCreated: 1487154305
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Bolt_copy26_default
+    100002: Bolt_copy27_default
+    100004: Bolt_copy28_default
+    100006: Bolt_copy29_default
+    100008: Bolt_default
+    100010: FrontAxl_default
+    100012: HandleBar_default
+    100014: //RootNode
+    100016: RearAxl_default
+    100018: Rim_FL_default
+    100020: Rim_FR_default
+    100022: Rim_RL_default
+    100024: Rim_RR_default
+    100026: SwivelAxis_default
+    100028: Tire_FL_default
+    100030: Tire_FR_default
+    100032: Tire_RL_default
+    100034: Tire_RR_default
+    100036: Wagon_default
+    400000: Bolt_copy26_default
+    400002: Bolt_copy27_default
+    400004: Bolt_copy28_default
+    400006: Bolt_copy29_default
+    400008: Bolt_default
+    400010: FrontAxl_default
+    400012: HandleBar_default
+    400014: //RootNode
+    400016: RearAxl_default
+    400018: Rim_FL_default
+    400020: Rim_FR_default
+    400022: Rim_RL_default
+    400024: Rim_RR_default
+    400026: SwivelAxis_default
+    400028: Tire_FL_default
+    400030: Tire_FR_default
+    400032: Tire_RL_default
+    400034: Tire_RR_default
+    400036: Wagon_default
+    2300000: Bolt_copy26_default
+    2300002: Bolt_copy27_default
+    2300004: Bolt_copy28_default
+    2300006: Bolt_copy29_default
+    2300008: Bolt_default
+    2300010: FrontAxl_default
+    2300012: HandleBar_default
+    2300014: RearAxl_default
+    2300016: Rim_FL_default
+    2300018: Rim_FR_default
+    2300020: Rim_RL_default
+    2300022: Rim_RR_default
+    2300024: SwivelAxis_default
+    2300026: Tire_FL_default
+    2300028: Tire_FR_default
+    2300030: Tire_RL_default
+    2300032: Tire_RR_default
+    2300034: Wagon_default
+    3300000: Bolt_copy26_default
+    3300002: Bolt_copy27_default
+    3300004: Bolt_copy28_default
+    3300006: Bolt_copy29_default
+    3300008: Bolt_default
+    3300010: FrontAxl_default
+    3300012: HandleBar_default
+    3300014: RearAxl_default
+    3300016: Rim_FL_default
+    3300018: Rim_FR_default
+    3300020: Rim_RL_default
+    3300022: Rim_RR_default
+    3300024: SwivelAxis_default
+    3300026: Tire_FL_default
+    3300028: Tire_FR_default
+    3300030: Tire_RL_default
+    3300032: Tire_RR_default
+    3300034: Wagon_default
+    4300000: Bolt_copy26_default
+    4300002: Bolt_copy27_default
+    4300004: Bolt_copy28_default
+    4300006: Bolt_copy29_default
+    4300008: Bolt_default
+    4300010: FrontAxl_default
+    4300012: HandleBar_default
+    4300014: RearAxl_default
+    4300016: Rim_FL_default
+    4300018: Rim_FR_default
+    4300020: Rim_RL_default
+    4300022: Rim_RR_default
+    4300024: SwivelAxis_default
+    4300026: Tire_FL_default
+    4300028: Tire_FR_default
+    4300030: Tire_RL_default
+    4300032: Tire_RR_default
+    4300034: Wagon_default
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

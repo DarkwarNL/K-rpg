@@ -96,6 +96,20 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private Button _ResultsBackButton;
 
+    [SerializeField]
+    private Button _QuitGameButton;
+
+    /// <summary>
+    /// Pause Game
+    /// </summary>
+    [SerializeField]
+    private Button _ResumeGameButton;
+    [SerializeField]
+    private Button _PauseBackToMainButton;
+    [SerializeField]
+    private Button _PauseQuitGameButton;
+
+
     private static MainMenu _MainMenu;
     public static MainMenu Instance
     {
@@ -108,14 +122,20 @@ public class MainMenu : MonoBehaviour
 
     public void PauseGame()
     {
-        // open pause menu;
+        Invoke("SetTimeScale", .8f);
+        OnMenuPanelEnter(_PauseGamePanel);
+    }
+
+    private void SetTimeScale()
+    {
+        Time.timeScale = 0f;
     }
 
     public void OpenRaceMenu(List<RaceData> raceData)
     {
-        foreach(ResultPanel panel in _VerticalRaceResultPanel.GetComponentsInChildren<ResultPanel>())
+        foreach(VehicleController vehicle in FindObjectsOfType<VehicleController>())
         {
-            Destroy(panel.gameObject);
+            Destroy(vehicle.gameObject);
         }
 
         OpenMenu(_RaceResultPanel);
@@ -133,8 +153,8 @@ public class MainMenu : MonoBehaviour
 
         _InfoButton.onClick.AddListener(() => OpenMenu(_InfoPanel));
         _GameSettingsButton.onClick.AddListener(() => OpenMenu(_GameSettingsPanel));
-        _OptionsButton.onClick.AddListener(() => OpenMenu(_OptionsPanel));        
-        _PlayerCountSlider.onValueChanged.AddListener(delegate { SetPlayerCount((int)_PlayerCountSlider.value); });
+        _OptionsButton.onClick.AddListener(() => OpenMenu(_OptionsPanel));     
+          
         _PlayerOneNameInput.onEndEdit.AddListener(delegate { SetName(_PlayerOneNameInput.text, _Players[0]); });
 
         foreach (Slider slider in _PlayerOneRGBSliders)
@@ -157,13 +177,31 @@ public class MainMenu : MonoBehaviour
 
         _GameSettingsBackButton.onClick.AddListener(() => OpenMenu(_MainMenuPanel));
         _InfoBackButton.onClick.AddListener(() => OpenMenu(_MainMenuPanel));
-        _ResultsBackButton.onClick.AddListener(() => OpenMenu(_MainMenuPanel));
+        _ResultsBackButton.onClick.AddListener(() => PauseToMain());
+
+        _QuitGameButton.onClick.AddListener(() => QuitGame());
+
+        _ResumeGameButton.onClick.AddListener(() => ResumeGame());
+        _PauseBackToMainButton.onClick.AddListener(() => PauseToMain());
+        _PauseQuitGameButton.onClick.AddListener(() => QuitGame());
+    }
+
+    private void PauseToMain()
+    {
+        Time.timeScale = 1;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("RoadScene");
     }
 
     private void OpenMenu(GameObject menu)
     {
         OnMenuPanelExit(_CurrentMenu);
         OnMenuPanelEnter(menu);
+    }
+
+    private void ResumeGame()
+    {
+        OnMenuPanelExit(_CurrentMenu);
+        Time.timeScale = 1;
     }
 
     private void StartGame()
@@ -259,6 +297,11 @@ public class MainMenu : MonoBehaviour
     {
         menu.GetComponent<Animator>().SetTrigger("OnEnter");
         _CurrentMenu = menu;
+    }
+
+    private void QuitGame()
+    {
+        Application.Quit();
     }
     #endregion
 }

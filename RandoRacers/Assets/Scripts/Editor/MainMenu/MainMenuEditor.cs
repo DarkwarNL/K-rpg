@@ -63,6 +63,15 @@ public class MainMenuEditor : Editor {
     private SerializedProperty MainMenuVerticalRaceResultPanelProperty;
     private SerializedProperty MainMenuResultsBackProperty;
 
+    private SerializedProperty MainMenuQuitButtonProperty;
+    /// <summary>
+    /// Pause Game
+    /// </summary>
+    private bool ShowPauseGame;
+    private SerializedProperty MainResumeGameButtonProperty;
+    private SerializedProperty MainMenuPauseBackToMainButtonProperty;
+    private SerializedProperty MainMenuPauseQuitGameButtonProperty;
+
     /// <summary>
     /// MainMenu Button names
     /// </summary>
@@ -106,8 +115,15 @@ public class MainMenuEditor : Editor {
     private const string MainMenuResultsBackName = "_ResultsBackButton";
 
     /// <summary>
-    /// Panel Names
+    /// Pause Game
     /// </summary>
+    private const string MainResumeGameButtonName = "_ResumeGameButton";
+    private const string MainMenuPauseBackToMainButtonName = "_PauseBackToMainButton";
+    private const string MainMenuPauseQuitGameButtonName = "_PauseQuitGameButton";
+                             
+    /// <summary>            
+    /// Panel Names          
+    /// </summary>                 
     private const string MainMenuCurrentMenuName = "_CurrentMenu";
     private const string MainMenuPanelName = "_MainMenuPanel";
     private const string MainMenuGameSettingsPanelName = "_GameSettingsPanel";
@@ -115,6 +131,8 @@ public class MainMenuEditor : Editor {
     private const string MainMenuRaceResultPanelName = "_RaceResultPanel";
     private const string MainMenuInfoPanelName = "_InfoPanel";
     private const string MainMenuPauseGamePanelName = "_PauseGamePanel";
+    private const string MainMenuQuitButtonName = "_QuitGameButton";
+
 
 
     private void OnEnable()
@@ -157,6 +175,13 @@ public class MainMenuEditor : Editor {
         //RaceResults
         MainMenuVerticalRaceResultPanelProperty =serializedObject.FindProperty(MainMenuVerticalRaceResultPanelName);
         MainMenuResultsBackProperty = serializedObject.FindProperty(MainMenuResultsBackName);
+
+        MainMenuQuitButtonProperty = serializedObject.FindProperty(MainMenuQuitButtonName);
+
+        //Pause Game
+        MainResumeGameButtonProperty = serializedObject.FindProperty(MainResumeGameButtonName);
+        MainMenuPauseBackToMainButtonProperty = serializedObject.FindProperty(MainMenuPauseBackToMainButtonName);
+        MainMenuPauseQuitGameButtonProperty = serializedObject.FindProperty(MainMenuPauseQuitGameButtonName);
     }
 
 
@@ -169,6 +194,7 @@ public class MainMenuEditor : Editor {
         Panels();
         Info();
         RaceResults();
+        PauseGame();
 
         serializedObject.ApplyModifiedProperties();
     }
@@ -280,6 +306,7 @@ public class MainMenuEditor : Editor {
             EditorGUILayout.PropertyField(MainMenuRaceResultPanelProperty);
             EditorGUILayout.PropertyField(MainMenuInfoPanelProperty);
             EditorGUILayout.PropertyField(MainMenuPauseGamePanelProperty);
+            EditorGUILayout.PropertyField(MainMenuQuitButtonProperty);
 
             EditorGUI.indentLevel--;
         }
@@ -313,6 +340,23 @@ public class MainMenuEditor : Editor {
         {
             EditorGUILayout.PropertyField(MainMenuVerticalRaceResultPanelProperty);
             EditorGUILayout.PropertyField(MainMenuResultsBackProperty);
+        }
+
+        EditorGUI.indentLevel--;
+        EditorGUILayout.EndVertical();
+    }
+
+    private void PauseGame()
+    {
+        EditorGUILayout.BeginVertical(GUI.skin.box);
+        EditorGUI.indentLevel++;
+
+        ShowPauseGame = EditorGUILayout.Foldout(ShowPauseGame, "Pause Game");
+        if (ShowPauseGame)
+        {
+            EditorGUILayout.PropertyField(MainResumeGameButtonProperty);
+            EditorGUILayout.PropertyField(MainMenuPauseBackToMainButtonProperty);
+            EditorGUILayout.PropertyField(MainMenuPauseQuitGameButtonProperty);
         }
 
         EditorGUI.indentLevel--;

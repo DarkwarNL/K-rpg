@@ -21,18 +21,18 @@ public class VehicleController : MonoBehaviour {
     private Vector3 _CentreMassOffset;
 
     private float _MaxSpeedAmount = 130;
-    private float _MaxSteerAmount = 10;
+    private float _MaxSteerAmount = 7.5f;
     private float _ForceBrakeAmount;
     private float _MaxWheelTorque = 2500;
     private float _MaxSlipAmount = 2f;
     private float _TractionControl = 1;
-    private float _BrakeAmount = 20000;
+    private float _BrakeAmount = 200000;
     private float _ReverseSpeed = 500;
-    private float _SteerHelper = .6f;
+    private float _SteerHelper = .75f;
     /// <summary>
     /// The amount of force to keep the vehicle on the ground
     /// </summary>
-    private float _ForceDown = 100;
+    private float _ForceDown = 175;
 
     private float _CurrentTorque;
     private float _PreviousRotation;
@@ -197,7 +197,7 @@ public class VehicleController : MonoBehaviour {
     {
         foreach(Renderer render in transform.GetComponentsInChildren<Renderer>())
         {
-            if(render)
+            if(render && !render.name.Contains("WheelMesh"))
                 render.materials[0].color = color;
         }
         GetComponentInChildren<VehicleMinimap>().SetTarget(transform);

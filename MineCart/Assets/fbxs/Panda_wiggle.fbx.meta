@@ -1,0 +1,186 @@
+fileFormatVersion: 2
+guid: 96dfe02f25c3b734788809ae25ed83c7
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Panda:Head
+    100002: Panda:Hip
+    100004: Panda:joint1
+    100006: Panda:Left_ellebow
+    100008: Panda:Left_foot
+    100010: Panda:Left_hand
+    100012: Panda:Left_hip
+    100014: Panda:Left_knee
+    100016: Panda:Left_shoulder
+    100018: Panda:Neck
+    100020: Panda:Panda_Export:pPlane4
+    100022: Panda:Panda_Export:pSphere1
+    100024: Panda:Panda_Export:pSphere2
+    100026: Panda:pasted__polySurface9
+    100028: Panda:Right_ellebow
+    100030: Panda:Right_foot
+    100032: Panda:Right_hand
+    100034: Panda:Right_hip
+    100036: Panda:Right_knee
+    100038: Panda:Right_shoulder
+    100040: Panda:Spine1
+    100042: //RootNode
+    400000: Panda:Head
+    400002: Panda:Hip
+    400004: Panda:joint1
+    400006: Panda:Left_ellebow
+    400008: Panda:Left_foot
+    400010: Panda:Left_hand
+    400012: Panda:Left_hip
+    400014: Panda:Left_knee
+    400016: Panda:Left_shoulder
+    400018: Panda:Neck
+    400020: Panda:Panda_Export:pPlane4
+    400022: Panda:Panda_Export:pSphere1
+    400024: Panda:Panda_Export:pSphere2
+    400026: Panda:pasted__polySurface9
+    400028: Panda:Right_ellebow
+    400030: Panda:Right_foot
+    400032: Panda:Right_hand
+    400034: Panda:Right_hip
+    400036: Panda:Right_knee
+    400038: Panda:Right_shoulder
+    400040: Panda:Spine1
+    400042: //RootNode
+    2300000: Panda:Panda_Export:pSphere1
+    2300002: Panda:Panda_Export:pSphere2
+    2300004: Panda:pasted__polySurface9
+    3300000: Panda:Panda_Export:pSphere1
+    3300002: Panda:Panda_Export:pSphere2
+    3300004: Panda:pasted__polySurface9
+    4300000: Panda:Panda_Export:pPlane4
+    4300002: Panda:Panda_Export:pSphere2
+    4300004: Panda:Panda_Export:pSphere1
+    4300006: Panda:pasted__polySurface9
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Panda:Panda_Export:pPlane4
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 100
+      lastFrame: 130
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Panda:joint1
+        weight: 1
+      - path: Panda:joint1/Panda:Hip
+        weight: 1
+      - path: Panda:joint1/Panda:Hip/Panda:Left_hip
+        weight: 1
+      - path: Panda:joint1/Panda:Hip/Panda:Left_hip/Panda:Left_knee
+        weight: 1
+      - path: Panda:joint1/Panda:Hip/Panda:Left_hip/Panda:Left_knee/Panda:Left_foot
+        weight: 1
+      - path: Panda:joint1/Panda:Hip/Panda:Right_hip
+        weight: 1
+      - path: Panda:joint1/Panda:Hip/Panda:Right_hip/Panda:Right_knee
+        weight: 1
+      - path: Panda:joint1/Panda:Hip/Panda:Right_hip/Panda:Right_knee/Panda:Right_foot
+        weight: 1
+      - path: Panda:joint1/Panda:Hip/Panda:Spine1
+        weight: 1
+      - path: Panda:joint1/Panda:Hip/Panda:Spine1/Panda:Left_shoulder
+        weight: 1
+      - path: Panda:joint1/Panda:Hip/Panda:Spine1/Panda:Left_shoulder/Panda:Left_ellebow
+        weight: 1
+      - path: Panda:joint1/Panda:Hip/Panda:Spine1/Panda:Left_shoulder/Panda:Left_ellebow/Panda:Left_hand
+        weight: 1
+      - path: Panda:joint1/Panda:Hip/Panda:Spine1/Panda:Neck
+        weight: 1
+      - path: Panda:joint1/Panda:Hip/Panda:Spine1/Panda:Neck/Panda:Head
+        weight: 1
+      - path: Panda:joint1/Panda:Hip/Panda:Spine1/Panda:Neck/Panda:Head/Panda:Panda_Export:pSphere1
+        weight: 1
+      - path: Panda:joint1/Panda:Hip/Panda:Spine1/Panda:Neck/Panda:Head/Panda:Panda_Export:pSphere2
+        weight: 1
+      - path: Panda:joint1/Panda:Hip/Panda:Spine1/Panda:Right_shoulder
+        weight: 1
+      - path: Panda:joint1/Panda:Hip/Panda:Spine1/Panda:Right_shoulder/Panda:Right_ellebow
+        weight: 1
+      - path: Panda:joint1/Panda:Hip/Panda:Spine1/Panda:Right_shoulder/Panda:Right_ellebow/Panda:Right_hand
+        weight: 1
+      - path: Panda:joint1/Panda:Hip/Panda:Spine1/Panda:Right_shoulder/Panda:Right_ellebow/Panda:Right_hand/Panda:pasted__polySurface9
+        weight: 1
+      - path: Panda:Panda_Export:pPlane4
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .100000001
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

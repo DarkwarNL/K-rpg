@@ -1,0 +1,97 @@
+fileFormatVersion: 2
+guid: 8de6ad9734d96ad499b77a58234f1e5b
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: mine_car:Cave_straight7
+    100002: mine_car:polySurface25
+    100004: mine_car:polySurface839
+    100006: mine_car:polySurface934
+    100008: pCube2
+    100010: pCube4
+    100012: polySurface1
+    100014: //RootNode
+    400000: mine_car:Cave_straight7
+    400002: mine_car:polySurface25
+    400004: mine_car:polySurface839
+    400006: mine_car:polySurface934
+    400008: pCube2
+    400010: pCube4
+    400012: polySurface1
+    400014: //RootNode
+    2300000: mine_car:Cave_straight7
+    2300002: mine_car:polySurface25
+    2300004: mine_car:polySurface839
+    2300006: mine_car:polySurface934
+    2300008: pCube2
+    2300010: pCube4
+    2300012: polySurface1
+    3300000: mine_car:Cave_straight7
+    3300002: mine_car:polySurface25
+    3300004: mine_car:polySurface839
+    3300006: mine_car:polySurface934
+    3300008: pCube2
+    3300010: pCube4
+    3300012: polySurface1
+    4300000: polySurface1
+    4300002: mine_car:Cave_straight7
+    4300004: mine_car:polySurface839
+    4300006: mine_car:polySurface25
+    4300008: mine_car:polySurface934
+    4300010: pCube2
+    4300012: pCube4
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .100000001
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

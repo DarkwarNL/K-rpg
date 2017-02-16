@@ -1,0 +1,230 @@
+fileFormatVersion: 2
+guid: 11436e8aaa81715428f0dce11de05a28
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Bamboo:pCylinder1
+    100002: group
+    100004: group1
+    100006: Head
+    100008: Hip
+    100010: imagePlane1
+    100012: imagePlane2
+    100014: joint1
+    100016: Left_ellebow
+    100018: Left_ellebow 1
+    100020: Left_foot
+    100022: Left_hand
+    100024: Left_hand 1
+    100026: Left_hip
+    100028: Left_knee
+    100030: Left_shoulder
+    100032: Left_shoulder1
+    100034: Neck
+    100036: //RootNode
+    100038: Panda_Export:pPlane4
+    100040: Panda_Export:pSphere1
+    100042: Panda_Export:pSphere2
+    100044: pCube1
+    100046: pPlane3
+    100048: Right_ellebow
+    100050: Right_foot
+    100052: Right_hand
+    100054: Right_hip
+    100056: Right_knee
+    100058: Right_shoulder
+    100060: Spine1
+    100062: transform1
+    100064: transform2
+    400000: Bamboo:pCylinder1
+    400002: group
+    400004: group1
+    400006: Head
+    400008: Hip
+    400010: imagePlane1
+    400012: imagePlane2
+    400014: joint1
+    400016: Left_ellebow
+    400018: Left_ellebow 1
+    400020: Left_foot
+    400022: Left_hand
+    400024: Left_hand 1
+    400026: Left_hip
+    400028: Left_knee
+    400030: Left_shoulder
+    400032: Left_shoulder1
+    400034: Neck
+    400036: //RootNode
+    400038: Panda_Export:pPlane4
+    400040: Panda_Export:pSphere1
+    400042: Panda_Export:pSphere2
+    400044: pCube1
+    400046: pPlane3
+    400048: Right_ellebow
+    400050: Right_foot
+    400052: Right_hand
+    400054: Right_hip
+    400056: Right_knee
+    400058: Right_shoulder
+    400060: Spine1
+    400062: transform1
+    400064: transform2
+    2300000: Bamboo:pCylinder1
+    2300002: Panda_Export:pSphere1
+    2300004: Panda_Export:pSphere2
+    3300000: Bamboo:pCylinder1
+    3300002: Panda_Export:pSphere1
+    3300004: Panda_Export:pSphere2
+    4300000: Panda_Export:pPlane4
+    4300002: Panda_Export:pSphere2
+    4300004: Panda_Export:pSphere1
+    4300006: Bamboo:pCylinder1
+    7400000: trowh
+    9500000: //RootNode
+    13700000: Panda_Export:pPlane4
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: trowh
+      takeName: Take 001
+      firstFrame: 20
+      lastFrame: 45
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: group
+        weight: 1
+      - path: group1
+        weight: 1
+      - path: imagePlane1
+        weight: 1
+      - path: imagePlane2
+        weight: 1
+      - path: joint1
+        weight: 1
+      - path: joint1/Hip
+        weight: 1
+      - path: joint1/Hip/Left_hip
+        weight: 1
+      - path: joint1/Hip/Left_hip/Left_knee
+        weight: 1
+      - path: joint1/Hip/Left_hip/Left_knee/Left_foot
+        weight: 1
+      - path: joint1/Hip/Right_hip
+        weight: 1
+      - path: joint1/Hip/Right_hip/Right_knee
+        weight: 1
+      - path: joint1/Hip/Right_hip/Right_knee/Right_foot
+        weight: 1
+      - path: joint1/Hip/Spine1
+        weight: 1
+      - path: joint1/Hip/Spine1/Left_shoulder
+        weight: 1
+      - path: joint1/Hip/Spine1/Left_shoulder/Left_ellebow
+        weight: 1
+      - path: joint1/Hip/Spine1/Left_shoulder/Left_ellebow/Left_hand
+        weight: 1
+      - path: joint1/Hip/Spine1/Left_shoulder1
+        weight: 1
+      - path: joint1/Hip/Spine1/Left_shoulder1/Left_ellebow 1
+        weight: 1
+      - path: joint1/Hip/Spine1/Left_shoulder1/Left_ellebow 1/Left_hand 1
+        weight: 1
+      - path: joint1/Hip/Spine1/Neck
+        weight: 1
+      - path: joint1/Hip/Spine1/Neck/Head
+        weight: 1
+      - path: joint1/Hip/Spine1/Neck/Head/Panda_Export:pSphere1
+        weight: 1
+      - path: joint1/Hip/Spine1/Neck/Head/Panda_Export:pSphere2
+        weight: 1
+      - path: joint1/Hip/Spine1/Right_shoulder
+        weight: 1
+      - path: joint1/Hip/Spine1/Right_shoulder/Right_ellebow
+        weight: 1
+      - path: joint1/Hip/Spine1/Right_shoulder/Right_ellebow/Right_hand
+        weight: 1
+      - path: joint1/Hip/Spine1/Right_shoulder/Right_ellebow/Right_hand/Bamboo:pCylinder1
+        weight: 1
+      - path: Panda_Export:pPlane4
+        weight: 1
+      - path: pCube1
+        weight: 1
+      - path: pCube1/transform1
+        weight: 1
+      - path: pPlane3
+        weight: 1
+      - path: pPlane3/transform2
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .100000001
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

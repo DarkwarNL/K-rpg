@@ -114,6 +114,9 @@ public class RaceManager : MonoBehaviour
         {
             if(raceData.Name == name)
             {
+                if (Waypoints[raceData.LastWaypoint] == waypoint)
+                    return;
+
                 if (raceData.LastWaypoint != Waypoints.Length- 1)
                 {
                     raceData.LastWaypoint = waypoint.PointNumber;

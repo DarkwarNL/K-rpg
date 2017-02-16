@@ -32,7 +32,7 @@ public class VehicleController : MonoBehaviour {
     /// <summary>
     /// The amount of force to keep the vehicle on the ground
     /// </summary>
-    private float _ForceDown = 175;
+    private float _ForceDown = 500;
 
     private float _CurrentTorque;
     private float _PreviousRotation;
@@ -140,7 +140,7 @@ public class VehicleController : MonoBehaviour {
 
     private void AddForceDown()
     {
-        _RB.AddForce(-transform.up * _ForceDown * _WheelColliders[0].attachedRigidbody.velocity.magnitude);
+        _RB.AddForce(-Vector3.up * _ForceDown * _WheelColliders[0].attachedRigidbody.velocity.magnitude);
     }
 
     private void MoveVehicle(float acceleration, float brake)

@@ -6,7 +6,7 @@ public class CameraFollow : MonoBehaviour
     internal Transform Target;
     public LayerMask mask;
     
-    private float _DesiredDistance = 10.0f;
+    private float _DesiredDistance = 20.0f;
     private float _DesiredHeight = 3.5f;
     private float _PositionDampening = 25.0f;
     private float _RotationDampening = 5.0f;

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
@@ -246,7 +247,10 @@ public class MainMenu : MonoBehaviour
 
     private void SetVolume(int value)
     {
-        _VolumeValueText.text = value.ToString();
+        AudioMixer mixer = Resources.Load<AudioMixer>("Sound/Music");
+        mixer.SetFloat("MasterVolume", value);
+        
+        _VolumeValueText.text = value.ToString() + "dB";
     }
 
     private void SetGameQuality(int value)

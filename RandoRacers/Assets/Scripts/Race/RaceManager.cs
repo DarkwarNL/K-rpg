@@ -11,9 +11,11 @@ public class RaceManager : MonoBehaviour
     [SerializeField]
     private Waypoint[] Waypoints = new Waypoint[4];
 
-    private Vector3 _SpawnPoint = new Vector3(100,100,65);
-
-    private List<RaceData> _Players = new List<RaceData>();
+    private Vector3 _SpawnPoint = new Vector3(100,95,65);
+    [SerializeField]
+    private List<VehicleController> _Vehicles = new List<VehicleController>();
+    [SerializeField]
+    private List<RaceData> _VehicleData = new List<RaceData>();
     private int _LapCount;
     private float _StartTime;
 
@@ -37,30 +39,34 @@ public class RaceManager : MonoBehaviour
         }        
     }
 
-    public void CreatePlayers(List<Player> players)
+    void FixedUpdate()
     {
-        List<VehicleController> vehicles = new List<VehicleController>();        
+        UpdateRank();
+    }
+
+    public void CreatePlayers(List<Player> players)
+    {  
         foreach (Player player in players)
         {
             if (player == null) continue;
             if (player.Name == null) continue;
             AddPlayer(player.Name, false);
-
-            VehicleController veh = Instantiate(Resources.Load<GameObject>("Prefabs/Vehicle"), _SpawnPoint* Random.Range(1.1f,1.2f), Quaternion.identity).GetComponent<VehicleController>();
+            Vector3 pos = new Vector3(Random.Range(90,120),105,93);
+            VehicleController veh = Instantiate(Resources.Load<GameObject>("Prefabs/Vehicle"), pos, Quaternion.identity).GetComponent<VehicleController>();
             veh.SetColor(player.VehicleColor);
             veh.Name = player.Name;
-            vehicles.Add(veh);
+            _Vehicles.Add(veh);
         }
 
-        if (vehicles.Count <= 1)
+        if (_Vehicles.Count <= 1)
         {
-            CreateRaceCamera(vehicles[0], new Rect(0, 0, 1, 1), 0, "RaceCanvas");
+            CreateRaceCamera(_Vehicles[0], new Rect(0, 0, 1, 1), 0, "RaceCanvas");
         }
         else
         {
             for (int i = 0; i < 2; i++)
             {
-                CreateRaceCamera(vehicles[i], new Rect(0, i * 0.5f, 1, 0.5f), i, "RaceCanvasSplitscreen");
+                CreateRaceCamera(_Vehicles[i], new Rect(0, i * 0.5f, 1, 0.5f), i, "RaceCanvasSplitscreen");
             }
         }
     }
@@ -93,24 +99,24 @@ public class RaceManager : MonoBehaviour
 
     private bool AddPlayer(string name, bool bot)
     {
-        RaceData data = new RaceData(name, bot, _Players.Count + 1);
-        _Players.Add(data);
+        RaceData data = new RaceData(name, bot, _VehicleData.Count + 1);
+        _VehicleData.Add(data);
         return !bot;
     }
 
     private void Finished()
     {
-        foreach (RaceData data in _Players)
+        foreach (RaceData data in _VehicleData)
         {
             if (!data.Completed) return;
         }
-        _Players = _Players.OrderBy(x => x.Rank).ToList();
-        MainMenu.Instance.OpenRaceMenu(_Players);
+        _VehicleData = _VehicleData.OrderBy(x => x.Rank).ToList();
+        MainMenu.Instance.OpenRaceMenu(_VehicleData);
     }
 
     public void CrossedWayPoint(string name, Waypoint waypoint)
     {        
-        foreach(RaceData raceData in _Players)
+        foreach(RaceData raceData in _VehicleData)
         {
             if(raceData.Name == name)
             {
@@ -119,9 +125,7 @@ public class RaceManager : MonoBehaviour
 
                 if (raceData.LastWaypoint != Waypoints.Length- 1)
                 {
-                    raceData.LastWaypoint = waypoint.PointNumber;
-
-                    UpdateRank(raceData);
+                    raceData.LastWaypoint = waypoint.PointNumber;                    
                     continue;
                 }       
 
@@ -129,48 +133,70 @@ public class RaceManager : MonoBehaviour
                 {
                     raceData.Completed = true;
                     raceData.RaceTime = Time.time - _StartTime;
-
-                    UpdateRank(raceData);
+                    
                     Finished();
                     continue;
                 }
                 raceData.CurrentLap++;
                 raceData.LastWaypoint = waypoint.PointNumber;
                 raceData.GUI.SetLap(raceData.CurrentLap);
-                UpdateRank(raceData);
             }
         }
     }
 
-    private void UpdateRank(RaceData Racedata)
+    private void UpdateRank()
     {
-        if (Racedata.Rank == 1) return;
+        if (_VehicleData.Count <= 1) return;
 
-        foreach(RaceData data in _Players)
+        int first = 0;
+        int second = 1;
+
+        for(int i =0; i < _VehicleData.Count; i++)
         {
-            if (data == Racedata || data.Rank > Racedata.Rank) continue;
-
-            if(Racedata.CurrentLap > data.CurrentLap)
+            if(_VehicleData[i].Rank == 1)
             {
-                Racedata.Rank = data.Rank;
-                data.Rank++;
+                first = i;
             }
-            else if (Racedata.CurrentLap == data.CurrentLap)
+            else
             {
-                if (Racedata.LastWaypoint > data.LastWaypoint)
+                second = i;
+            }
+        }
+        
+        if (_VehicleData[second].CurrentLap > _VehicleData[first].CurrentLap)
+        {
+            _VehicleData[second].Rank = _VehicleData[first].Rank;
+            _VehicleData[first].Rank++;
+        }
+        else if (_VehicleData[second].CurrentLap == _VehicleData[first].CurrentLap)
+        {
+            if (_VehicleData[second].LastWaypoint > _VehicleData[first].LastWaypoint)
+            {
+                _VehicleData[second].Rank = _VehicleData[first].Rank;
+                _VehicleData[first].Rank++;
+            }
+            else if (_VehicleData[second].LastWaypoint == _VehicleData[first].LastWaypoint)
+            {
+                int waypoint = _VehicleData[first].LastWaypoint +1 ;
+                if (waypoint > Waypoints.Length) waypoint = 0;
+
+                float firstDistance = Vector3.Distance(_Vehicles[first].transform.position, Waypoints[waypoint].transform.position);
+                float secondDistance = Vector3.Distance(_Vehicles[second].transform.position, Waypoints[waypoint].transform.position);
+
+                if (secondDistance < firstDistance)
                 {
-                    Racedata.Rank = data.Rank;
-                    data.Rank++;
+                    _VehicleData[second].Rank = _VehicleData[first].Rank;
+                    _VehicleData[first].Rank++;
                 }
             }
-            Racedata.GUI.SetPositionText(Racedata.Rank);
-            data.GUI.SetPositionText(data.Rank);
-        }        
+        }
+        _VehicleData[first].GUI.SetPositionText(_VehicleData[first].Rank);
+        _VehicleData[second].GUI.SetPositionText(_VehicleData[second].Rank);
     }
 
     public RaceData GetRaceDataByName(string name)
     {
-        foreach (RaceData raceData in _Players)
+        foreach (RaceData raceData in _VehicleData)
         {
             if (raceData.Name == name)
             {
@@ -182,7 +208,7 @@ public class RaceManager : MonoBehaviour
 
     public Waypoint GetLastWaypointByName(string name)
     {
-        foreach (RaceData raceData in _Players)
+        foreach (RaceData raceData in _VehicleData)
         {
             if (raceData.Name == name)
             {

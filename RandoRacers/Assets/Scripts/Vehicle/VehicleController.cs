@@ -20,10 +20,10 @@ public class VehicleController : MonoBehaviour {
     [SerializeField]
     private Vector3 _CentreMassOffset;
 
-    private float _MaxSpeedAmount = 130;
-    private float _MaxSteerAmount = 7.5f;
+    private float _MaxSpeedAmount = 150;
+    private float _MaxSteerAmount = 17.5f;
     private float _ForceBrakeAmount;
-    private float _MaxWheelTorque = 2500;
+    private float _MaxWheelTorque = 5000;
     private float _MaxSlipAmount = 2f;
     private float _TractionControl = 1;
     private float _BrakeAmount = 200000;
@@ -72,6 +72,7 @@ public class VehicleController : MonoBehaviour {
             _WheelMeshes[i].transform.position = position;
             _WheelMeshes[i].transform.rotation = quat;
         }
+
 
         //clamp variables
         steer = Mathf.Clamp(steer, -1, 1);
@@ -193,12 +194,34 @@ public class VehicleController : MonoBehaviour {
     }
     #endregion
 
+    public void Boost(float value)
+    {
+        _MaxSpeedAmount = value;
+        _MaxSteerAmount = 10f;
+        _WheelColliders[2].motorTorque = _WheelColliders[3].motorTorque = 10 * (_CurrentTorque / 2f);
+        StartCoroutine(EndBoostIn(10));
+    }
+
+    private IEnumerator EndBoostIn(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _MaxSpeedAmount = 150;
+        _MaxSteerAmount = 17.5f;
+    }
+
+
     public void SetColor(Color32 color)
     {
         foreach(Renderer render in transform.GetComponentsInChildren<Renderer>())
         {
             if(render && !render.name.Contains("WheelMesh"))
-                render.materials[0].color = color;
+            {
+                foreach(Material mat in render.materials)
+                {
+                    if (mat.name == "3 (Instance)") continue;                    
+                    mat.color = color;
+                }
+            }
         }
         GetComponentInChildren<VehicleMinimap>().SetTarget(transform);
     }

@@ -34,6 +34,11 @@ public class CharacterMovement : MonoBehaviour {
             maxClamp = 2;
         }
 
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
+        {
+            _Anim.SetTrigger("Roll");
+        }
+
         if (Input.GetButtonDown("Jump"))
         {
             AnimatorStateInfo stateInfo = _Anim.GetCurrentAnimatorStateInfo(0);

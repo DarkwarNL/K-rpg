@@ -10,10 +10,15 @@ public enum ElementType
 }
 
 public class Stats : MonoBehaviour {
-    public Image HealthBar;
-    public Image ExperienceBar;
-    public ParticleSystem HealthParticle;
-    public ParticleSystem ExperienceParticle;
+    [SerializeField]
+    private Image _HealthBar;
+    [SerializeField]
+    private Image _ExperienceBar;
+    [SerializeField]
+    private ParticleSystem _HealthParticle;
+    [SerializeField]
+    private ParticleSystem _ExperienceParticle;
+
     private float _BaseSpeedExp;
     private float _BaseSpeedHP;
     /// <summary>
@@ -52,8 +57,8 @@ public class Stats : MonoBehaviour {
         _Health = GetComponent<PlayerHealth>();
         _Combat = GetComponent<Combat>();
                 
-        _BaseSpeedExp = ExperienceParticle.main.startSpeed.constant;
-        _BaseSpeedHP = HealthParticle.main.startSpeed.constant;
+        _BaseSpeedExp = _ExperienceParticle.main.startSpeed.constant;
+        _BaseSpeedHP = _HealthParticle.main.startSpeed.constant;
         UpdateUI();
     }
 
@@ -73,15 +78,15 @@ public class Stats : MonoBehaviour {
     public void UpdateUI()
     {
         float ExpPercentage = (Experience / MaxExperience);
-        var mainExp = ExperienceParticle.main;
+        var mainExp = _ExperienceParticle.main;
         mainExp.startSpeed = _BaseSpeedExp * ExpPercentage;
-        ExperienceBar.fillAmount = ExpPercentage;
+        _ExperienceBar.fillAmount = ExpPercentage;
 
         if (!_Health) return;
         float HPPercentage = _Health.GetPercentage();
-        var mainHP = HealthParticle.main;
+        var mainHP = _HealthParticle.main;
         mainHP.startSpeed = _BaseSpeedHP * HPPercentage;
-        HealthBar.fillAmount = HPPercentage;
+        _HealthBar.fillAmount = HPPercentage;
     }
 
     protected void LevelUp()

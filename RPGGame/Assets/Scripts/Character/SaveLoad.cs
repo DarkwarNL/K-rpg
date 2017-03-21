@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.IO;
+using System.Linq;
+using System;
 
 public static class SaveLoad
 {
@@ -29,21 +29,16 @@ public static class SaveLoad
         {
             SaveLoad.savedPlayers.Add(player);
         }
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/savedPlayers.gd"); //you can call it anything you want
-        bf.Serialize(file, SaveLoad.savedPlayers);
-        file.Close();
+
+        string json = JsonHelper.ToJson(savedPlayers.ToArray());
+        Debug.Log(json);
+        PlayerPrefs.SetString("PlayersJson", json);
     }
 
     public static void Load()
     {
-        if (File.Exists(Application.persistentDataPath + "/savedPlayers.gd"))
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/savedPlayers.gd", FileMode.Open);
-            SaveLoad.savedPlayers = (List<Player>)bf.Deserialize(file);
-            file.Close();
-        }
+        string newJson = PlayerPrefs.GetString("PlayersJson");
+        savedPlayers = JsonHelper.FromJson<Player>(newJson).ToList();
     }
 
     public static Player GetPlayer(string name)
@@ -56,5 +51,29 @@ public static class SaveLoad
             }
         }
         return new Player();
+    }
+}
+
+
+
+public class JsonHelper
+{
+    public static T[] FromJson<T>(string json)
+    {
+        Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(json);
+        return wrapper.Items;
+    }
+
+    public static string ToJson<T>(T[] array)
+    {
+        Wrapper<T> wrapper = new Wrapper<T>();
+        wrapper.Items = array;
+        return JsonUtility.ToJson(wrapper);
+    }
+
+    [Serializable]
+    private class Wrapper<T>
+    {
+        public T[] Items;
     }
 }

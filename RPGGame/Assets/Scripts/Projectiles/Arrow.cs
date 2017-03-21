@@ -11,7 +11,7 @@ public enum ArrowType
 [RequireComponent(typeof(BoxCollider))]
 abstract public class Arrow : MonoBehaviour {
     protected float _Speed = 25f;
-    protected float _Damage = 2f;
+    protected float _Damage = -2f;
     protected GameObject _Owner;
     protected bool _Holding = false;
     protected GameObject _Target;
@@ -34,6 +34,7 @@ abstract public class Arrow : MonoBehaviour {
     internal void Release()
     {
         _Holding = false;
+        Destroy(gameObject, 10);
     }
 
     internal void SetDamage(float damage)
@@ -79,17 +80,16 @@ abstract public class Arrow : MonoBehaviour {
         if (player)
         {
             HitPlayer(player);
-            if (GetComponent<TrailRenderer>()) Destroy(GetComponent<TrailRenderer>());
-            Destroy(this);
+            Destroy(gameObject);
         }
         else if (enemy)
         {
             HitEnemy(enemy);
             if(!_Owner.GetComponent<Enemy>())
                 _Owner.GetComponent<Stats>().DeltaExperience(_Damage);
+
             transform.SetParent(enemy.transform);
-            if (GetComponent<TrailRenderer>()) Destroy(GetComponent<TrailRenderer>());
-            Destroy(this);
+            Destroy(gameObject, 5);
         }
         else
         {

@@ -60,6 +60,10 @@ public class Stats : MonoBehaviour {
         _BaseSpeedExp = _ExperienceParticle.main.startSpeed.constant;
         _BaseSpeedHP = _HealthParticle.main.startSpeed.constant;
         UpdateUI();
+
+
+        SaveLoad.Load();
+        Player = SaveLoad.GetPlayer(Player.PlayerName);
     }
 
     internal void DeltaExperience(float delta)

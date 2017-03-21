@@ -5,7 +5,9 @@ using UnityEngine;
 public class SkillsSelector : MonoBehaviour {
     List<SkillButton> _Buttons = new List<SkillButton>();
 
+    [SerializeField]
     private Transform _SkillChangePanel;
+    [SerializeField]
     private Transform _SkillChangeButtonPanel;
 
     private GameObject _SkillSelectButton;
@@ -25,18 +27,18 @@ public class SkillsSelector : MonoBehaviour {
 
 	void Awake ()
     {
-        _SkillChangePanel = transform.parent.FindChild("SkillChangePanel");
-        _SkillChangeButtonPanel = _SkillChangePanel.FindChild("SkillChangeButtonPanel");
-
         _SkillSelectButton = Resources.Load<GameObject>("UI/Skills/SkillSelectButton");
         _SkillDatabase = SkillDatabase.Instance;
-	}
+
+        UpdateSkills();
+    }
 
     internal void ChangingSkill(int num, SkillButton button)
     {
         _SkillChangePanel.gameObject.SetActive(true);
         Skill[] skills = _SkillDatabase.GetArcherSkills();
 
+        Debug.Log(skills.Length);
         foreach(Skill skill in skills)
         {
             SkillSelectButton newButton = Instantiate(_SkillSelectButton, _SkillChangeButtonPanel, false).GetComponent<SkillSelectButton>();
@@ -45,7 +47,7 @@ public class SkillsSelector : MonoBehaviour {
         }
     }
 
-    internal void SelectedSkill(Skill skill, int number)
+    internal void SetNewSkill(Skill skill, int number)
     {
         _SkillDatabase.SetSelectedSkill(number, skill);
         UpdateSkills();
@@ -54,7 +56,8 @@ public class SkillsSelector : MonoBehaviour {
     private void UpdateSkills()
     {
         Skill[] selectedSkills = _SkillDatabase.GetSelectedSkills();
-        for (int i = 0; i < transform.childCount; i++)
+
+        for (int i = 0; i < SkillDatabase.SkillAmount; i++)
         {
             SkillButton button = transform.GetChild(i).GetComponent<SkillButton>();
             button.SetData(selectedSkills[i]);
@@ -67,15 +70,5 @@ public class SkillsSelector : MonoBehaviour {
             Destroy(item.gameObject);
         }
         _SelectButtons = new List<SkillSelectButton>();
-    }
-
-    void OnEnable()
-    {
-        UpdateSkills();
-    }
-
-    void OnDisable()
-    {
-        UpdateSkills();
     }
 }

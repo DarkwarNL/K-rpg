@@ -36,9 +36,9 @@ public class ActionBar : MonoBehaviour {
 
     public void SkillsChanged(Skill[] skills)
     {
-        if (_ActionBarObjects == null) GetActionBarObjects();
+        if (_ActionBarObjects[0] == null) GetActionBarObjects();
        
-        for (int i = 0; i < _ActionBarObjects.Length; i++)
+        for (int i = 0; i < SkillDatabase.SkillAmount; i++)
         {
             if (skills[i] == null) continue;
             skills[i].SetCooldownImage(_ActionBarObjects[i].SetData(skills[i].Sprite));

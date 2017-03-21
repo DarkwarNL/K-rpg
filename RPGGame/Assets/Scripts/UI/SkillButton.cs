@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class SkillButton : MonoBehaviour {
+    [SerializeField]
     private Image _Icon;
+    [SerializeField]
     private Button _Button;
+    [SerializeField]
     private Text _Name;
     public int KeyNumber;
 
     void Awake()
     {
-        _Button = GetComponent<Button>();
-        _Icon = transform.FindChild("Icon").GetComponent<Image>();        
-        _Name = transform.FindChild("Name").GetComponent<Text>();
         _Button.onClick.AddListener(() => GetComponentInParent<SkillsSelector>().ChangingSkill(KeyNumber-1, this));
     }
 

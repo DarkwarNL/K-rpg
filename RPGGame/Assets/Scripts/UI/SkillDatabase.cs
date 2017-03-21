@@ -10,6 +10,8 @@ public class SkillDatabase : MonoBehaviour
     private ActionBar _ActionBar;
     private Player _Player;
 
+    public const int SkillAmount = 4;
+
     private static SkillDatabase _Skilldatabase;
 
     public static SkillDatabase Instance
@@ -29,12 +31,13 @@ public class SkillDatabase : MonoBehaviour
 
         string[] skillNames = _Player.GetSelectedSkills();
 
+
         _SelectedSkills = new Skill[4];
-        for (int i = 0; i < _SelectedSkills.Length; i++)
+        for (int i = 0; i < SkillAmount; i++)
         {
             foreach(Skill skill in _ArcherSkills)
             {
-                if (skill.name == skillNames[i])
+                if (skill.SkillName == skillNames[i])
                 {
                     _SelectedSkills[i] = skill;
                     continue;
@@ -48,7 +51,7 @@ public class SkillDatabase : MonoBehaviour
 
     internal void SetSelectedSkill(int number, Skill skill)
     {
-        for (int i = 0; i < _SelectedSkills.Length; i++)
+        for (int i = 0; i < SkillAmount; i++)
         {
             if(_SelectedSkills[i] == skill)
             {
@@ -64,14 +67,14 @@ public class SkillDatabase : MonoBehaviour
     private void SendPlayerSkills()
     {
         string[] selectedSkills = new string[4];
-        for(int i = 0; i < selectedSkills.Length; i++)
+        for(int i = 0; i < SkillAmount; i++)
         {
-            if(_SelectedSkills[i] != null)
-                selectedSkills[i] = _SelectedSkills[i].SkillName;
-
             selectedSkills[i] = "";
-        }
 
+            if (_SelectedSkills[i] != null)
+                selectedSkills[i] = _SelectedSkills[i].SkillName;
+            
+        }
         _Player.SetSkills(selectedSkills);
     }
 

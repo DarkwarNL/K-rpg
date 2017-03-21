@@ -32,11 +32,12 @@ abstract public class Enemy : MonoBehaviour {
     protected float _RunSpeed = 3;
     protected float _WalkSpeed = .5f;
     protected Vector3 _StartPos;
-    
+    protected bool _Disabled = false;
+
 
     #endregion
 
-    #region PRIVATE_MEMBER_VARIABLES
+    #region PRIVATE_MEMBER_FUNTIONS
 
     void Awake()
     {
@@ -56,9 +57,9 @@ abstract public class Enemy : MonoBehaviour {
             Idle();
             return;
         }
-
-        _Nav.speed = _RunSpeed;
-        EnemyBehaviour();
+        
+        if (!_Disabled) 
+            EnemyBehaviour();
 
         if(Vector3.Distance(_Target.position, transform.position) > 20)
         {

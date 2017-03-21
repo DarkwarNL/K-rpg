@@ -5,15 +5,10 @@ using UnityEngine.UI;
 
 public class ActionBarObject : MonoBehaviour {
     private int _SkillNumber;
+    [SerializeField]
     private Image _Icon;
+    [SerializeField]
     private Image _CooldownImage;
-
-    void Awake()
-    {
-        _Icon = transform.FindChild("Icon").GetComponent<Image>();
-        _CooldownImage = transform.FindChild("Cooldown").GetComponent<Image>();
-
-    }
 
     internal void SetSkillNumber(int num)
     {

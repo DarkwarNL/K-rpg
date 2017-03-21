@@ -23,6 +23,6 @@ public class SkillSelectButton : MonoBehaviour {
         _Icon.sprite = skill.Sprite;
         _Name.text = skill.SkillName;
 
-        _Button.onClick.AddListener(() => selector.SelectedSkill(_Skill, num));
+        _Button.onClick.AddListener(() => selector.SetNewSkill(_Skill, num));
     }
 }

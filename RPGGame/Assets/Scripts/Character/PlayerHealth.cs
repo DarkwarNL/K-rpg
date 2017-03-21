@@ -4,12 +4,10 @@ using System.Collections;
 using System;
 [RequireComponent(typeof(Stats))]
 public class PlayerHealth : Health {
-    private PopupTextCreator _Popup;   
 
     void Awake()
     {
-        _Popup = PopupTextCreator.Instance;
-        SetMaxHealth(100);
+        SetMaxHealth(50);
     }
 
     protected override void UpdateUI()
@@ -19,13 +17,11 @@ public class PlayerHealth : Health {
 
     protected override void DamageTaken(float amount)
     {
-        _Popup.SpawnDamageText(Statics.GetNumber(amount));
         UpdateUI();
     }
 
     protected override void HealTaken(float amount)
     {
-        _Popup.SpawnDamageText(Statics.GetNumber(amount));
         UpdateUI();
     }
 

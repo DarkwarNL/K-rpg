@@ -1,0 +1,835 @@
+fileFormatVersion: 2
+guid: 30d09de337b20e449920b82bf4b0bb9f
+timeCreated: 1494868628
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: keanu_monsta:Head
+    100002: keanu_monsta:HeadTop_End
+    100004: keanu_monsta:Hips
+    100006: keanu_monsta:LeftArm
+    100008: keanu_monsta:LeftFoot
+    100010: keanu_monsta:LeftForeArm
+    100012: keanu_monsta:LeftHand
+    100014: keanu_monsta:LeftHandIndex1
+    100016: keanu_monsta:LeftHandIndex2
+    100018: keanu_monsta:LeftHandIndex3
+    100020: keanu_monsta:LeftHandIndex4
+    100022: keanu_monsta:LeftHandMiddle1
+    100024: keanu_monsta:LeftHandMiddle2
+    100026: keanu_monsta:LeftHandMiddle3
+    100028: keanu_monsta:LeftHandMiddle4
+    100030: keanu_monsta:LeftHandRing1
+    100032: keanu_monsta:LeftHandRing2
+    100034: keanu_monsta:LeftHandRing3
+    100036: keanu_monsta:LeftHandRing4
+    100038: keanu_monsta:LeftHandThumb1
+    100040: keanu_monsta:LeftHandThumb2
+    100042: keanu_monsta:LeftHandThumb3
+    100044: keanu_monsta:LeftHandThumb4
+    100046: keanu_monsta:LeftLeg
+    100048: keanu_monsta:LeftShoulder
+    100050: keanu_monsta:LeftToe_End
+    100052: keanu_monsta:LeftToeBase
+    100054: keanu_monsta:LeftUpLeg
+    100056: keanu_monsta:Neck
+    100058: keanu_monsta:RightArm
+    100060: keanu_monsta:RightFoot
+    100062: keanu_monsta:RightForeArm
+    100064: keanu_monsta:RightHand
+    100066: keanu_monsta:RightHandIndex1
+    100068: keanu_monsta:RightHandIndex2
+    100070: keanu_monsta:RightHandIndex3
+    100072: keanu_monsta:RightHandIndex4
+    100074: keanu_monsta:RightHandMiddle1
+    100076: keanu_monsta:RightHandMiddle2
+    100078: keanu_monsta:RightHandMiddle3
+    100080: keanu_monsta:RightHandMiddle4
+    100082: keanu_monsta:RightHandRing1
+    100084: keanu_monsta:RightHandRing2
+    100086: keanu_monsta:RightHandRing3
+    100088: keanu_monsta:RightHandRing4
+    100090: keanu_monsta:RightHandThumb1
+    100092: keanu_monsta:RightHandThumb2
+    100094: keanu_monsta:RightHandThumb3
+    100096: keanu_monsta:RightHandThumb4
+    100098: keanu_monsta:RightLeg
+    100100: keanu_monsta:RightShoulder
+    100102: keanu_monsta:RightToe_End
+    100104: keanu_monsta:RightToeBase
+    100106: keanu_monsta:RightUpLeg
+    100108: keanu_monsta:Spine
+    100110: keanu_monsta:Spine1
+    100112: keanu_monsta:Spine2
+    100114: //RootNode
+    100116: mixamorig:Head
+    100118: mixamorig:HeadTop_End
+    100120: mixamorig:Hips
+    100122: mixamorig:LeftArm
+    100124: mixamorig:LeftFoot
+    100126: mixamorig:LeftForeArm
+    100128: mixamorig:LeftHand
+    100130: mixamorig:LeftHandIndex1
+    100132: mixamorig:LeftHandIndex2
+    100134: mixamorig:LeftHandIndex3
+    100136: mixamorig:LeftHandIndex4
+    100138: mixamorig:LeftLeg
+    100140: mixamorig:LeftShoulder
+    100142: mixamorig:LeftToe_End
+    100144: mixamorig:LeftToeBase
+    100146: mixamorig:LeftUpLeg
+    100148: mixamorig:Neck
+    100150: mixamorig:RightArm
+    100152: mixamorig:RightFoot
+    100154: mixamorig:RightForeArm
+    100156: mixamorig:RightHand
+    100158: mixamorig:RightHandIndex1
+    100160: mixamorig:RightHandIndex2
+    100162: mixamorig:RightHandIndex3
+    100164: mixamorig:RightHandIndex4
+    100166: mixamorig:RightLeg
+    100168: mixamorig:RightShoulder
+    100170: mixamorig:RightToe_End
+    100172: mixamorig:RightToeBase
+    100174: mixamorig:RightUpLeg
+    100176: mixamorig:Spine
+    100178: mixamorig:Spine1
+    100180: mixamorig:Spine2
+    400000: keanu_monsta:Head
+    400002: keanu_monsta:HeadTop_End
+    400004: keanu_monsta:Hips
+    400006: keanu_monsta:LeftArm
+    400008: keanu_monsta:LeftFoot
+    400010: keanu_monsta:LeftForeArm
+    400012: keanu_monsta:LeftHand
+    400014: keanu_monsta:LeftHandIndex1
+    400016: keanu_monsta:LeftHandIndex2
+    400018: keanu_monsta:LeftHandIndex3
+    400020: keanu_monsta:LeftHandIndex4
+    400022: keanu_monsta:LeftHandMiddle1
+    400024: keanu_monsta:LeftHandMiddle2
+    400026: keanu_monsta:LeftHandMiddle3
+    400028: keanu_monsta:LeftHandMiddle4
+    400030: keanu_monsta:LeftHandRing1
+    400032: keanu_monsta:LeftHandRing2
+    400034: keanu_monsta:LeftHandRing3
+    400036: keanu_monsta:LeftHandRing4
+    400038: keanu_monsta:LeftHandThumb1
+    400040: keanu_monsta:LeftHandThumb2
+    400042: keanu_monsta:LeftHandThumb3
+    400044: keanu_monsta:LeftHandThumb4
+    400046: keanu_monsta:LeftLeg
+    400048: keanu_monsta:LeftShoulder
+    400050: keanu_monsta:LeftToe_End
+    400052: keanu_monsta:LeftToeBase
+    400054: keanu_monsta:LeftUpLeg
+    400056: keanu_monsta:Neck
+    400058: keanu_monsta:RightArm
+    400060: keanu_monsta:RightFoot
+    400062: keanu_monsta:RightForeArm
+    400064: keanu_monsta:RightHand
+    400066: keanu_monsta:RightHandIndex1
+    400068: keanu_monsta:RightHandIndex2
+    400070: keanu_monsta:RightHandIndex3
+    400072: keanu_monsta:RightHandIndex4
+    400074: keanu_monsta:RightHandMiddle1
+    400076: keanu_monsta:RightHandMiddle2
+    400078: keanu_monsta:RightHandMiddle3
+    400080: keanu_monsta:RightHandMiddle4
+    400082: keanu_monsta:RightHandRing1
+    400084: keanu_monsta:RightHandRing2
+    400086: keanu_monsta:RightHandRing3
+    400088: keanu_monsta:RightHandRing4
+    400090: keanu_monsta:RightHandThumb1
+    400092: keanu_monsta:RightHandThumb2
+    400094: keanu_monsta:RightHandThumb3
+    400096: keanu_monsta:RightHandThumb4
+    400098: keanu_monsta:RightLeg
+    400100: keanu_monsta:RightShoulder
+    400102: keanu_monsta:RightToe_End
+    400104: keanu_monsta:RightToeBase
+    400106: keanu_monsta:RightUpLeg
+    400108: keanu_monsta:Spine
+    400110: keanu_monsta:Spine1
+    400112: keanu_monsta:Spine2
+    400114: //RootNode
+    400116: mixamorig:Head
+    400118: mixamorig:HeadTop_End
+    400120: mixamorig:Hips
+    400122: mixamorig:LeftArm
+    400124: mixamorig:LeftFoot
+    400126: mixamorig:LeftForeArm
+    400128: mixamorig:LeftHand
+    400130: mixamorig:LeftHandIndex1
+    400132: mixamorig:LeftHandIndex2
+    400134: mixamorig:LeftHandIndex3
+    400136: mixamorig:LeftHandIndex4
+    400138: mixamorig:LeftLeg
+    400140: mixamorig:LeftShoulder
+    400142: mixamorig:LeftToe_End
+    400144: mixamorig:LeftToeBase
+    400146: mixamorig:LeftUpLeg
+    400148: mixamorig:Neck
+    400150: mixamorig:RightArm
+    400152: mixamorig:RightFoot
+    400154: mixamorig:RightForeArm
+    400156: mixamorig:RightHand
+    400158: mixamorig:RightHandIndex1
+    400160: mixamorig:RightHandIndex2
+    400162: mixamorig:RightHandIndex3
+    400164: mixamorig:RightHandIndex4
+    400166: mixamorig:RightLeg
+    400168: mixamorig:RightShoulder
+    400170: mixamorig:RightToe_End
+    400172: mixamorig:RightToeBase
+    400174: mixamorig:RightUpLeg
+    400176: mixamorig:Spine
+    400178: mixamorig:Spine1
+    400180: mixamorig:Spine2
+    7400000: Demon_Blast
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Bone length in
+      copied configuration does not match position in animation file:\n\t'mixamorig:LeftUpLeg'
+      : position error = 84.384148 mm\n\t'mixamorig:LeftLeg' : position error = 445.859192
+      mm\n\t'mixamorig:LeftFoot' : position error = 446.623779 mm\n\t'mixamorig:LeftToeBase'
+      : position error = 146.138382 mm\n\t'mixamorig:RightUpLeg' : position error
+      = 84.452576 mm\n\t'mixamorig:RightLeg' : position error = 446.381256 mm\n\t'mixamorig:RightFoot'
+      : position error = 446.229462 mm\n\t'mixamorig:RightToeBase' : position error
+      = 144.828476 mm\n"
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: "\nRetargeting quality report for clip 'mixamo.com':\n\tLeftLowerLeg
+      average position error 496.3 mm and maximum position error 522.0 mm at time
+      1: 0 (38.0%) Frame 60\n\tLeftFoot average position error 729.2 mm and maximum
+      position error 813.2 mm at time 0:25 (15.8%) Frame 25\n\tRightLowerLeg average
+      position error 500.0 mm and maximum position error 518.1 mm at time 2: 1 (76.6%)
+      Frame 121\n\tRightFoot average position error 746.7 mm and maximum position
+      error 814.3 mm at time 2:25 (91.8%) Frame 145\n\tLeftUpperArm average position
+      error 347.1 mm and maximum position error 386.3 mm at time 1: 1 (38.6%) Frame
+      61\n\tLeftLowerArm average position error 424.6 mm and maximum position error
+      573.5 mm at time 1:30 (57.0%) Frame 90\n\tLeftHand average position error 630.7
+      mm and maximum position error 831.0 mm at time 1:38 (62.0%) Frame 98\n\tRightUpperArm
+      average position error 348.8 mm and maximum position error 379.1 mm at time
+      1:22 (51.9%) Frame 82\n\tRightLowerArm average position error 462.4 mm and maximum
+      position error 597.4 mm at time 1:23 (52.5%) Frame 83\n\tRightHand average position
+      error 648.0 mm and maximum position error 838.0 mm at time 1:31 (57.6%) Frame
+      91\n\tHead average position error 430.7 mm and maximum position error 437.1
+      mm at time 1:22 (51.9%) Frame 82\n"
+    animationDoRetargetingWarnings: 1
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Demon_Blast
+      takeName: mixamo.com
+      firstFrame: 0
+      lastFrame: 158
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: -0.7
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 0
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 1
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.51594204
+        functionName: Attack
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: keanu_monsta:Hips
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:LeftUpLeg
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:LeftUpLeg/keanu_monsta:LeftLeg
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:LeftUpLeg/keanu_monsta:LeftLeg/keanu_monsta:LeftFoot
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:LeftUpLeg/keanu_monsta:LeftLeg/keanu_monsta:LeftFoot/keanu_monsta:LeftToeBase
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:LeftUpLeg/keanu_monsta:LeftLeg/keanu_monsta:LeftFoot/keanu_monsta:LeftToeBase/keanu_monsta:LeftToe_End
+        weight: 0
+      - path: keanu_monsta:Hips/keanu_monsta:RightUpLeg
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:RightUpLeg/keanu_monsta:RightLeg
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:RightUpLeg/keanu_monsta:RightLeg/keanu_monsta:RightFoot
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:RightUpLeg/keanu_monsta:RightLeg/keanu_monsta:RightFoot/keanu_monsta:RightToeBase
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:RightUpLeg/keanu_monsta:RightLeg/keanu_monsta:RightFoot/keanu_monsta:RightToeBase/keanu_monsta:RightToe_End
+        weight: 0
+      - path: keanu_monsta:Hips/keanu_monsta:Spine
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:LeftShoulder
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:LeftShoulder/keanu_monsta:LeftArm
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:LeftShoulder/keanu_monsta:LeftArm/keanu_monsta:LeftForeArm
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:LeftShoulder/keanu_monsta:LeftArm/keanu_monsta:LeftForeArm/keanu_monsta:LeftHand
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:LeftShoulder/keanu_monsta:LeftArm/keanu_monsta:LeftForeArm/keanu_monsta:LeftHand/keanu_monsta:LeftHandIndex1
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:LeftShoulder/keanu_monsta:LeftArm/keanu_monsta:LeftForeArm/keanu_monsta:LeftHand/keanu_monsta:LeftHandIndex1/keanu_monsta:LeftHandIndex2
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:LeftShoulder/keanu_monsta:LeftArm/keanu_monsta:LeftForeArm/keanu_monsta:LeftHand/keanu_monsta:LeftHandIndex1/keanu_monsta:LeftHandIndex2/keanu_monsta:LeftHandIndex3
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:LeftShoulder/keanu_monsta:LeftArm/keanu_monsta:LeftForeArm/keanu_monsta:LeftHand/keanu_monsta:LeftHandIndex1/keanu_monsta:LeftHandIndex2/keanu_monsta:LeftHandIndex3/keanu_monsta:LeftHandIndex4
+        weight: 0
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:LeftShoulder/keanu_monsta:LeftArm/keanu_monsta:LeftForeArm/keanu_monsta:LeftHand/keanu_monsta:LeftHandMiddle1
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:LeftShoulder/keanu_monsta:LeftArm/keanu_monsta:LeftForeArm/keanu_monsta:LeftHand/keanu_monsta:LeftHandMiddle1/keanu_monsta:LeftHandMiddle2
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:LeftShoulder/keanu_monsta:LeftArm/keanu_monsta:LeftForeArm/keanu_monsta:LeftHand/keanu_monsta:LeftHandMiddle1/keanu_monsta:LeftHandMiddle2/keanu_monsta:LeftHandMiddle3
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:LeftShoulder/keanu_monsta:LeftArm/keanu_monsta:LeftForeArm/keanu_monsta:LeftHand/keanu_monsta:LeftHandMiddle1/keanu_monsta:LeftHandMiddle2/keanu_monsta:LeftHandMiddle3/keanu_monsta:LeftHandMiddle4
+        weight: 0
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:LeftShoulder/keanu_monsta:LeftArm/keanu_monsta:LeftForeArm/keanu_monsta:LeftHand/keanu_monsta:LeftHandRing1
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:LeftShoulder/keanu_monsta:LeftArm/keanu_monsta:LeftForeArm/keanu_monsta:LeftHand/keanu_monsta:LeftHandRing1/keanu_monsta:LeftHandRing2
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:LeftShoulder/keanu_monsta:LeftArm/keanu_monsta:LeftForeArm/keanu_monsta:LeftHand/keanu_monsta:LeftHandRing1/keanu_monsta:LeftHandRing2/keanu_monsta:LeftHandRing3
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:LeftShoulder/keanu_monsta:LeftArm/keanu_monsta:LeftForeArm/keanu_monsta:LeftHand/keanu_monsta:LeftHandRing1/keanu_monsta:LeftHandRing2/keanu_monsta:LeftHandRing3/keanu_monsta:LeftHandRing4
+        weight: 0
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:LeftShoulder/keanu_monsta:LeftArm/keanu_monsta:LeftForeArm/keanu_monsta:LeftHand/keanu_monsta:LeftHandThumb1
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:LeftShoulder/keanu_monsta:LeftArm/keanu_monsta:LeftForeArm/keanu_monsta:LeftHand/keanu_monsta:LeftHandThumb1/keanu_monsta:LeftHandThumb2
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:LeftShoulder/keanu_monsta:LeftArm/keanu_monsta:LeftForeArm/keanu_monsta:LeftHand/keanu_monsta:LeftHandThumb1/keanu_monsta:LeftHandThumb2/keanu_monsta:LeftHandThumb3
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:LeftShoulder/keanu_monsta:LeftArm/keanu_monsta:LeftForeArm/keanu_monsta:LeftHand/keanu_monsta:LeftHandThumb1/keanu_monsta:LeftHandThumb2/keanu_monsta:LeftHandThumb3/keanu_monsta:LeftHandThumb4
+        weight: 0
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:Neck
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:Neck/keanu_monsta:Head
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:Neck/keanu_monsta:Head/keanu_monsta:HeadTop_End
+        weight: 0
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:RightShoulder
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:RightShoulder/keanu_monsta:RightArm
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:RightShoulder/keanu_monsta:RightArm/keanu_monsta:RightForeArm
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:RightShoulder/keanu_monsta:RightArm/keanu_monsta:RightForeArm/keanu_monsta:RightHand
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:RightShoulder/keanu_monsta:RightArm/keanu_monsta:RightForeArm/keanu_monsta:RightHand/keanu_monsta:RightHandIndex1
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:RightShoulder/keanu_monsta:RightArm/keanu_monsta:RightForeArm/keanu_monsta:RightHand/keanu_monsta:RightHandIndex1/keanu_monsta:RightHandIndex2
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:RightShoulder/keanu_monsta:RightArm/keanu_monsta:RightForeArm/keanu_monsta:RightHand/keanu_monsta:RightHandIndex1/keanu_monsta:RightHandIndex2/keanu_monsta:RightHandIndex3
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:RightShoulder/keanu_monsta:RightArm/keanu_monsta:RightForeArm/keanu_monsta:RightHand/keanu_monsta:RightHandIndex1/keanu_monsta:RightHandIndex2/keanu_monsta:RightHandIndex3/keanu_monsta:RightHandIndex4
+        weight: 0
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:RightShoulder/keanu_monsta:RightArm/keanu_monsta:RightForeArm/keanu_monsta:RightHand/keanu_monsta:RightHandMiddle1
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:RightShoulder/keanu_monsta:RightArm/keanu_monsta:RightForeArm/keanu_monsta:RightHand/keanu_monsta:RightHandMiddle1/keanu_monsta:RightHandMiddle2
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:RightShoulder/keanu_monsta:RightArm/keanu_monsta:RightForeArm/keanu_monsta:RightHand/keanu_monsta:RightHandMiddle1/keanu_monsta:RightHandMiddle2/keanu_monsta:RightHandMiddle3
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:RightShoulder/keanu_monsta:RightArm/keanu_monsta:RightForeArm/keanu_monsta:RightHand/keanu_monsta:RightHandMiddle1/keanu_monsta:RightHandMiddle2/keanu_monsta:RightHandMiddle3/keanu_monsta:RightHandMiddle4
+        weight: 0
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:RightShoulder/keanu_monsta:RightArm/keanu_monsta:RightForeArm/keanu_monsta:RightHand/keanu_monsta:RightHandRing1
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:RightShoulder/keanu_monsta:RightArm/keanu_monsta:RightForeArm/keanu_monsta:RightHand/keanu_monsta:RightHandRing1/keanu_monsta:RightHandRing2
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:RightShoulder/keanu_monsta:RightArm/keanu_monsta:RightForeArm/keanu_monsta:RightHand/keanu_monsta:RightHandRing1/keanu_monsta:RightHandRing2/keanu_monsta:RightHandRing3
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:RightShoulder/keanu_monsta:RightArm/keanu_monsta:RightForeArm/keanu_monsta:RightHand/keanu_monsta:RightHandRing1/keanu_monsta:RightHandRing2/keanu_monsta:RightHandRing3/keanu_monsta:RightHandRing4
+        weight: 0
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:RightShoulder/keanu_monsta:RightArm/keanu_monsta:RightForeArm/keanu_monsta:RightHand/keanu_monsta:RightHandThumb1
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:RightShoulder/keanu_monsta:RightArm/keanu_monsta:RightForeArm/keanu_monsta:RightHand/keanu_monsta:RightHandThumb1/keanu_monsta:RightHandThumb2
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:RightShoulder/keanu_monsta:RightArm/keanu_monsta:RightForeArm/keanu_monsta:RightHand/keanu_monsta:RightHandThumb1/keanu_monsta:RightHandThumb2/keanu_monsta:RightHandThumb3
+        weight: 1
+      - path: keanu_monsta:Hips/keanu_monsta:Spine/keanu_monsta:Spine1/keanu_monsta:Spine2/keanu_monsta:RightShoulder/keanu_monsta:RightArm/keanu_monsta:RightForeArm/keanu_monsta:RightHand/keanu_monsta:RightHandThumb1/keanu_monsta:RightHandThumb2/keanu_monsta:RightHandThumb3/keanu_monsta:RightHandThumb4
+        weight: 0
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    serializedVersion: 2
+    human:
+    - boneName: mixamorig:Hips
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:RightUpLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:LeftLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:RightLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:LeftFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:RightFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:Spine1
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:LeftShoulder
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:RightShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:LeftArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:LeftForeArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:LeftHand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:RightHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:LeftToeBase
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:RightToeBase
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:LeftHandIndex1
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:LeftHandIndex2
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:LeftHandIndex3
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:RightHandIndex1
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:RightHandIndex2
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:RightHandIndex3
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mixamorig:Spine2
+      humanName: UpperChest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Demon(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: polySurface1
+      parentName: Demon(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:Hips
+      parentName: Demon(Clone)
+      position: {x: -0.0000020368402, y: 1.2049699, z: 0.0023914338}
+      rotation: {x: 0.00000027648173, y: -0.00000044053863, z: 0.00001861978, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:Spine
+      parentName: mixamorig:Hips
+      position: {x: -0, y: 0.08861935, z: -0.0075680944}
+      rotation: {x: -0.042584002, y: 0.0000012330345, z: -0.000018584129, w: 0.9990929}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:Spine1
+      parentName: mixamorig:Spine
+      position: {x: -0, y: 0.103765585, z: -2.9445157e-10}
+      rotation: {x: 6.7953193e-26, y: -1.0051959e-13, z: 6.760194e-13, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:Spine2
+      parentName: mixamorig:Spine1
+      position: {x: -0, y: 0.118589155, z: 5.7431754e-10}
+      rotation: {x: 0, y: 6.3108872e-30, z: -6.7053177e-29, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:Neck
+      parentName: mixamorig:Spine2
+      position: {x: -0, y: 0.13341294, z: 0.000000024460903}
+      rotation: {x: 0.021797242, y: 8.576035e-14, z: -3.9028e-13, w: 0.9997624}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:Head
+      parentName: mixamorig:Neck
+      position: {x: -0, y: 0.09213232, z: 0.055058718}
+      rotation: {x: 0, y: -0, z: -3.849534e-32, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:HeadTop_End
+      parentName: mixamorig:Head
+      position: {x: -0, y: 0.25106096, z: 0.15003522}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:LeftShoulder
+      parentName: mixamorig:Spine2
+      position: {x: -0.040250137, y: 0.11806479, z: -0.0015246915}
+      rotation: {x: 0.5337716, y: -0.4588182, z: 0.5476079, w: 0.45243713}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:LeftArm
+      parentName: mixamorig:LeftShoulder
+      position: {x: -1.0944107e-11, y: 0.08512759, z: 5.7300383e-11}
+      rotation: {x: -0.085657, y: -0.13069531, z: 0.00081628544, w: 0.98771507}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:LeftForeArm
+      parentName: mixamorig:LeftArm
+      position: {x: -0.0000000031148293, y: 0.36135986, z: -0.0000000055393583}
+      rotation: {x: -0.0000000708182, y: 0.36530492, z: 0.0000001489439, w: 0.93088794}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:LeftHand
+      parentName: mixamorig:LeftForeArm
+      position: {x: 0.0000000025681488, y: 0.35298118, z: 1.8775348e-10}
+      rotation: {x: -0.00000012604522, y: 0.999648, z: 0.00000026268938, w: -0.026532214}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:LeftHandIndex1
+      parentName: mixamorig:LeftHand
+      position: {x: -1.8889922e-10, y: 0.040804934, z: 1.1459377e-10}
+      rotation: {x: -0.00000016539661, y: 0.9966471, z: 0.00000040902978, w: 0.081820115}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:LeftHandIndex2
+      parentName: mixamorig:LeftHandIndex1
+      position: {x: -9.323364e-10, y: 0.06406254, z: 5.727655e-10}
+      rotation: {x: -0.19299576, y: 0.00000008279318, z: -0.056684032, w: 0.9795609}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:LeftHandIndex3
+      parentName: mixamorig:LeftHandIndex2
+      position: {x: -0.010502184, y: 0.086888134, z: 0.035740543}
+      rotation: {x: -0.05580167, y: 0.016264964, z: -0.05592557, w: 0.9967417}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:LeftHandIndex4
+      parentName: mixamorig:LeftHandIndex3
+      position: {x: -0.020092672, y: 0.076393925, z: 0.04227088}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:RightShoulder
+      parentName: mixamorig:Spine2
+      position: {x: 0.040250137, y: 0.1180285, z: -0.0010998338}
+      rotation: {x: -0.5372633, y: -0.45679948, z: 0.54449815, w: -0.4540971}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:RightArm
+      parentName: mixamorig:RightShoulder
+      position: {x: 1.4818008e-12, y: 0.08512759, z: 5.816947e-11}
+      rotation: {x: -0.085313626, y: 0.13825813, z: -0.006740619, w: 0.9866919}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:RightForeArm
+      parentName: mixamorig:RightArm
+      position: {x: -0.0000000023048707, y: 0.3616179, z: -8.6146784e-10}
+      rotation: {x: -0.00000012247048, y: -0.37042764, z: -0.0000001807187, w: 0.9288613}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:RightHand
+      parentName: mixamorig:RightForeArm
+      position: {x: -0.000000007571132, y: 0.35333234, z: -0.0000000060448992}
+      rotation: {x: 0.00000012495443, y: 0.99820936, z: 0.00000012495443, w: 0.059817515}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:RightHandIndex1
+      parentName: mixamorig:RightHand
+      position: {x: 3.2017133e-10, y: 0.03966824, z: 7.864387e-11}
+      rotation: {x: 0.0000000101090025, y: 0.9971141, z: 0.00000013277378, w: -0.07591732}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:RightHandIndex2
+      parentName: mixamorig:RightHandIndex1
+      position: {x: -0.0000000020817001, y: 0.0656301, z: -0.0000000038850634}
+      rotation: {x: -0.19337314, y: -0.000000021580865, z: 0.0693923, w: 0.9786683}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:RightHandIndex3
+      parentName: mixamorig:RightHandIndex2
+      position: {x: 0.013116946, y: 0.08848409, z: 0.036575034}
+      rotation: {x: -0.058125727, y: -0.010580762, z: 0.046453264, w: 0.9971718}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:RightHandIndex4
+      parentName: mixamorig:RightHandIndex3
+      position: {x: 0.020478748, y: 0.07651929, z: 0.043062482}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:LeftUpLeg
+      parentName: mixamorig:Hips
+      position: {x: -0.09259883, y: -0.049197435, z: -0.0018488726}
+      rotation: {x: -0.006233086, y: 0.10905645, z: 0.9934137, w: 0.034599792}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:LeftLeg
+      parentName: mixamorig:LeftUpLeg
+      position: {x: 0.0000000013025016, y: 0.55411553, z: 0.000000001005532}
+      rotation: {x: -0.2536948, y: 0.12614249, z: 0.033814132, w: 0.9584277}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:LeftFoot
+      parentName: mixamorig:LeftLeg
+      position: {x: 0.0000000015221667, y: 0.5550656, z: -0.000000005250695}
+      rotation: {x: 0.6334396, y: 0.0022797284, z: -0.04777693, w: 0.77231246}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:LeftToeBase
+      parentName: mixamorig:LeftFoot
+      position: {x: -9.831352e-10, y: 0.18162133, z: 0.000000004638471}
+      rotation: {x: 0.25018618, y: -0.05928282, z: 0.015349579, w: 0.9662592}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:LeftToe_End
+      parentName: mixamorig:LeftToeBase
+      position: {x: -5.156877e-10, y: 0.069601625, z: 6.1628466e-11}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:RightUpLeg
+      parentName: mixamorig:Hips
+      position: {x: 0.09259883, y: -0.049197435, z: -0.0046108924}
+      rotation: {x: 0.0063304133, y: 0.11059494, z: 0.9932456, w: -0.03452391}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:RightLeg
+      parentName: mixamorig:RightUpLeg
+      position: {x: -6.974106e-10, y: 0.5547645, z: -3.5426367e-10}
+      rotation: {x: -0.25444877, y: -0.1256765, z: -0.033817496, w: 0.9582889}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:RightFoot
+      parentName: mixamorig:RightLeg
+      position: {x: -7.962564e-11, y: 0.5545753, z: -0.000000001803895}
+      rotation: {x: 0.630789, y: -0.006895288, z: 0.050026778, w: 0.77430934}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:RightToeBase
+      parentName: mixamorig:RightFoot
+      position: {x: 0.000000004647829, y: 0.1799936, z: 0.0000000036890244}
+      rotation: {x: 0.25302002, y: 0.065051086, z: -0.017054034, w: 0.965121}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mixamorig:RightToe_End
+      parentName: mixamorig:RightToeBase
+      position: {x: 4.318736e-10, y: 0.06947241, z: 4.448017e-11}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 41289122507320b4eac81a08c2f72110,
+    type: 3}
+  animationType: 3
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
